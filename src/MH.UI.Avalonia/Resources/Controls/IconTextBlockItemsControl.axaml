@@ -1,0 +1,79 @@
+﻿<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:ap="clr-namespace:MH.UI.Avalonia.AttachedProperties"
+  xmlns:c="clr-namespace:MH.UI.Avalonia.Controls">
+
+  <Style x:Key="MH.S.IconTextBlockItemsControl" Selector="c|IconTextBlockItemsControl">
+    <Setter Property="Margin" Value="2"/>
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="BorderBrush" Value="Black"/>
+    <Setter Property="ap:Icon.Fill" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="ap:Icon.Size" Value="18"/>
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <WrapPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type c:IconTextBlockItemsControl}">
+          <Border
+            Background="{TemplateBinding Background}"
+            CornerRadius="3"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            BorderBrush="Black"
+            Padding="{TemplateBinding Padding}">
+
+            <Grid VerticalAlignment="Center">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+
+              <Path
+                x:Name="icon"
+                Data="{Binding Path=(ap:Icon.Data), RelativeSource={RelativeSource TemplatedParent}}"
+                Fill="{Binding Path=(ap:Icon.Fill), RelativeSource={RelativeSource TemplatedParent}}"
+                Width="{Binding Path=(ap:Icon.Size), RelativeSource={RelativeSource TemplatedParent}}"
+                Height="{Binding Path=(ap:Icon.Size), RelativeSource={RelativeSource TemplatedParent}}"
+                Effect="{StaticResource MH.Effects.DropShadow}"
+                Margin="2"
+                Stretch="Uniform"/>
+
+              <ScrollViewer
+                Grid.Column="1"
+                HorizontalScrollBarVisibility="{Binding Path=(ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                VerticalScrollBarVisibility="{Binding Path=(ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}">
+
+                <ItemsPresenter/>
+              </ScrollViewer>
+            </Grid>
+          </Border>
+
+          <ControlTemplate.Triggers>
+            <StaticResource ResourceKey="MH.Trigger.IconResToDataAndFill"/>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style
+    x:Key="MH.S.IconTextBlockItemsControl.Borders.RoundDark"
+    Selector="c|IconTextBlockItemsControl"
+    BasedOn="{StaticResource MH.S.IconTextBlockItemsControl}">
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Padding" Value="2,0,2,0"/>
+    <Setter Property="Background" Value="{DynamicResource MH.B.Black5}"/>
+    <Setter Property="ItemTemplate" Value="{DynamicResource MH.DT.TextBlock.Border.RoundDark}"/>
+  </Style>
+</ResourceDictionary>

@@ -1,0 +1,149 @@
+﻿<DataTemplates
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:s="clr-namespace:MH.UI.Avalonia.Sample"
+  xmlns:mhc="clr-namespace:MH.UI.Avalonia.Controls;assembly=MH.UI.Avalonia"
+  xmlns:vml="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Layout">
+
+  <DataTemplate DataType="{x:Type vml:ToolBarVM}">
+    <!--TODO PORT-->
+    <!--<Grid Height="30" Background="#30000000">
+      <StackPanel Orientation="Horizontal">
+        <StackPanel
+          Orientation="Horizontal"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Center"
+          Height="30"
+          Background="Transparent"
+          mhc:CustomWindow.IsDragAreaFor="{Binding RelativeSource={RelativeSource AncestorType=mhc:CustomWindow}}">
+
+          <TextBlock
+            Text="⛰"
+            Margin="4,0,6,2"
+            VerticalAlignment="Center"/>
+
+          <TextBlock
+            Text="{Binding Title, RelativeSource={RelativeSource AncestorType=mhc:CustomWindow}}"
+            FontWeight="Bold"
+            VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Menu VerticalAlignment="Center" Margin="5,0,0,0">
+          <MenuItem Header="Enabled" IsCheckable="True" IsChecked="{Binding VM.MainWindow.AreControlsEnabled, Source={x:Static s:App.Core}}"/>
+          <MenuItem Header="Dialogs" DataContext="{Binding VM.MainWindow, Source={x:Static s:App.Core}}">
+            <MenuItem Command="{Binding OpenMessageDialogCommand}"/>
+            <MenuItem Command="{Binding OpenInputDialogCommand}"/>
+            <MenuItem Command="{Binding OpenProgressDialogCommand}"/>
+          </MenuItem>
+          <MenuItem Header="Left Content" DataContext="{Binding VM.MainWindow, Source={x:Static s:App.Core}}">
+            <MenuItem.Icon>
+              <Path Data="{StaticResource IconGroup}" Style="{StaticResource MH.S.Icon.Shadow}"/>
+            </MenuItem.Icon>
+            <MenuItem Command="{Binding OpenButtonsTabCommand}"/>
+            <MenuItem Command="{Binding OpenColorsTabCommand}"/>
+            <MenuItem Command="{Binding OpenListsTabCommand}"/>
+            <MenuItem Command="{Binding OpenSlidersTabCommand}"/>
+            <MenuItem Command="{Binding OpenTextsTabCommand}"/>
+          </MenuItem>
+          <MenuItem Header="Menu">
+            <MenuItem Header="Item 1" Command="{Binding SampleImageCommand}" InputGestureText="CTRL+K"/>
+            <MenuItem Header="Item 2" Command="{Binding SampleVideoCommand}" IsEnabled="False"/>
+            <MenuItem Header="Checkable" IsCheckable="True" IsChecked="{Binding CheckedMenuItem}"/>
+            <Separator/>
+            <CheckBox IsChecked="True" Content="Test"/>
+            <MenuItem Header="Item 3">
+              <MenuItem.Icon>
+                <Path Data="{StaticResource IconBug}" Style="{StaticResource MH.S.Icon.Shadow}"/>
+              </MenuItem.Icon>
+              <MenuItem Header="Item 1" InputGestureText="CTRL+K"/>
+              <MenuItem Header="Item 2" IsEnabled="False" IsChecked="True">
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+              </MenuItem>
+              <MenuItem Header="Item 3">
+                <MenuItem Header="Item 1 with longer name"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3 with longer name" InputGestureText="CTRL+K"/>
+              </MenuItem>
+              <MenuItem Header="Item 4">
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2" InputGestureText="CTRL+K"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+                <MenuItem Header="Item 1"/>
+                <MenuItem Header="Item 2"/>
+                <MenuItem Header="Item 3"/>
+              </MenuItem>
+            </MenuItem>
+          </MenuItem>
+          <MenuItem Padding="6,2,-2,2">
+            <MenuItem.Icon>
+              <Path Data="{StaticResource IconGroup}" Style="{StaticResource MH.S.Icon.Shadow}"/>
+            </MenuItem.Icon>
+            <MenuItem Header="Item 1 with longer name"/>
+            <MenuItem Header="Item 2"/>
+            <MenuItem Header="Item 3 with longer name" InputGestureText="CTRL+K"/>
+          </MenuItem>
+        </Menu>
+      </StackPanel>
+
+      <Grid HorizontalAlignment="Right">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ContentPresenter Content="{Binding SlidePanelPinButton}"/>
+
+        <ContentPresenter
+          Grid.Column="1"
+          Content="{Binding RelativeSource={RelativeSource AncestorType=mhc:CustomWindow}}"
+          ContentTemplate="{StaticResource MH.DT.CustomWindow.Buttons}"/>
+      </Grid>
+    </Grid>-->
+  </DataTemplate>
+</DataTemplates>

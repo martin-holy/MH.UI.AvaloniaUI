@@ -1,0 +1,22 @@
+﻿<DataTemplates
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:vmc="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Controls"
+  xmlns:c="clr-namespace:MH.UI.Avalonia.Controls;assembly=MH.UI.Avalonia"
+  xmlns:ap="clr-namespace:MH.UI.Avalonia.AttachedProperties;assembly=MH.UI.Avalonia">
+
+  <DataTemplate DataType="{x:Type vmc:TextsVM}">
+    <StackPanel Orientation="Vertical">
+      <TextBox Text="TextBox" Margin="4"/>
+      <TextBox Text="TextBox" Margin="4" IsInactiveSelectionHighlightEnabled="True"/>
+      <TextBlock Text="TextBlock" Margin="4"/>
+      <Label Content="Label"/>
+      <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Shadow="None"/>
+      <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Shadow="Icon"/>
+      <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Shadow="Text"/>
+      <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2"/>
+      <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Shadow="None" Classes="{StaticResource MH.S.IconTextBlock.Borders.RoundDark}"/>
+      <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Classes="{StaticResource MH.S.IconTextBlock.Borders.RoundDark}"/>
+    </StackPanel>
+  </DataTemplate>
+</DataTemplates>

@@ -1,0 +1,66 @@
+﻿<DataTemplates
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mhc="clr-namespace:MH.UI.Avalonia.Controls;assembly=MH.UI.Avalonia"
+  xmlns:ap="clr-namespace:MH.UI.Avalonia.AttachedProperties;assembly=MH.UI.Avalonia"
+  xmlns:vmc="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Controls">
+
+  <DataTemplate DataType="{x:Type vmc:ButtonsVM}">
+    <Grid HorizontalAlignment="Center">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+
+      <StackPanel Margin="5" Grid.Row="0" Grid.Column="0">
+        <CheckBox IsChecked="{x:Null}" Content="Sample"/>
+        <CheckBox IsChecked="False" Content="Sample"/>
+        <CheckBox IsChecked="True" Content="Sample"/>
+        <CheckBox IsChecked="True"/>
+      </StackPanel>
+
+      <StackPanel Margin="5" Grid.Row="0" Grid.Column="1">
+        <RadioButton IsChecked="{x:Null}" Content="Sample"/>
+        <RadioButton IsChecked="False" Content="Sample"/>
+        <RadioButton IsChecked="True" Content="Sample"/>
+        <RadioButton IsChecked="True"/>
+      </StackPanel>
+
+      <Button Grid.Row="1" Grid.Column="0" Command="{Binding DialogButtonWithIconCommand}"/>
+      <Button Grid.Row="1" Grid.Column="1" Command="{Binding DialogButtonWithoutIconCommand}"/>
+
+      <ToggleButton
+        Grid.Row="2"
+        Grid.Column="0"
+        ap:Text.Text="Sample"
+        ap:Icon.Data="{StaticResource IconImage}"
+        IsChecked="True"/>
+
+      <ToggleButton
+        Grid.Row="2"
+        Grid.Column="1"
+        ap:Text.Text="Sample"
+        IsChecked="True"/>
+
+      <StackPanel
+        Grid.Row="3"
+        Grid.Column="0"
+        Grid.ColumnSpan="2"
+        Orientation="Horizontal"
+        VerticalAlignment="Top">
+
+        <mhc:IconButton ap:Icon.Data="{StaticResource IconImage}"/>
+        <mhc:IconTextButton ap:Icon.Data="{StaticResource IconImage}" ap:Text.Text="23"/>
+        <mhc:SlimButton ToolTip.Tip="Sample" ap:Icon.Data="{StaticResource IconImage}" ap:Text.Text="Sample"/>
+        <mhc:IconToggleButton ap:Icon.Data="{StaticResource IconImage}" IsChecked="True"/>
+      </StackPanel>
+    </Grid>
+  </DataTemplate>
+</DataTemplates>

@@ -1,0 +1,19 @@
+﻿<DataTemplates
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mhc="clr-namespace:MH.UI.Avalonia.Controls;assembly=MH.UI.Avalonia"
+  xmlns:vml="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Layout"
+  xmlns:ap="clr-namespace:MH.UI.Avalonia.AttachedProperties;assembly=MH.UI.Avalonia">
+
+  <DataTemplate DataType="{x:Type vml:MiddleContentVM}">
+    <TabControl/>
+  </DataTemplate>
+
+  <DataTemplate DataType="{x:Type vml:MiddleContentSlotVM}">
+    <mhc:IconButton
+      ap:Icon.Data="{StaticResource IconBug}"
+      ap:Icon.Size="15"
+      Width="24"
+      Height="24"/>
+  </DataTemplate>
+</DataTemplates>

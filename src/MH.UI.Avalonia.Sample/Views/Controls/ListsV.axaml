@@ -1,0 +1,43 @@
+﻿<DataTemplates
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:vmc="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Controls"
+  xmlns:ap="clr-namespace:MH.UI.Avalonia.AttachedProperties;assembly=MH.UI.Avalonia">
+
+  <DataTemplate DataType="{x:Type vmc:ListsVM}">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <ComboBox
+        ItemsSource="{Binding ListData}"
+        Margin="4"/>
+
+<!-- TODO PORT ComboBox.IsEditable -->
+      <ComboBox
+        ItemsSource="{Binding ListData}"
+        Margin="4"
+        Grid.Row="1"/>
+
+      <ListBox
+        ItemsSource="{Binding ListData}"
+        IsEnabled="{Binding IsChecked, ElementName=chbEnabled}"
+        ScrollViewer.HorizontalScrollBarVisibility="Visible"
+        ScrollViewer.VerticalScrollBarVisibility="Visible"
+        Grid.Row="2"
+        Margin="4">
+
+        <ap:Slot.TopContent>
+          <Path
+            Classes="{StaticResource MH.S.Icon.Shadow}"
+            Data="{StaticResource IconBug}"
+            Width="12"
+            Height="12"/>
+        </ap:Slot.TopContent>
+      </ListBox>
+    </Grid>
+  </DataTemplate>
+</DataTemplates>

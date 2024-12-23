@@ -1,0 +1,18 @@
+﻿<DataTemplates
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mhc="clr-namespace:MH.UI.Avalonia.Controls;assembly=MH.UI.Avalonia"
+  xmlns:vmc="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Controls"
+  xmlns:m="clr-namespace:MH.UI.Avalonia.Sample.Models">
+
+  <DataTemplate DataType="{x:Type vmc:FolderTreeViewVM}">
+    <!--TODO PORT-->
+    <!--<mhc:TreeViewHost ViewModel="{Binding}">
+      <mhc:TreeViewHost.ItemTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type m:FolderM}" ItemsSource="{Binding Items}">
+          <ContentPresenter Content="{Binding}"/>
+        </HierarchicalDataTemplate>
+      </mhc:TreeViewHost.ItemTemplate>
+    </mhc:TreeViewHost>-->
+  </DataTemplate>
+</DataTemplates>
