@@ -15,7 +15,7 @@
       <c:IconTextBlockItemsControl
         ItemsSource="{Binding Data}"
         ap:Icon.Res="IconBug"
-        Classes="{StaticResource MH.S.IconTextBlockItemsControl.Borders.RoundDark}"
+        Classes="bordersRoundDark"
         Height="60"/>
     </StackPanel>
   </DataTemplate>

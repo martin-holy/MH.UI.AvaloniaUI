@@ -16,7 +16,7 @@
         ItemsSource="{Binding ListData}"
         Margin="4"/>
 
-<!-- TODO PORT ComboBox.IsEditable -->
+<!-- TODO PORT ComboBox.IsEditable=True -->
       <ComboBox
         ItemsSource="{Binding ListData}"
         Margin="4"
@@ -30,13 +30,14 @@
         Grid.Row="2"
         Margin="4">
 
-        <ap:Slot.TopContent>
+        <!--TODO PORT-->
+        <!--<ap:Slot.TopContent>
           <Path
             Classes="{StaticResource MH.S.Icon.Shadow}"
             Data="{StaticResource IconBug}"
             Width="12"
             Height="12"/>
-        </ap:Slot.TopContent>
+        </ap:Slot.TopContent>-->
       </ListBox>
     </Grid>
   </DataTemplate>

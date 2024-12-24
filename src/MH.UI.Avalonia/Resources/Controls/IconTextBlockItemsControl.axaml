@@ -1,10 +1,10 @@
-﻿<ResourceDictionary
+﻿<Styles
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:ap="clr-namespace:MH.UI.Avalonia.AttachedProperties"
   xmlns:c="clr-namespace:MH.UI.Avalonia.Controls">
 
-  <Style x:Key="MH.S.IconTextBlockItemsControl" Selector="c|IconTextBlockItemsControl">
+  <Style Selector="c|IconTextBlockItemsControl">
     <Setter Property="Margin" Value="2"/>
     <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
     <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
@@ -59,21 +59,19 @@
             </Grid>
           </Border>
 
-          <ControlTemplate.Triggers>
+          <!--TODO PORT-->
+          <!--<ControlTemplate.Triggers>
             <StaticResource ResourceKey="MH.Trigger.IconResToDataAndFill"/>
-          </ControlTemplate.Triggers>
+          </ControlTemplate.Triggers>-->
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
 
-  <Style
-    x:Key="MH.S.IconTextBlockItemsControl.Borders.RoundDark"
-    Selector="c|IconTextBlockItemsControl"
-    BasedOn="{StaticResource MH.S.IconTextBlockItemsControl}">
+  <Style Selector="c|IconTextBlockItemsControl.bordersRoundDark">
     <Setter Property="BorderThickness" Value="1"/>
     <Setter Property="Padding" Value="2,0,2,0"/>
     <Setter Property="Background" Value="{DynamicResource MH.B.Black5}"/>
     <Setter Property="ItemTemplate" Value="{DynamicResource MH.DT.TextBlock.Border.RoundDark}"/>
   </Style>
-</ResourceDictionary>
+</Styles>

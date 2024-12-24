@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary
-  xmlns="https://github.com/avaloniaui"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+   xmlns="https://github.com/avaloniaui"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <SolidColorBrush Color="#FFF9DA77" x:Key="ColorBrushFolder" />
   <SolidColorBrush Color="#FF8EC163" x:Key="ColorBrushTag" />

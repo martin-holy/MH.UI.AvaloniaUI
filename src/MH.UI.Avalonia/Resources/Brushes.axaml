@@ -1,0 +1,102 @@
+﻿<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+  <!-- Colors generated in code
+    MH.Color.Accent, MH.Color.Accent-Dark and MH.Color.Accent1-9
+    MH.Color.Black and MH.Color.Black1-9
+    MH.Color.White and MH.Color.White1-9
+  -->
+  <!-- Brushes generated in code
+    MH.B.Accent, MH.B.Accent-Dark and MH.B.Accent1-9
+    MH.B.Black and MH.B.Black1-9
+    MH.B.White and MH.B.White1-9
+  -->
+
+  <Color x:Key="MH.Color.Gray1">#0F0F0F</Color>
+  <Color x:Key="MH.Color.Gray2">#252525</Color>
+  <Color x:Key="MH.Color.Gray3">#414141</Color>
+  <Color x:Key="MH.Color.Gray4">#5F5F5F</Color>
+  <Color x:Key="MH.Color.Gray5">#7F7F7F</Color>
+  <Color x:Key="MH.Color.Gray6">#9E9E9E</Color>
+  <Color x:Key="MH.Color.Gray7">#BDBDBD</Color>
+  <Color x:Key="MH.Color.Gray8">#D8D8D8</Color>
+  <Color x:Key="MH.Color.Gray9">#EEEEEE</Color>
+
+  <SolidColorBrush x:Key="MH.B.Gray1" Color="{StaticResource MH.Color.Gray1}"/>
+  <SolidColorBrush x:Key="MH.B.Gray2" Color="{StaticResource MH.Color.Gray2}"/>
+  <SolidColorBrush x:Key="MH.B.Gray3" Color="{StaticResource MH.Color.Gray3}"/>
+  <SolidColorBrush x:Key="MH.B.Gray4" Color="{StaticResource MH.Color.Gray4}"/>
+  <SolidColorBrush x:Key="MH.B.Gray5" Color="{StaticResource MH.Color.Gray5}"/>
+  <SolidColorBrush x:Key="MH.B.Gray6" Color="{StaticResource MH.Color.Gray6}"/>
+  <SolidColorBrush x:Key="MH.B.Gray7" Color="{StaticResource MH.Color.Gray7}"/>
+  <SolidColorBrush x:Key="MH.B.Gray8" Color="{StaticResource MH.Color.Gray8}"/>
+  <SolidColorBrush x:Key="MH.B.Gray9" Color="{StaticResource MH.Color.Gray9}"/>
+
+  <SolidColorBrush x:Key="MH.B.Log.Info" Color="#FF1A98FF"/>
+  <SolidColorBrush x:Key="MH.B.Log.Warning" Color="#FFFFC01A"/>
+  <SolidColorBrush x:Key="MH.B.Log.Error" Color="#FFDE573A"/>
+
+  <SolidColorBrush x:Key="MH.B.FocusVisual.Stroke" Color="{StaticResource MH.Color.Gray9}"/>
+
+  <!-- Control -->
+  <SolidColorBrush x:Key="MH.B.C.Static.Ba" Color="{StaticResource MH.Color.Gray2}"/>
+  <SolidColorBrush x:Key="MH.B.C.Static.Bo" Color="{StaticResource MH.Color.Gray6}"/>
+  <SolidColorBrush x:Key="MH.B.C.Static.Fo" Color="{StaticResource MH.Color.Gray9}"/>
+  <SolidColorBrush x:Key="MH.B.C.Hover.Bo" Color="{StaticResource MH.Color.Gray9}"/>
+  <SolidColorBrush x:Key="MH.B.C.Focus.Bo" Color="{StaticResource MH.Color.Gray9}"/>
+  <SolidColorBrush x:Key="MH.B.C.Disabled.Bo" Color="{StaticResource MH.Color.Gray4}"/>
+  <SolidColorBrush x:Key="MH.B.C.Disabled.Fo" Color="{StaticResource MH.Color.Gray5}"/>
+  <SolidColorBrush x:Key="MH.B.C.Disabled.Accent" Color="{StaticResource MH.Color.Gray5}"/>
+
+  <!-- Item -->
+  <SolidColorBrush x:Key="MH.B.I.Hover.Ba" Color="{DynamicResource MH.Color.Accent2}"/>
+  <SolidColorBrush x:Key="MH.B.I.Hover.Bo" Color="{DynamicResource MH.Color.Accent9}"/>
+  <SolidColorBrush x:Key="MH.B.I.Selected.Ba" Color="{DynamicResource MH.Color.Accent-Dark}"/>
+  <SolidColorBrush x:Key="MH.B.I.Selected.Bo" Color="{DynamicResource MH.Color.Accent-Dark}"/>
+  <SolidColorBrush x:Key="MH.B.I.SelectedHover.Ba" Color="{DynamicResource MH.Color.Accent7}"/>
+  <SolidColorBrush x:Key="MH.B.I.SelectedHover.Bo" Color="{DynamicResource MH.Color.Accent9}"/>
+
+  <!-- Button -->
+  <SolidColorBrush x:Key="MH.B.Button.Static.Ba" Color="{StaticResource MH.Color.Gray3}"/>
+  <SolidColorBrush x:Key="MH.B.Button.Hover.Ba" Color="{DynamicResource MH.Color.White3}"/>
+  <SolidColorBrush x:Key="MH.B.Button.Pressed.Ba" Color="{DynamicResource MH.Color.White5}"/>
+
+  <!-- ComboBox -->
+  <SolidColorBrush x:Key="MH.B.ComboBox.Static.Glyph" Color="{StaticResource MH.Color.Gray6}"/>
+  <SolidColorBrush x:Key="MH.B.ComboBox.Hover.Glyph" Color="{StaticResource MH.Color.Gray9}"/>
+  
+  <!-- ToggleButton -->
+  <SolidColorBrush x:Key="MH.B.ToggleButton.Checked.Ba" Color="{DynamicResource MH.Color.Accent}"/>
+  <SolidColorBrush x:Key="MH.B.IconToggleButton.Unchecked.Fill" Color="{DynamicResource MH.Color.White7}"/>
+
+  <!-- ProgressBar -->
+  <LinearGradientBrush x:Key="MH.B.ProgressBar.Progress" StartPoint="1.002,0.5" EndPoint="0.001,0.5">
+    <GradientStop Offset="0" Color="{DynamicResource MH.Color.Accent}"/>
+    <GradientStop Offset="1" Color="{DynamicResource MH.Color.Accent2}"/>
+  </LinearGradientBrush>
+
+  <!-- ScrollBar -->
+  <sys:Double x:Key="ScrollBar.Size">14</sys:Double>
+  <SolidColorBrush x:Key="MH.B.ScrollBar.Static.Glyph" Color="{StaticResource MH.Color.Gray3}"/>
+  <SolidColorBrush x:Key="MH.B.ScrollBar.Static.Thumb" Color="{StaticResource MH.Color.Gray3}"/>
+  <SolidColorBrush x:Key="MH.B.ScrollBar.Hover.Glyph" Color="{StaticResource MH.Color.Gray6}"/>
+  <SolidColorBrush x:Key="MH.B.ScrollBar.Hover.Thumb" Color="{StaticResource MH.Color.Gray6}"/>
+  <SolidColorBrush x:Key="MH.B.ScrollBar.Pressed.Glyph" Color="{StaticResource MH.Color.Gray8}"/>
+  <SolidColorBrush x:Key="MH.B.ScrollBar.Pressed.Thumb" Color="{StaticResource MH.Color.Gray8}"/>
+  <SolidColorBrush x:Key="MH.B.ScrollBar.Disabled.Glyph" Color="{StaticResource MH.Color.Gray3}"/>
+  <SolidColorBrush x:Key="MH.B.ScrollBar.Disabled.Thumb" Color="{StaticResource MH.Color.Gray3}"/>
+
+  <!-- Slider -->
+  <SolidColorBrush x:Key="MH.B.Slider.Static.Fo" Color="{StaticResource MH.Color.Gray9}"/>
+  <SolidColorBrush x:Key="MH.B.Slider-Thumb.Static.Ba" Color="{StaticResource MH.Color.Gray4}"/>
+  <SolidColorBrush x:Key="MH.B.Slider-Thumb.Static.Bo" Color="{StaticResource MH.Color.Gray2}"/>
+  <SolidColorBrush x:Key="MH.B.Slider-Thumb.Hover.Ba" Color="{StaticResource MH.Color.Gray6}"/>
+  <SolidColorBrush x:Key="MH.B.Slider-Thumb.Pressed.Ba" Color="{StaticResource MH.Color.Gray8}"/>
+  <SolidColorBrush x:Key="MH.B.Slider-Track.Static.Ba" Color="{StaticResource MH.Color.Gray6}"/>
+  <SolidColorBrush x:Key="MH.B.Slider-Track.Selection.Ba" Color="{DynamicResource MH.Color.Accent}"/>
+  <SolidColorBrush x:Key="MH.B.Slider-Track.Disabled.Ba" Color="{StaticResource MH.Color.Gray3}"/>
+
+  <SolidColorBrush x:Key="TextBox.InactiveSelectionHighlight" Color="{StaticResource MH.Color.Gray6}"/>
+</ResourceDictionary>

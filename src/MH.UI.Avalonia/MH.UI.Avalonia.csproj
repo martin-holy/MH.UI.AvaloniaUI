@@ -15,4 +15,12 @@
     <ProjectReference Include="..\..\..\MH.Utils\src\MH.Utils\MH.Utils.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AvaloniaResource Include="Resources\Controls\IconTextBlockItemsControl.axaml" />
+    <AvaloniaResource Include="Resources\Brushes.axaml" />
+    <AvaloniaResource Include="Resources\DataTypes.axaml" />
+    <AvaloniaResource Include="Resources\Effects.axaml" />
+    <AvaloniaResource Include="Resources\Icons.axaml" />
+  </ItemGroup>
+
 </Project>
