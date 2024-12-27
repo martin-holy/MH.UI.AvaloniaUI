@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
-using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Styling;
 using MH.UI.Avalonia.Extensions;
 using MH.UI.Controls;
@@ -9,7 +9,7 @@ using MH.Utils.Types;
 
 namespace MH.UI.Avalonia.Controls;
 
-public class SlidePanelHost : Control, ISlidePanelHost {
+public class SlidePanelHost : TemplatedControl, ISlidePanelHost {
   private IDisposable? _boundsSubscription;
 
   private Thickness _openFrom;
