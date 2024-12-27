@@ -1,5 +1,5 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using MH.UI.Avalonia.Extensions;
@@ -8,7 +8,7 @@ using MH.Utils.Types;
 
 namespace MH.UI.Avalonia.Controls;
 
-public class SlidePanelsGridHost : Control, ISlidePanelsGridHost {
+public class SlidePanelsGridHost : TemplatedControl, ISlidePanelsGridHost {
   public static readonly StyledProperty<SlidePanelsGrid?> ViewModelProperty = AvaloniaProperty.Register<SlidePanelsGridHost, SlidePanelsGrid?>(nameof(ViewModel));
 
   public SlidePanelsGrid? ViewModel { get => GetValue(ViewModelProperty); set => SetValue(ViewModelProperty, value); }
