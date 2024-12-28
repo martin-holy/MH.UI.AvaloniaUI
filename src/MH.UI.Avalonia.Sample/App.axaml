@@ -19,5 +19,7 @@
   <Application.Styles>
     <FluentTheme />
     <StyleInclude Source="avares://MH.UI.Avalonia/Resources/Controls/IconTextBlockItemsControl.axaml"/>
+    <StyleInclude Source="avares://MH.UI.Avalonia/Resources/Controls/SlidePanelHost.axaml"/>
+    <StyleInclude Source="avares://MH.UI.Avalonia/Resources/Controls/SlidePanelsGridHost.axaml"/>
   </Application.Styles>
 </Application>
