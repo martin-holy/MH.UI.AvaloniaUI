@@ -1,0 +1,74 @@
+﻿<Styles
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:c="clr-namespace:MH.UI.Avalonia.Controls"
+  xmlns:conv="clr-namespace:MH.UI.Avalonia.Converters">
+
+  <Style Selector="c|SlidePanelsGridHost">
+    <Setter Property="Focusable" Value="False"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="c:SlidePanelsGridHost">
+          <Grid Background="Transparent" ClipToBounds="True" DataContext="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding PanelTop.GridSize, Mode=TwoWay, FallbackValue=0, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="{Binding PanelBottom.GridSize, Mode=TwoWay, FallbackValue=0, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
+              </Grid.RowDefinitions>
+
+              <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="{Binding PanelLeft.GridSize, Mode=TwoWay, FallbackValue=0, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
+                  <ColumnDefinition Width="3"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="3"/>
+                  <ColumnDefinition Width="{Binding PanelRight.GridSize, Mode=TwoWay, FallbackValue=0, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
+                </Grid.ColumnDefinitions>
+
+                <GridSplitter Grid.Column="1" IsVisible="{Binding PanelLeft.IsPinned, Converter={x:Static conv:VisibilityConverter.TrueToVisible}}"/>
+                <ContentPresenter Grid.Column="2" Content="{Binding PanelMiddle}"/>
+                <GridSplitter Grid.Column="3" IsVisible="{Binding PanelRight.IsPinned, Converter={x:Static conv:VisibilityConverter.TrueToVisible}}"/>
+              </Grid>
+
+              <c:SlidePanelHost
+                Grid.Row="1"
+                HorizontalAlignment="Left"
+                Width="{Binding PanelLeft.Size, Mode=OneWay}"
+                ViewModel="{Binding PanelLeft}"/>
+
+              <c:SlidePanelHost
+                Grid.Row="1"
+                HorizontalAlignment="Right"
+                Width="{Binding PanelRight.Size, Mode=OneWay}"
+                ViewModel="{Binding PanelRight}"/>
+            </Grid>
+
+            <c:SlidePanelHost
+              VerticalAlignment="Top"
+              Height="{Binding PanelTop.Size, Mode=OneWay}"
+              ViewModel="{Binding PanelTop}"/>
+
+            <c:SlidePanelHost
+              x:Name="PART_BottomPanel"
+              VerticalAlignment="Bottom"
+              ViewModel="{Binding PanelBottom}"/>
+          </Grid>
+
+          <!--TODO PORT-->
+          <!--<ControlTemplate.Triggers>
+            <DataTrigger Value="True">
+              <DataTrigger.Binding>
+                <MultiBinding Converter="{x:Static conv:SetPropertyConverter.Inst}" ConverterParameter="Size">
+                  <Binding Path="ViewModel" ElementName="PART_BottomPanel"/>
+                  <Binding Path="ActualHeight" ElementName="PART_BottomPanel"/>
+                </MultiBinding>
+              </DataTrigger.Binding>
+              <Setter TargetName="PART_BottomPanel" Property="Tag" Value="{x:Null}"/>
+            </DataTrigger>
+          </ControlTemplate.Triggers>-->
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</Styles>
