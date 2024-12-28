@@ -1,33 +1,22 @@
 ﻿<Window
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:vm="using:MH.UI.Avalonia.Sample.ViewModels"
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:views="clr-namespace:MH.UI.Avalonia.Sample.Views"
-  mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-  x:Class="MH.UI.Avalonia.Sample.Views.MainWindowV"
-  Icon="/Assets/avalonia-logo.ico"
-  Title="MH.UI.Avalonia.Sample">
-  <views:MainView />
-</Window>
-  
-<!-- TODO PORT CustomWindow
-<mhc:CustomWindow
-  x:Class="MH.UI.Avalonia.Sample.Views.MainWindowV"
-  xmlns="https://github.com/avaloniaui"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mhc="clr-namespace:MH.UI.Avalonia.Controls;assembly=MH.UI.Avalonia"
   xmlns:s="clr-namespace:MH.UI.Avalonia.Sample"
+  x:Class="MH.UI.Avalonia.Sample.Views.MainWindowV"
   DataContext="{Binding VM.MainWindow, Source={x:Static s:App.Core}}"
-  Style="{StaticResource MH.S.CustomWindow}"
-  IsFullScreen="{Binding IsFullScreen, Mode=TwoWay}"
-  Title="MH UI WPF Sample Application"
-  CanResize="True"
-  CanFullScreen="True"
+  Icon="/Assets/avalonia-logo.ico"
+  Title="MH UI Avalonia Sample Application"
   Height="420"
   Width="820"
   WindowStartupLocation="CenterScreen">
 
   <mhc:SlidePanelsGridHost ViewModel="{Binding SlidePanelsGrid}"/>
+</Window>
+  
+<!-- TODO PORT CustomWindow
+<mhc:CustomWindow
+  IsFullScreen="{Binding IsFullScreen, Mode=TwoWay}"
+  CanResize="True"
+  CanFullScreen="True">
 </mhc:CustomWindow>-->
