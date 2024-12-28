@@ -1,8 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Templates;
 using Avalonia.Markup.Xaml;
 using MH.UI.Avalonia.Sample.ViewModels;
 using MH.UI.Avalonia.Sample.Views;
+using System;
 
 namespace MH.UI.Avalonia.Sample;
 
@@ -12,6 +14,8 @@ public partial class App : Application {
 
   public override void Initialize() {
     AvaloniaXamlLoader.Load(this);
+
+    _loadDataTemplates();
   }
 
   public override void OnFrameworkInitializationCompleted() {
@@ -45,5 +49,21 @@ public partial class App : Application {
     desktop.MainWindow.Show();
 
     splashScreen.Close();
+  }
+
+  private void _loadDataTemplates() {
+    var files = new[] {
+      "Layout/LeftContentV.axaml",
+      "Layout/MiddleContentV.axaml",
+      "Layout/RightContentV.axaml",
+      "Layout/StatusBarV.axaml",
+      "Layout/ToolBarV.axaml"
+    };
+
+    foreach (var file in files) {
+      var uri = new Uri($"avares://MH.UI.Avalonia.Sample/Views/{file}");
+      if (AvaloniaXamlLoader.Load(uri) is DataTemplates dts)
+        DataTemplates.AddRange(dts);
+    }
   }
 }
