@@ -1,4 +1,6 @@
 ﻿//using MH.UI.Avalonia.Controls;
+using Avalonia.Controls.Templates;
+using Avalonia.Markup.Xaml;
 using MH.Utils.BaseClasses;
 using System.Windows;
 using System.Windows.Input;
@@ -23,5 +25,17 @@ public static class Init {
     MH.Utils.Tasks.Dispatch = action => Application.Current.Dispatcher.Invoke(DispatcherPriority.Render, action);
 
     CommandManager.RequerySuggested += RelayCommandBase.RaiseCanExecuteChanged;*/
+  }
+
+  public static void LoadDataTemplates(DataTemplates dataTemplates) {
+    var files = new[] {
+      "SlidePanelPinButton.axaml"
+    };
+
+    foreach (var file in files) {
+      var uri = new Uri($"avares://MH.UI.Avalonia/Resources/DataTemplates/{file}");
+      if (AvaloniaXamlLoader.Load(uri) is DataTemplates dts)
+        dataTemplates.AddRange(dts);
+    }
   }
 }
