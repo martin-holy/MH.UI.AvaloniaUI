@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaResource Include="Resources\DataTemplates\SlidePanelPinButton.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\MH.UI\src\MH.UI\MH.UI.csproj" />
     <ProjectReference Include="..\..\..\MH.Utils\src\MH.Utils\MH.Utils.csproj" />
   </ItemGroup>
