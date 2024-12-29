@@ -34,5 +34,5 @@ public class SlidePanelsGridHost : TemplatedControl, ISlidePanelsGridHost {
   }
 
   private void _onPointerMoved(object? sender, PointerEventArgs e) =>
-    HostMouseMoveEvent?.Invoke(this, new(e.GetPosition(this).ToPointD(), Width, Height));
+    HostMouseMoveEvent?.Invoke(this, new(e.GetPosition(this).ToPointD(), Bounds.Width, Bounds.Height));
 }
