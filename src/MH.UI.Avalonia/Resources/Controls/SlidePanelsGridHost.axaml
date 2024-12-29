@@ -12,18 +12,18 @@
           <Grid Background="Transparent" ClipToBounds="True" DataContext="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}">
             <Grid>
               <Grid.RowDefinitions>
-                <RowDefinition Height="{Binding PanelTop.GridSize, Mode=TwoWay, FallbackValue=0, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
+                <RowDefinition Height="{Binding PanelTop.GridSize, Mode=TwoWay, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="{Binding PanelBottom.GridSize, Mode=TwoWay, FallbackValue=0, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
+                <RowDefinition Height="{Binding PanelBottom.GridSize, Mode=TwoWay, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
               </Grid.RowDefinitions>
 
               <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="{Binding PanelLeft.GridSize, Mode=TwoWay, FallbackValue=0, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
+                  <ColumnDefinition Width="{Binding PanelLeft.GridSize, Mode=TwoWay, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
                   <ColumnDefinition Width="3"/>
                   <ColumnDefinition Width="*"/>
                   <ColumnDefinition Width="3"/>
-                  <ColumnDefinition Width="{Binding PanelRight.GridSize, Mode=TwoWay, FallbackValue=0, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
+                  <ColumnDefinition Width="{Binding PanelRight.GridSize, Mode=TwoWay, Converter={x:Static conv:GridLengthConverter.Inst}}"/>
                 </Grid.ColumnDefinitions>
 
                 <GridSplitter Grid.Column="1" IsVisible="{Binding PanelLeft.IsPinned, Converter={x:Static conv:VisibilityConverter.TrueToVisible}}"/>
