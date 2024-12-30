@@ -7,7 +7,7 @@ namespace MH.UI.Avalonia.Controls;
 
 public enum IconTextBlockShadow { None, Icon, Text, Both }
 
-public class IconTextBlock : Control {
+public class IconTextBlock : ContentControl {
   public static readonly StyledProperty<bool> CompactProperty = AvaloniaProperty.Register<IconTextBlock, bool>(nameof(Compact));
   public static readonly StyledProperty<IStyle> TextBorderStyleProperty = AvaloniaProperty.Register<IconTextBlock, IStyle>(nameof(TextBorderStyle));
   public static readonly StyledProperty<IconTextBlockShadow> ShadowProperty = AvaloniaProperty.Register<IconTextBlock, IconTextBlockShadow>(nameof(Shadow));
