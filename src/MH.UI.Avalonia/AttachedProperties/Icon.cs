@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace MH.UI.Avalonia.AttachedProperties;
 
-public class Icon {
+public class Icon : AvaloniaObject {
   public static readonly AttachedProperty<Geometry> DataProperty = AvaloniaProperty.RegisterAttached<Icon, Control, Geometry>("Data");
   public static readonly AttachedProperty<IBrush> FillProperty = AvaloniaProperty.RegisterAttached<Icon, Control, IBrush>("Fill");
   public static readonly AttachedProperty<string> ResProperty = AvaloniaProperty.RegisterAttached<Icon, Control, string>("Res");

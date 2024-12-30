@@ -1,9 +1,9 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 
-namespace MH.UI.Avalonia.AttachedProperties; 
+namespace MH.UI.Avalonia.AttachedProperties;
 
-public class Text {
+public class Text : AvaloniaObject {
   public static readonly AttachedProperty<string> TextProperty = AvaloniaProperty.RegisterAttached<Text, Control, string>("Text");
   public static readonly AttachedProperty<bool> ShadowProperty = AvaloniaProperty.RegisterAttached<Text, Control, bool>("Shadow");
 
