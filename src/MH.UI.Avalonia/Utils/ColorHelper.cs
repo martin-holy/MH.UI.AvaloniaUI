@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Media;
 
-namespace MH.UI.Avalonia.Utils;
+namespace MH.UI.AvaloniaUI.Utils;
 
 public static class ColorHelper {
   public static void AddGradients(string name, Color color, int samples = 9) {

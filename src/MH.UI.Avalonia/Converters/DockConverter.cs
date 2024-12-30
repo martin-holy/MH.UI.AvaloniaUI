@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace MH.UI.Avalonia.Converters;
+namespace MH.UI.AvaloniaUI.Converters;
 
 public class DockConverter : BaseConverter {
   private static readonly object _lock = new();

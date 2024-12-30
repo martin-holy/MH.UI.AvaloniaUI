@@ -1,7 +1,7 @@
 ﻿using Avalonia.Data.Converters;
 using System.Globalization;
 
-namespace MH.UI.Avalonia.Converters;
+namespace MH.UI.AvaloniaUI.Converters;
 
 public class BaseConverter : IValueConverter {
   public virtual object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>

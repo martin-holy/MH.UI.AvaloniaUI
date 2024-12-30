@@ -2,7 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Media;
 
-namespace MH.UI.Avalonia.AttachedProperties;
+namespace MH.UI.AvaloniaUI.AttachedProperties;
 
 public class Button : AvaloniaObject {
   public static readonly AttachedProperty<IBrush> OverLayerProperty = AvaloniaProperty.RegisterAttached<Button, Control, IBrush>("OverLayer");

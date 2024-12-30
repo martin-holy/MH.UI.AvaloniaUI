@@ -1,7 +1,7 @@
-﻿using MH.UI.Avalonia.Sample.Resources;
+﻿using MH.UI.AvaloniaUI.Sample.Resources;
 using MH.Utils.BaseClasses;
 
-namespace MH.UI.Avalonia.Sample.ViewModels.Controls;
+namespace MH.UI.AvaloniaUI.Sample.ViewModels.Controls;
 
 public class ButtonsVM : ObservableObject {
   public RelayCommand DialogButtonWithIconCommand { get; }

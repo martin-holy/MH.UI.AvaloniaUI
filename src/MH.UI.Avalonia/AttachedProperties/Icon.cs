@@ -2,7 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Media;
 
-namespace MH.UI.Avalonia.AttachedProperties;
+namespace MH.UI.AvaloniaUI.AttachedProperties;
 
 public class Icon : AvaloniaObject {
   public static readonly AttachedProperty<Geometry> DataProperty = AvaloniaProperty.RegisterAttached<Icon, Control, Geometry>("Data");

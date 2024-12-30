@@ -1,8 +1,8 @@
 <DataTemplates
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:ap="clr-namespace:MH.UI.Avalonia.AttachedProperties"
-  xmlns:c="clr-namespace:MH.UI.Avalonia.Controls"
+  xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
   xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI">
 
   <!--TODO PORT I don't know how to define DataTemplate in separate file and then just include it.-->

@@ -3,9 +3,9 @@ using MH.Utils.BaseClasses;
 using MH.Utils.Interfaces;
 using System;
 using System.IO;
-using MH.UI.Avalonia.Sample.Resources;
+using MH.UI.AvaloniaUI.Sample.Resources;
 
-namespace MH.UI.Avalonia.Sample.Models;
+namespace MH.UI.AvaloniaUI.Sample.Models;
 
 public class FolderM : TreeItem {
   public string FullPath => this.GetFullName(Path.DirectorySeparatorChar.ToString(), x => x.Name);

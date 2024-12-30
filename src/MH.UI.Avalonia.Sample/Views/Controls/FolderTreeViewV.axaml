@@ -1,9 +1,9 @@
 ﻿<DataTemplates
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:mhc="clr-namespace:MH.UI.Avalonia.Controls;assembly=MH.UI.Avalonia"
-  xmlns:vmc="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Controls"
-  xmlns:m="clr-namespace:MH.UI.Avalonia.Sample.Models">
+  xmlns:mhc="clr-namespace:MH.UI.AvaloniaUI.Controls;assembly=MH.UI.AvaloniaUI"
+  xmlns:vmc="clr-namespace:MH.UI.AvaloniaUI.Sample.ViewModels.Controls"
+  xmlns:m="clr-namespace:MH.UI.AvaloniaUI.Sample.Models">
 
   <DataTemplate DataType="{x:Type vmc:FolderTreeViewVM}">
     <!--TODO PORT-->

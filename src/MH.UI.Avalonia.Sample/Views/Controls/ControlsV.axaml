@@ -1,8 +1,8 @@
 ﻿<DataTemplates
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:vmc="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Controls"
-  xmlns:s="clr-namespace:MH.UI.Avalonia.Sample">
+  xmlns:vmc="clr-namespace:MH.UI.AvaloniaUI.Sample.ViewModels.Controls"
+  xmlns:s="clr-namespace:MH.UI.AvaloniaUI.Sample">
     
   <DataTemplate DataType="{x:Type vmc:ControlsVM}">
     <!-- TODO PORT Avalonia doesn't have GroupBox 

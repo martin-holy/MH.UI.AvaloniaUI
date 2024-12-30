@@ -5,7 +5,7 @@ using Avalonia;
 using Avalonia.Browser;
 using Avalonia.ReactiveUI;
 
-using MH.UI.Avalonia.Sample;
+using MH.UI.AvaloniaUI.Sample;
 
 internal sealed partial class Program
 {

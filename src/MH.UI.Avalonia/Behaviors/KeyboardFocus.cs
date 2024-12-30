@@ -2,7 +2,7 @@
 //using System.Windows;
 //using System.Windows.Input;
 
-//namespace MH.UI.Avalonia.Behaviors;
+//namespace MH.UI.AvaloniaUI.Behaviors;
 
 //public static class KeyboardFocus {
 //  public static readonly DependencyProperty OnProperty = DependencyProperty.RegisterAttached(

@@ -1,6 +1,6 @@
 ﻿using MH.Utils.BaseClasses;
 
-namespace MH.UI.Avalonia.Sample.ViewModels.Controls;
+namespace MH.UI.AvaloniaUI.Sample.ViewModels.Controls;
 
 public class SlidersVM : ObservableObject {
   private double _popupSliderValue = 0.5;

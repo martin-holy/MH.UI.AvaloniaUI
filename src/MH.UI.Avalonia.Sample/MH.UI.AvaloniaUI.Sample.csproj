@@ -30,6 +30,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\MH.UI\src\MH.UI\MH.UI.csproj" />
     <ProjectReference Include="..\..\..\MH.Utils\src\MH.Utils\MH.Utils.csproj" />
-    <ProjectReference Include="..\MH.UI.Avalonia\MH.UI.Avalonia.csproj" />
+    <ProjectReference Include="..\MH.UI.Avalonia\MH.UI.AvaloniaUI.csproj" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 
-namespace MH.UI.Avalonia.AttachedProperties;
+namespace MH.UI.AvaloniaUI.AttachedProperties;
 
 public class Slot : AvaloniaObject {
   public static readonly AttachedProperty<object> LeftContentProperty = AvaloniaProperty.RegisterAttached<Slot, Control, object>("LeftContent");

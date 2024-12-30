@@ -1,4 +1,4 @@
-﻿namespace MH.UI.Avalonia.Sample.Resources;
+﻿namespace MH.UI.AvaloniaUI.Sample.Resources;
 
 public static class Icons {
   public const string Empty = null;

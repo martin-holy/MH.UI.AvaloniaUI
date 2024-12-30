@@ -1,4 +1,4 @@
-﻿namespace MH.UI.Avalonia.Sample.ViewModels;
+﻿namespace MH.UI.AvaloniaUI.Sample.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {

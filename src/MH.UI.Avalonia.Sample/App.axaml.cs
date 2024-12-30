@@ -2,11 +2,11 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Templates;
 using Avalonia.Markup.Xaml;
-using MH.UI.Avalonia.Sample.ViewModels;
-using MH.UI.Avalonia.Sample.Views;
+using MH.UI.AvaloniaUI.Sample.ViewModels;
+using MH.UI.AvaloniaUI.Sample.Views;
 using System;
 
-namespace MH.UI.Avalonia.Sample;
+namespace MH.UI.AvaloniaUI.Sample;
 
 public partial class App : Application {
   public static Core Core { get; private set; } = null!;
@@ -15,7 +15,7 @@ public partial class App : Application {
   public override void Initialize() {
     AvaloniaXamlLoader.Load(this);
 
-    Utils.Init.LoadDataTemplates(DataTemplates);
+    AvaloniaUI.Utils.Init.LoadDataTemplates(DataTemplates);
     _loadDataTemplates();
   }
 
@@ -33,7 +33,7 @@ public partial class App : Application {
   }
 
   private static async void _onDesktopStartup(IClassicDesktopStyleApplicationLifetime desktop) {
-    Utils.ColorHelper.AddColorsToResources();
+    AvaloniaUI.Utils.ColorHelper.AddColorsToResources();
 
     var splashScreen = new SplashScreenV();
     desktop.MainWindow = splashScreen;
@@ -63,7 +63,7 @@ public partial class App : Application {
     };
 
     foreach (var file in files) {
-      var uri = new Uri($"avares://MH.UI.Avalonia.Sample/Views/{file}");
+      var uri = new Uri($"avares://MH.UI.AvaloniaUI.Sample/Views/{file}");
       if (AvaloniaXamlLoader.Load(uri) is DataTemplates dts)
         DataTemplates.AddRange(dts);
     }

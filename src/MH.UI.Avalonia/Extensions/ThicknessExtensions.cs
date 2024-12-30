@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using MH.Utils.Types;
 
-namespace MH.UI.Avalonia.Extensions;
+namespace MH.UI.AvaloniaUI.Extensions;
 
 public static class ThicknessExtensions {
   public static Thickness FromThicknessD(this ThicknessD thickness) =>

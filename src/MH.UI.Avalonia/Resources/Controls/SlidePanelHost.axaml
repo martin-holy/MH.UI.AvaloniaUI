@@ -1,7 +1,7 @@
 ﻿<Styles
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:c="clr-namespace:MH.UI.Avalonia.Controls">
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
 
   <Style Selector="c|SlidePanelHost">
     <Setter Property="Template">

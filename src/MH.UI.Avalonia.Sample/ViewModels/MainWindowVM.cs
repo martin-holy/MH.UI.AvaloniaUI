@@ -1,14 +1,14 @@
 ﻿using MH.UI.Controls;
 using MH.UI.Dialogs;
-using MH.UI.Avalonia.Sample.ViewModels.Controls;
-using MH.UI.Avalonia.Sample.ViewModels.Layout;
+using MH.UI.AvaloniaUI.Sample.ViewModels.Controls;
+using MH.UI.AvaloniaUI.Sample.ViewModels.Layout;
 using MH.Utils.BaseClasses;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MH.UI.Avalonia.Sample.Resources;
+using MH.UI.AvaloniaUI.Sample.Resources;
 
-namespace MH.UI.Avalonia.Sample.ViewModels;
+namespace MH.UI.AvaloniaUI.Sample.ViewModels;
 
 public class MainWindowVM : ObservableObject {
   private bool _isFullScreen;

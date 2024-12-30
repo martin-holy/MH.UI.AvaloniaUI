@@ -1,7 +1,7 @@
 ﻿using MH.Utils.BaseClasses;
 using System.Collections.Generic;
 
-namespace MH.UI.Avalonia.Sample.ViewModels.Controls;
+namespace MH.UI.AvaloniaUI.Sample.ViewModels.Controls;
 
 public class ListsVM : ObservableObject {
   public List<string> ListData { get; } = new();

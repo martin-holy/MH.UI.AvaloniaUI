@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 
-namespace MH.UI.Avalonia.Sample.Views;
+namespace MH.UI.AvaloniaUI.Sample.Views;
 
 public partial class SplashScreenV : Window, INotifyPropertyChanged {
   public new event PropertyChangedEventHandler? PropertyChanged = delegate { };

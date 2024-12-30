@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MH.Utils.BaseClasses;
 
-namespace MH.UI.Avalonia.Sample.ViewModels.Controls;
+namespace MH.UI.AvaloniaUI.Sample.ViewModels.Controls;
 
 public sealed class IconTextVM : ObservableObject {
   public List<string> Data { get; } = [

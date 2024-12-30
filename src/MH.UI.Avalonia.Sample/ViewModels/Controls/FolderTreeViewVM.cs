@@ -1,10 +1,10 @@
 ﻿using MH.UI.Controls;
 using System;
 using System.IO;
-using MH.UI.Avalonia.Sample.Models;
-using MH.UI.Avalonia.Sample.Resources;
+using MH.UI.AvaloniaUI.Sample.Models;
+using MH.UI.AvaloniaUI.Sample.Resources;
 
-namespace MH.UI.Avalonia.Sample.ViewModels.Controls;
+namespace MH.UI.AvaloniaUI.Sample.ViewModels.Controls;
 
 public class FolderTreeViewVM : TreeView {
   public FolderTreeViewVM() {

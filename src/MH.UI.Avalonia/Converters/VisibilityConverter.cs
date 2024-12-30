@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System.Collections;
 
-namespace MH.UI.Avalonia.Converters;
+namespace MH.UI.AvaloniaUI.Converters;
 
 public enum CheckFor { NotNull, Null, True, False, NotEmpty, NullOrEmpty, MoreThan0, EqualsParam, NotEqualsParam }
 

@@ -1,6 +1,6 @@
 ﻿using MH.UI.Controls;
 
-namespace MH.UI.Avalonia.Sample.ViewModels.Layout;
+namespace MH.UI.AvaloniaUI.Sample.ViewModels.Layout;
 
 public sealed class MiddleContentSlotVM;
 

@@ -1,9 +1,9 @@
 ﻿<DataTemplates
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:s="clr-namespace:MH.UI.Avalonia.Sample"
-  xmlns:mhc="clr-namespace:MH.UI.Avalonia.Controls;assembly=MH.UI.Avalonia"
-  xmlns:vml="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Layout">
+  xmlns:s="clr-namespace:MH.UI.AvaloniaUI.Sample"
+  xmlns:mhc="clr-namespace:MH.UI.AvaloniaUI.Controls;assembly=MH.UI.AvaloniaUI"
+  xmlns:vml="clr-namespace:MH.UI.AvaloniaUI.Sample.ViewModels.Layout">
 
   <DataTemplate DataType="{x:Type vml:ToolBarVM}">
     <!--TODO PORT-->

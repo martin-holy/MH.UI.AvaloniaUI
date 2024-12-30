@@ -1,4 +1,4 @@
-﻿//using MH.UI.Avalonia.Controls;
+﻿//using MH.UI.AvaloniaUI.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Markup.Xaml;
 using MH.Utils.BaseClasses;
@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 //using System.Windows.Threading;
 
-namespace MH.UI.Avalonia.Utils;
+namespace MH.UI.AvaloniaUI.Utils;
 
 public static class Init {
   // TODO
@@ -33,7 +33,7 @@ public static class Init {
     };
 
     foreach (var file in files) {
-      var uri = new Uri($"avares://MH.UI.Avalonia/Resources/DataTemplates/{file}");
+      var uri = new Uri($"avares://MH.UI.AvaloniaUI/Resources/DataTemplates/{file}");
       if (AvaloniaXamlLoader.Load(uri) is DataTemplates dts)
         dataTemplates.AddRange(dts);
     }

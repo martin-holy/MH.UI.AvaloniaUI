@@ -1,7 +1,7 @@
 ﻿<DataTemplates
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:vml="clr-namespace:MH.UI.Avalonia.Sample.ViewModels.Layout">
+  xmlns:vml="clr-namespace:MH.UI.AvaloniaUI.Sample.ViewModels.Layout">
 
   <DataTemplate DataType="{x:Type vml:LeftContentVM}">
     <TabControl/>

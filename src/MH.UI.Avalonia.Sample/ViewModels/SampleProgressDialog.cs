@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MH.UI.Dialogs;
 
-namespace MH.UI.Avalonia.Sample.ViewModels;
+namespace MH.UI.AvaloniaUI.Sample.ViewModels;
 
 public sealed class SampleProgressDialog: ProgressDialog<string> {
   public SampleProgressDialog(string[] items) : base("Sample Progress Dialog", Res.IconImage, items) {

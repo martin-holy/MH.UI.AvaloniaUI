@@ -1,9 +1,9 @@
 ﻿<Window
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:mhc="clr-namespace:MH.UI.Avalonia.Controls;assembly=MH.UI.Avalonia"
-  xmlns:s="clr-namespace:MH.UI.Avalonia.Sample"
-  x:Class="MH.UI.Avalonia.Sample.Views.MainWindowV"
+  xmlns:mhc="clr-namespace:MH.UI.AvaloniaUI.Controls;assembly=MH.UI.AvaloniaUI"
+  xmlns:s="clr-namespace:MH.UI.AvaloniaUI.Sample"
+  x:Class="MH.UI.AvaloniaUI.Sample.Views.MainWindowV"
   DataContext="{Binding VM.MainWindow, Source={x:Static s:App.Core}}"
   Icon="/Assets/avalonia-logo.ico"
   Title="MH UI Avalonia Sample Application"

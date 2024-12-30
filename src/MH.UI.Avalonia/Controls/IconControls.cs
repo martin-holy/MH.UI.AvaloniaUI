@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Styling;
 
-namespace MH.UI.Avalonia.Controls;
+namespace MH.UI.AvaloniaUI.Controls;
 
 public enum IconTextBlockShadow { None, Icon, Text, Both }
 

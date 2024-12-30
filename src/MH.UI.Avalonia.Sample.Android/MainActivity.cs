@@ -5,10 +5,10 @@ using Avalonia;
 using Avalonia.Android;
 using Avalonia.ReactiveUI;
 
-namespace MH.UI.Avalonia.Sample.Android;
+namespace MH.UI.AvaloniaUI.Sample.Android;
 
 [Activity(
-    Label = "MH.UI.Avalonia.Sample.Android",
+    Label = "MH.UI.AvaloniaUI.Sample.Android",
     Theme = "@style/MyTheme.NoActionBar",
     Icon = "@drawable/icon",
     MainLauncher = true,

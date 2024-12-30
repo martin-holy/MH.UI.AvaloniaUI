@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 
-namespace MH.UI.Avalonia.AttachedProperties;
+namespace MH.UI.AvaloniaUI.AttachedProperties;
 
 public class Text : AvaloniaObject {
   public static readonly AttachedProperty<string> TextProperty = AvaloniaProperty.RegisterAttached<Text, Control, string>("Text");

@@ -1,5 +1,5 @@
 ﻿<Window
-  x:Class="MH.UI.Avalonia.Sample.Views.SplashScreenV"
+  x:Class="MH.UI.AvaloniaUI.Sample.Views.SplashScreenV"
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   Height="150"

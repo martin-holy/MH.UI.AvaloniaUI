@@ -1,9 +1,9 @@
-﻿using MH.UI.Avalonia.Sample.ViewModels;
+﻿using MH.UI.AvaloniaUI.Sample.ViewModels;
 using MH.Utils;
 using System;
 using System.Threading.Tasks;
 
-namespace MH.UI.Avalonia.Sample;
+namespace MH.UI.AvaloniaUI.Sample;
 
 public sealed class Core {
   private static Core? _inst;

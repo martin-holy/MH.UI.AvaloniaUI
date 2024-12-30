@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MH.UI.Avalonia.Sample.Resources;
+namespace MH.UI.AvaloniaUI.Sample.Resources;
 
 public static class Res {
   public static readonly Dictionary<object, object> IconToBrushDic = new() {

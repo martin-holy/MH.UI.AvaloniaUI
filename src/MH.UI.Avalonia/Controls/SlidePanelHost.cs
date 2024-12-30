@@ -3,11 +3,11 @@ using Avalonia.Animation;
 using Avalonia.Animation.Easings;
 using Avalonia.Controls.Primitives;
 using Avalonia.Styling;
-using MH.UI.Avalonia.Extensions;
+using MH.UI.AvaloniaUI.Extensions;
 using MH.UI.Controls;
 using MH.Utils.Types;
 
-namespace MH.UI.Avalonia.Controls;
+namespace MH.UI.AvaloniaUI.Controls;
 
 public class SlidePanelHost : TemplatedControl, ISlidePanelHost {
   private IDisposable? _boundsSubscription;
