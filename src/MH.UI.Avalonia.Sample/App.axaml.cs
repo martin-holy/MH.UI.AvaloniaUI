@@ -58,7 +58,8 @@ public partial class App : Application {
       "Layout/MiddleContentV.axaml",
       "Layout/RightContentV.axaml",
       "Layout/StatusBarV.axaml",
-      "Layout/ToolBarV.axaml"
+      "Layout/ToolBarV.axaml",
+      "Controls/ControlsV.axaml"
     };
 
     foreach (var file in files) {
