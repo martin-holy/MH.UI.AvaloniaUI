@@ -59,6 +59,7 @@ public partial class App : Application {
       "Layout/RightContentV.axaml",
       "Layout/StatusBarV.axaml",
       "Layout/ToolBarV.axaml",
+      "Controls/ColorsV.axaml",
       "Controls/ControlsV.axaml"
     };
 

@@ -15,6 +15,7 @@
     <AvaloniaResource Include="Views\Layout\RightContentV.axaml" />
     <AvaloniaResource Include="Views\Layout\StatusBarV.axaml" />
     <AvaloniaResource Include="Views\Layout\ToolBarV.axaml" />
+    <AvaloniaResource Include="Views\Controls\ColorsV.axaml" />
     <AvaloniaResource Include="Views\Controls\ControlsV.axaml" />
   </ItemGroup>
 
