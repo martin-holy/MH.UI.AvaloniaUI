@@ -1,0 +1,67 @@
+﻿<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters">
+
+  <!--TODO PORT maybe use ItemsControl for tabs like in WPF to be able to not reset ScrollViewers on hidden tabs-->
+
+  <Thickness x:Key="TabControlTopPlacementItemMargin">0 0 0 2</Thickness>
+
+  <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl">
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="TabStripPlacement" Value="{Binding Path=TabStrip.Placement, Converter={x:Static conv:DockConverter.Inst}}"/>
+    <Setter Property="ItemsSource" Value="{Binding Tabs}"/>
+    <Setter Property="SelectedItem" Value="{Binding Selected, Mode=TwoWay}"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}"
+          CornerRadius="{TemplateBinding CornerRadius}"
+          Background="{TemplateBinding Background}"
+          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+          VerticalAlignment="{TemplateBinding VerticalAlignment}">
+          <DockPanel>
+            <ItemsPresenter
+              Name="PART_ItemsPresenter"
+              ItemsPanel="{TemplateBinding ItemsPanel}"
+              DockPanel.Dock="{TemplateBinding TabStripPlacement}"/>
+            <ContentPresenter
+              Name="PART_SelectedContentHost"
+              Margin="{TemplateBinding Padding}"
+              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+              Content="{TemplateBinding SelectedContent}"
+              ContentTemplate="{TemplateBinding SelectedContentTemplate}"/>
+          </DockPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+      <Setter Property="Orientation" Value="Vertical"/>
+    </Style>
+    <Style Selector="^[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+      <Setter Property="Orientation" Value="Vertical"/>
+    </Style>
+    <Style Selector="^[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter">
+      <Setter Property="Margin" Value="{DynamicResource TabControlTopPlacementItemMargin}"/>
+    </Style>
+  </ControlTheme>
+
+  <!--TODO PORT-->
+  <!--<DataTrigger Value="True">
+    <DataTrigger.Binding>
+      <MultiBinding Converter="{x:Static conv:MaxTabSizeConverter.Inst}">
+        <Binding/>
+        <Binding ElementName="tabPanel" Path="ActualWidth"/>
+        <Binding ElementName="tabPanel" Path="ActualHeight"/>
+      </MultiBinding>
+    </DataTrigger.Binding>
+    <Setter TargetName="tabPanel" Property="Tag" Value="{x:Null}"/>
+  </DataTrigger>-->
+
+</ResourceDictionary>
