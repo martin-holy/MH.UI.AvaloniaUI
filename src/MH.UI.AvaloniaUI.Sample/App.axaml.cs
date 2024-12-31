@@ -60,7 +60,8 @@ public partial class App : Application {
       "Layout/StatusBarV.axaml",
       "Layout/ToolBarV.axaml",
       "Controls/ColorsV.axaml",
-      "Controls/ControlsV.axaml"
+      "Controls/ControlsV.axaml",
+      "Controls/TextsV.axaml"
     };
 
     foreach (var file in files) {
