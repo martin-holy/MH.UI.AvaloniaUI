@@ -1,0 +1,129 @@
+﻿<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
+
+  <ControlTheme x:Key="{x:Type c:IconTextBlock}" TargetType="c:IconTextBlock">
+    <Setter Property="Focusable" Value="False"/>
+    <Setter Property="Margin" Value="1"/>
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="BorderBrush" Value="Black"/>
+    <Setter Property="Border.CornerRadius" Value="5"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Shadow" Value="Both"/>
+    <Setter Property="ap:Icon.Fill" Value="{DynamicResource MH.B.White}"/>
+    <Setter Property="ap:Icon.Size" Value="18"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="c:IconTextBlock">
+          <Border
+            DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+            Background="{Binding Background}"
+            BorderThickness="{Binding BorderThickness}"
+            BorderBrush="{Binding BorderBrush}"
+            CornerRadius="{Binding Path=(Border.CornerRadius)}"
+            Margin="{Binding Margin}"
+            Padding="{Binding Padding}">
+
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+
+              <Path
+                x:Name="icon"
+                Data="{TemplateBinding (ap:Icon.Data)}"
+                Fill="{TemplateBinding (ap:Icon.Fill)}"
+                Width="{TemplateBinding (ap:Icon.Size)}"
+                Height="{TemplateBinding (ap:Icon.Size)}"
+                Margin="2"
+                Stretch="Uniform"/>
+
+              <!--TODO PORT Style="{Binding TextBorderStyle}"-->
+              <Border
+                x:Name="textBorder"
+                Grid.Column="1"
+                HorizontalAlignment="{Binding HorizontalContentAlignment}"
+                VerticalAlignment="{Binding VerticalContentAlignment}">
+
+                <TextBlock
+                  x:Name="text"
+                  Text="{TemplateBinding (ap:Text.Text)}"
+                  Foreground="{Binding Foreground}"/>
+              </Border>
+            </Grid>
+          </Border>
+
+          <!--TODO PORT-->
+          <!--<ControlTemplate.Triggers>
+            <Trigger SourceName="textBorder" Property="BorderThickness" Value="0">
+              <Setter TargetName="textBorder" Property="Margin" Value="2,0,0,0"/>
+            </Trigger>
+
+            <Trigger Property="Compact" Value="True">
+              <Setter Property="HorizontalAlignment" Value="Stretch"/>
+              <Setter Property="VerticalAlignment" Value="Stretch"/>
+              <Setter Property="FontSize" Value="10"/>
+              <Setter Property="FontWeight" Value="Bold"/>
+
+              <Setter TargetName="col1" Property="Width" Value="*"/>
+              <Setter TargetName="col2" Property="Width" Value="Auto"/>
+
+              <Setter TargetName="icon" Property="Margin" Value="2,2,0,0"/>
+              <Setter TargetName="icon" Property="HorizontalAlignment" Value="Left"/>
+              <Setter TargetName="icon" Property="VerticalAlignment" Value="Top"/>
+
+              <Setter TargetName="textBorder" Property="Grid.Column" Value="0"/>
+              <Setter TargetName="textBorder" Property="Margin" Value="0,0,2,-1"/>
+              <Setter TargetName="textBorder" Property="HorizontalAlignment" Value="Right"/>
+              <Setter TargetName="textBorder" Property="VerticalAlignment" Value="Bottom"/>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="icon" Property="Fill" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+              <Setter TargetName="text" Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+            </Trigger>
+
+            <StaticResource ResourceKey="MH.Trigger.IconResToDataAndFill"/>
+
+            <Trigger Property="Shadow" Value="Icon">
+              <Setter TargetName="icon" Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
+            </Trigger>
+            <Trigger Property="Shadow" Value="Text">
+              <Setter TargetName="text" Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
+            </Trigger>
+            <Trigger Property="Shadow" Value="Both">
+              <Setter TargetName="icon" Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
+              <Setter TargetName="text" Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
+            </Trigger>
+
+            <DataTrigger Binding="{Binding Path=(ap:Icon.Data), RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+              <Setter TargetName="icon" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(ap:Text.Text), RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+              <Setter TargetName="textBorder" Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+
+            <StaticResource ResourceKey="MH.Trigger.Control-Disabled"/>
+          </ControlTemplate.Triggers>-->
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </ControlTheme>
+
+  <!--TODO PORT-->
+  <!--<Style x:Key="MH.S.IconTextBlock.Borders.RoundDark" TargetType="c:IconTextBlock" BasedOn="{StaticResource MH.S.IconTextBlock}">
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Background" Value="{DynamicResource MH.B.Black5}"/>
+    <Setter Property="Padding" Value="1"/>
+    <Setter Property="TextBorderStyle" Value="{DynamicResource MH.S.Border.RoundDark}"/>
+  </Style>-->
+</ResourceDictionary>
