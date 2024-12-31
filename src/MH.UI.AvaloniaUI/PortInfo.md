@@ -1,8 +1,11 @@
 ## DataTemplate
-- Change ResourceDictionary to DataTemplates
 - Change xmlns http://schemas.microsoft.com/winfx/2006/xaml/presentation to https://github.com/avaloniaui
-- Include file in csproj <AvaloniaResource Include="Views\Layout\LeftContentV.axaml" />
-- Load file in App._loadDataTemplates()
+  - DataTemplate without x:Key
+    - Change ResourceDictionary to DataTemplates
+    - Include file in csproj <AvaloniaResource Include="Views\Layout\LeftContentV.axaml" />
+    - Load file in App._loadDataTemplates()
+  - DataTemplate with x:Key
+    - Include resource in App.axaml <ResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/DataTemplates/IListItem.axaml"/>
 
 ## Style
 - Change ResourceDictionary to Styles
@@ -19,7 +22,11 @@
 
 - Binding.DoNothing => AvaloniaProperty.UnsetValue
 - LayoutTransform is RenderTransform
+- AttachedProperties in ContntrolTemplate can't be bind like this: {Binding Path=(ap:Icon.Data)} but like this: {TemplateBinding (ap:Icon.Data)}
 
+
+## Info
+- ResourceConverter doesn't look for resources in DataTemplate! so check if they are some resources in DataTemplates.
 
 ```cs
 public class SlidePanelHost : ContentControl {
