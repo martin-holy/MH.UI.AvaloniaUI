@@ -32,10 +32,7 @@
             <ContentPresenter
               Name="PART_SelectedContentHost"
               Margin="{TemplateBinding Padding}"
-              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-              Content="{TemplateBinding SelectedContent}"
-              ContentTemplate="{TemplateBinding SelectedContentTemplate}"/>
+              Content="{Binding $parent[TabControl].DataContext.Selected.Data}"/>
           </DockPanel>
         </Border>
       </ControlTemplate>
