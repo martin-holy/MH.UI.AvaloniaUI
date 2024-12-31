@@ -40,8 +40,9 @@ public class SlidePanelHost : TemplatedControl, ISlidePanelHost {
   }
 
   private void _onBoundsChanged(SlidePanelHost o, AvaloniaPropertyChangedEventArgs e) {
-    // TODO PORT debug old and new value
-    //HostSizeChangedEvent?.Invoke(this, new(new SizeD(oldSize.Width, oldSize.Height), new SizeD(newSize.Width, newSize.Height), newSize.Width != oldSize.Width, newSize.Height != oldSize.Height));
+    var oldSize = (e.OldValue is Rect oldRect ? oldRect : default).Size.ToSizeD();
+    var newSize = (e.NewValue is Rect newRect ? newRect : default).Size.ToSizeD();
+    HostSizeChangedEvent?.Invoke(this, new(oldSize, newSize, newSize.Width != oldSize.Width, newSize.Height != oldSize.Height));
   }
 
   protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e) {
