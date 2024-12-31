@@ -5,7 +5,6 @@
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
   xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI">
 
-  <!--TODO PORT I don't know how to define DataTemplate in separate file and then just include it.-->
   <DataTemplate DataType="{x:Type uic:SlidePanelPinButton}">
     <c:IconToggleButton
       ap:Icon.Data="{StaticResource IconPin}"
