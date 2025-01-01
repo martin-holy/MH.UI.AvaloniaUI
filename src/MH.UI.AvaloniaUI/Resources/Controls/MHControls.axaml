@@ -13,4 +13,8 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Styles.Resources>
+
+  <StyleInclude Source="IconTextBlockItemsControl.axaml"/>
+  <StyleInclude Source="SlidePanelHost.axaml"/>
+  <StyleInclude Source="SlidePanelsGridHost.axaml"/>
 </Styles>
