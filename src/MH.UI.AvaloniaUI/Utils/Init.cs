@@ -1,15 +1,10 @@
-﻿//using MH.UI.AvaloniaUI.Controls;
-using Avalonia.Controls.Templates;
+﻿using Avalonia.Controls.Templates;
 using Avalonia.Markup.Xaml;
-using MH.Utils.BaseClasses;
-using System.Windows;
-using System.Windows.Input;
-//using System.Windows.Threading;
 
 namespace MH.UI.AvaloniaUI.Utils;
 
 public static class Init {
-  // TODO
+  // TODO PORT
   public static void SetDelegates() {
     /*MH.Utils.Keyboard.IsCtrlOn = () => (Keyboard.Modifiers & ModifierKeys.Control) > 0;
     MH.Utils.Keyboard.IsAltOn = () => (Keyboard.Modifiers & ModifierKeys.Alt) > 0;
@@ -38,4 +33,7 @@ public static class Init {
         dataTemplates.AddRange(dts);
     }
   }
+
+  public static void UseRelayCommandIconAndText() =>
+    RelayCommandHelper.Init();
 }
