@@ -16,6 +16,7 @@ public partial class App : Application {
     AvaloniaXamlLoader.Load(this);
 
     AvaloniaUI.Utils.Init.LoadDataTemplates(DataTemplates);
+    AvaloniaUI.Utils.Init.UseRelayCommandIconAndText();
     _loadDataTemplates();
   }
 
