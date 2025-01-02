@@ -1,0 +1,66 @@
+﻿<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
+
+  <ControlTheme x:Key="{x:Type Button}" TargetType="Button">
+    <Setter Property="Background" Value="{StaticResource MH.B.Button.Static.Ba}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Static.Bo}"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Border.CornerRadius" Value="3"/>
+    <Setter Property="Padding" Value="2,0,2,0"/>
+    <Setter Property="c:IconTextBlock.Shadow" Value="Both"/>
+    <Setter Property="ap:Icon.Size" Value="18"/>
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+          BorderThickness="{TemplateBinding BorderThickness}"
+          Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          CornerRadius="{TemplateBinding Border.CornerRadius}">
+
+          <Border
+            Name="PART_OverLayer"
+            BorderThickness="0"
+            CornerRadius="{TemplateBinding Border.CornerRadius}">
+
+            <c:IconTextBlock
+              Focusable="False"
+              Foreground="{TemplateBinding Foreground}"
+              Margin="{TemplateBinding Padding}"
+              Shadow="{TemplateBinding (c:IconTextBlock.Shadow)}"
+              ap:Text.Text="{TemplateBinding (ap:Text.Text)}"
+              ap:Icon.Data="{TemplateBinding (ap:Icon.Data)}"
+              ap:Icon.Fill="{TemplateBinding (ap:Icon.Fill)}"
+              ap:Icon.Size="{TemplateBinding (ap:Icon.Size)}"
+              Compact="{TemplateBinding (c:IconTextBlock.Compact)}"/>
+          </Border>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:not(ap|Icon.Fill)">
+      <Setter Property="ap:Icon.Fill" Value="{DynamicResource MH.B.White}"/>
+    </Style>
+
+    <Style Selector="^:pointerover /template/ Border#PART_OverLayer">
+      <Setter Property="Background" Value="{StaticResource MH.B.Button.Hover.Ba}"/>
+    </Style>
+
+    <Style Selector="^:focus-within /template/ Border#PART_OverLayer">
+      <Setter Property="Background" Value="{StaticResource MH.B.Button.Hover.Ba}"/>
+    </Style>
+
+    <Style Selector="^:pressed /template/ Border#PART_OverLayer">
+      <Setter Property="Background" Value="{StaticResource MH.B.Button.Pressed.Ba}"/>
+    </Style>
+
+    <Style Selector="^:disabled">
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Disabled.Bo}"/>
+      <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>
