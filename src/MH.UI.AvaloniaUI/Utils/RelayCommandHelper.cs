@@ -11,6 +11,7 @@ namespace MH.UI.AvaloniaUI.Utils;
 public static class RelayCommandHelper {
   public static void Init() {
     Button.CommandProperty.Changed.AddClassHandler<Control>(_onCommandChanged);
+    MenuItem.CommandProperty.Changed.AddClassHandler<Control>(_onCommandChanged);
   }
 
   private static void _onCommandChanged(Control o, AvaloniaPropertyChangedEventArgs e) {
