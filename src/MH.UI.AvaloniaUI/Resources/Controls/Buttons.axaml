@@ -11,6 +11,9 @@
     <Setter Property="BorderThickness" Value="1"/>
     <Setter Property="Border.CornerRadius" Value="3"/>
     <Setter Property="Padding" Value="2,0,2,0"/>
+    <Setter Property="MinWidth" Value="60"/>
+    <Setter Property="MinHeight" Value="30"/>
+    <Setter Property="Margin" Value="5"/>
     <Setter Property="c:IconTextBlock.Shadow" Value="Both"/>
     <Setter Property="ap:Icon.Size" Value="18"/>
 
@@ -61,6 +64,12 @@
     <Style Selector="^:disabled">
       <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Disabled.Bo}"/>
       <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type ToggleButton}" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type Button}}">
+    <Style Selector="^:checked">
+      <Setter Property="Background" Value="{StaticResource MH.B.ToggleButton.Checked.Ba}"/>
     </Style>
   </ControlTheme>
 </ResourceDictionary>
