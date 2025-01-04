@@ -100,4 +100,9 @@
   </ControlTheme>
 
   <ControlTheme x:Key="{x:Type c:IconButton}" TargetType="c:IconButton" BasedOn="{StaticResource MH.S.IconButtonBase}"/>
+
+  <ControlTheme x:Key="{x:Type c:IconTextButton}" TargetType="c:IconTextButton" BasedOn="{StaticResource MH.S.IconButtonBase}">
+    <Setter Property="c:IconTextBlock.Compact" Value="True"/>
+    <Setter Property="ap:Icon.Size" Value="15"/>
+  </ControlTheme>
 </ResourceDictionary>
