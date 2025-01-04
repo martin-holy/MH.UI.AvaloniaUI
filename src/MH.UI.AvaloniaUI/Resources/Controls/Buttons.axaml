@@ -72,4 +72,22 @@
       <Setter Property="Background" Value="{StaticResource MH.B.ToggleButton.Checked.Ba}"/>
     </Style>
   </ControlTheme>
+
+  <ControlTheme x:Key="MH.S.IconButtonBase" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="MinWidth" Value="0"/>
+    <Setter Property="MinHeight" Value="0"/>
+    <Setter Property="Margin" Value="2"/>
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="Width" Value="26"/>
+    <Setter Property="Height" Value="26"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="ap:Icon.Size" Value="19"/>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type c:IconToggleButton}" TargetType="c:IconToggleButton" BasedOn="{StaticResource MH.S.IconButtonBase}">
+    <Style Selector="^:not(:checked)">
+      <Setter Property="ap:Icon.Fill" Value="{StaticResource MH.B.IconToggleButton.Unchecked.Fill}"/>
+    </Style>
+  </ControlTheme>
 </ResourceDictionary>
