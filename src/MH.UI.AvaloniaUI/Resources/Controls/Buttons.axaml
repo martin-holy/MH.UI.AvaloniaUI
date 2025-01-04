@@ -98,4 +98,6 @@
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="BorderThickness" Value="0"/>
   </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type c:IconButton}" TargetType="c:IconButton" BasedOn="{StaticResource MH.S.IconButtonBase}"/>
 </ResourceDictionary>
