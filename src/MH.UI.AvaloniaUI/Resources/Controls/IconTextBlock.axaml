@@ -39,7 +39,7 @@
               </Grid.ColumnDefinitions>
 
               <Path
-                x:Name="icon"
+                x:Name="PART_Icon"
                 Data="{TemplateBinding (ap:Icon.Data)}"
                 Fill="{TemplateBinding (ap:Icon.Fill)}"
                 Width="{TemplateBinding (ap:Icon.Size)}"
@@ -55,7 +55,7 @@
                 VerticalAlignment="{Binding VerticalContentAlignment}">
 
                 <TextBlock
-                  x:Name="text"
+                  x:Name="PART_Text"
                   Text="{TemplateBinding (ap:Text.Text)}"
                   Foreground="{Binding Foreground}"/>
               </Border>
@@ -117,6 +117,23 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+    <Style Selector="^[Shadow=Icon] /template/ Path#PART_Icon">
+      <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
+    </Style>
+
+    <Style Selector="^[Shadow=Text] /template/ TextBlock#PART_Text">
+      <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
+    </Style>
+
+    <Style Selector="^[Shadow=Both]">
+      <Style Selector="^ /template/ Path#PART_Icon">
+        <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
+      </Style>
+
+      <Style Selector="^ /template/ TextBlock#PART_Text">
+        <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
+      </Style>
+    </Style>
   </ControlTheme>
 
   <!--TODO PORT-->
