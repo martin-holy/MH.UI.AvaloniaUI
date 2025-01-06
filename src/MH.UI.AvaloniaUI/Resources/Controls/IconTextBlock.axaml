@@ -32,12 +32,7 @@
             Margin="{Binding Margin}"
             Padding="{Binding Padding}">
 
-            <Grid>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-              </Grid.ColumnDefinitions>
-
+            <Grid x:Name="PART_Grid" ColumnDefinitions="Auto,*">
               <Path
                 x:Name="PART_Icon"
                 Data="{TemplateBinding (ap:Icon.Data)}"
@@ -49,7 +44,7 @@
 
               <!--TODO PORT Style="{Binding TextBorderStyle}"-->
               <Border
-                x:Name="textBorder"
+                x:Name="PART_TextBorder"
                 Grid.Column="1"
                 HorizontalAlignment="{Binding HorizontalContentAlignment}"
                 VerticalAlignment="{Binding VerticalContentAlignment}">
@@ -68,41 +63,9 @@
               <Setter TargetName="textBorder" Property="Margin" Value="2,0,0,0"/>
             </Trigger>
 
-            <Trigger Property="Compact" Value="True">
-              <Setter Property="HorizontalAlignment" Value="Stretch"/>
-              <Setter Property="VerticalAlignment" Value="Stretch"/>
-              <Setter Property="FontSize" Value="10"/>
-              <Setter Property="FontWeight" Value="Bold"/>
-
-              <Setter TargetName="col1" Property="Width" Value="*"/>
-              <Setter TargetName="col2" Property="Width" Value="Auto"/>
-
-              <Setter TargetName="icon" Property="Margin" Value="2,2,0,0"/>
-              <Setter TargetName="icon" Property="HorizontalAlignment" Value="Left"/>
-              <Setter TargetName="icon" Property="VerticalAlignment" Value="Top"/>
-
-              <Setter TargetName="textBorder" Property="Grid.Column" Value="0"/>
-              <Setter TargetName="textBorder" Property="Margin" Value="0,0,2,-1"/>
-              <Setter TargetName="textBorder" Property="HorizontalAlignment" Value="Right"/>
-              <Setter TargetName="textBorder" Property="VerticalAlignment" Value="Bottom"/>
-            </Trigger>
-
             <Trigger Property="IsEnabled" Value="False">
               <Setter TargetName="icon" Property="Fill" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
               <Setter TargetName="text" Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
-            </Trigger>
-
-            <StaticResource ResourceKey="MH.Trigger.IconResToDataAndFill"/>
-
-            <Trigger Property="Shadow" Value="Icon">
-              <Setter TargetName="icon" Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
-            </Trigger>
-            <Trigger Property="Shadow" Value="Text">
-              <Setter TargetName="text" Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
-            </Trigger>
-            <Trigger Property="Shadow" Value="Both">
-              <Setter TargetName="icon" Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
-              <Setter TargetName="text" Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
             </Trigger>
 
             <DataTrigger Binding="{Binding Path=(ap:Icon.Data), RelativeSource={RelativeSource Self}}" Value="{x:Null}">
@@ -117,6 +80,27 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+
+    <Style Selector="^[Compact=true]">
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+      <Setter Property="VerticalAlignment" Value="Stretch"/>
+      <Setter Property="HorizontalContentAlignment" Value="Right"/>
+      <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+      <Setter Property="FontSize" Value="10"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+
+      <Style Selector="^ /template/ Path#PART_Icon">
+        <Setter Property="Margin" Value="2,2,0,0"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+      </Style>
+
+      <Style Selector="^ /template/ Border#PART_TextBorder">
+        <Setter Property="Grid.Column" Value="0"/>
+        <Setter Property="Margin" Value="0,0,2,-1"/>
+      </Style>
+    </Style>
+
     <Style Selector="^[Shadow=Icon] /template/ Path#PART_Icon">
       <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
     </Style>
