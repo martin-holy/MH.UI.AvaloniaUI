@@ -5,4 +5,9 @@
   <Style Selector=":is(Visual).shadow">
     <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
   </Style>
+
+  <Style Selector=":is(TemplatedControl):disabled">
+    <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Disabled.Bo}"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+  </Style>
 </Styles>
