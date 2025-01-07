@@ -101,23 +101,13 @@
       </Style>
     </Style>
 
-    <Style Selector="^[Shadow=Icon] /template/ Path#PART_Icon">
+    <Style Selector="^[Shadow=Icon] /template/ Path#PART_Icon, ^[Shadow=Both] /template/ Path#PART_Icon">
       <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
     </Style>
 
-    <Style Selector="^[Shadow=Text] /template/ TextBlock#PART_Text">
-      <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
-    </Style>
-
-    <Style Selector="^[Shadow=Both]">
-      <Style Selector="^ /template/ Path#PART_Icon">
+    <Style Selector="^[Shadow=Text] /template/ TextBlock#PART_Text, ^[Shadow=Both] /template/ TextBlock#PART_Text">
         <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
       </Style>
-
-      <Style Selector="^ /template/ TextBlock#PART_Text">
-        <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
-      </Style>
-    </Style>
   </ControlTheme>
 
   <!--TODO PORT-->
