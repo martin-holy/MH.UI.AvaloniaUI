@@ -10,4 +10,8 @@
     <Setter Property="Data" Value="{Binding Path=(ap:Icon.Data), RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Fill" Value="{Binding Path=(ap:Icon.Fill), RelativeSource={RelativeSource Self}}"/>
   </Style>
+
+  <Style Selector="Path:disabled">
+    <Setter Property="Fill" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+  </Style>
 </Styles>
