@@ -40,14 +40,16 @@
                 Width="{TemplateBinding (ap:Icon.Size)}"
                 Height="{TemplateBinding (ap:Icon.Size)}"
                 Margin="2"
-                Stretch="Uniform"/>
+                Stretch="Uniform"
+                IsVisible="{TemplateBinding (ap:Icon.Data), Converter={x:Static ObjectConverters.IsNotNull}}"/>
 
               <!--TODO PORT Style="{Binding TextBorderStyle}"-->
               <Border
                 x:Name="PART_TextBorder"
                 Grid.Column="1"
                 HorizontalAlignment="{Binding HorizontalContentAlignment}"
-                VerticalAlignment="{Binding VerticalContentAlignment}">
+                VerticalAlignment="{Binding VerticalContentAlignment}"
+                IsVisible="{TemplateBinding (ap:Text.Text), Converter={x:Static ObjectConverters.IsNotNull}}">
 
                 <TextBlock
                   x:Name="PART_Text"
@@ -62,20 +64,6 @@
             <Trigger SourceName="textBorder" Property="BorderThickness" Value="0">
               <Setter TargetName="textBorder" Property="Margin" Value="2,0,0,0"/>
             </Trigger>
-
-            <Trigger Property="IsEnabled" Value="False">
-              <Setter TargetName="icon" Property="Fill" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
-              <Setter TargetName="text" Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
-            </Trigger>
-
-            <DataTrigger Binding="{Binding Path=(ap:Icon.Data), RelativeSource={RelativeSource Self}}" Value="{x:Null}">
-              <Setter TargetName="icon" Property="Visibility" Value="Collapsed"/>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding Path=(ap:Text.Text), RelativeSource={RelativeSource Self}}" Value="{x:Null}">
-              <Setter TargetName="textBorder" Property="Visibility" Value="Collapsed"/>
-            </DataTrigger>
-
-            <StaticResource ResourceKey="MH.Trigger.Control-Disabled"/>
           </ControlTemplate.Triggers>-->
         </ControlTemplate>
       </Setter.Value>
@@ -106,8 +94,8 @@
     </Style>
 
     <Style Selector="^[Shadow=Text] /template/ TextBlock#PART_Text, ^[Shadow=Both] /template/ TextBlock#PART_Text">
-        <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
-      </Style>
+      <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
+    </Style>
   </ControlTheme>
 
   <!--TODO PORT-->
