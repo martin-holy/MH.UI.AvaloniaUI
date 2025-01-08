@@ -1,10 +1,10 @@
-﻿<Styles
+﻿<ResourceDictionary
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties"
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
 
-  <Style Selector="c|IconTextBlockItemsControl">
+  <ControlTheme x:Key="{x:Type c:IconTextBlockItemsControl}" TargetType="c:IconTextBlockItemsControl">
     <Setter Property="Margin" Value="2"/>
     <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
     <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
@@ -33,12 +33,7 @@
             BorderBrush="Black"
             Padding="{TemplateBinding Padding}">
 
-            <Grid VerticalAlignment="Center">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-              </Grid.ColumnDefinitions>
-
+            <Grid VerticalAlignment="Center" ColumnDefinitions="Auto,*">
               <Path
                 x:Name="icon"
                 Data="{Binding Path=(ap:Icon.Data), RelativeSource={RelativeSource TemplatedParent}}"
@@ -58,20 +53,15 @@
               </ScrollViewer>
             </Grid>
           </Border>
-
-          <!--TODO PORT-->
-          <!--<ControlTemplate.Triggers>
-            <StaticResource ResourceKey="MH.Trigger.IconResToDataAndFill"/>
-          </ControlTemplate.Triggers>-->
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-  </Style>
 
-  <Style Selector="c|IconTextBlockItemsControl.bordersRoundDark">
-    <Setter Property="BorderThickness" Value="1"/>
-    <Setter Property="Padding" Value="2,0,2,0"/>
-    <Setter Property="Background" Value="{DynamicResource MH.B.Black5}"/>
-    <Setter Property="ItemTemplate" Value="{DynamicResource MH.DT.TextBlock.Border.RoundDark}"/>
-  </Style>
-</Styles>
+    <Style Selector="^.bordersRoundDark">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="2,0,2,0"/>
+      <Setter Property="Background" Value="{DynamicResource MH.B.Black5}"/>
+      <Setter Property="ItemTemplate" Value="{DynamicResource MH.DT.TextBlock.Border.RoundDark}"/>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

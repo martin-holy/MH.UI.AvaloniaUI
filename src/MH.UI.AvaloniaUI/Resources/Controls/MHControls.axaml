@@ -7,6 +7,7 @@
       <ResourceDictionary.MergedDictionaries>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/Buttons.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/IconTextBlock.axaml"/>
+        <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/IconTextBlockItemsControl.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabControl.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabItem.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabStrip.axaml"/>
@@ -18,7 +19,6 @@
   <StyleInclude Source="Border.axaml"/>
   <StyleInclude Source="Common.axaml"/>
   <StyleInclude Source="Icon.axaml"/>
-  <StyleInclude Source="IconTextBlockItemsControl.axaml"/>
   <StyleInclude Source="SlidePanelHost.axaml"/>
   <StyleInclude Source="SlidePanelsGridHost.axaml"/>
 </Styles>
