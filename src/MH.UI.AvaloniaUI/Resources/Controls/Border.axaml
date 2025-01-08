@@ -1,0 +1,21 @@
+﻿<Styles
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Style Selector="Border.round">
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="BorderBrush" Value="Black"/>
+    <Setter Property="Padding" Value="2,0,2,2"/>
+    <Setter Property="CornerRadius" Value="5"/>
+    <Setter Property="Margin" Value="1"/>
+    <Setter Property="MinWidth" Value="24"/>
+  </Style>
+
+  <Style Selector="Border.darker">
+    <Setter Property="Background" Value="{DynamicResource MH.B.Black2}"/>
+  </Style>
+
+  <Style Selector="Border.dark">
+    <Setter Property="Background" Value="{DynamicResource MH.B.Black5}"/>
+  </Style>
+</Styles>
