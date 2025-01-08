@@ -43,7 +43,6 @@
                 Stretch="Uniform"
                 IsVisible="{TemplateBinding (ap:Icon.Data), Converter={x:Static ObjectConverters.IsNotNull}}"/>
 
-              <!--TODO PORT Style="{Binding TextBorderStyle}"-->
               <Border
                 x:Name="PART_TextBorder"
                 Grid.Column="1"
@@ -96,13 +95,12 @@
     <Style Selector="^[Shadow=Text] /template/ TextBlock#PART_Text, ^[Shadow=Both] /template/ TextBlock#PART_Text">
       <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
     </Style>
-  </ControlTheme>
 
-  <!--TODO PORT-->
-  <!--<Style x:Key="MH.S.IconTextBlock.Borders.RoundDark" TargetType="c:IconTextBlock" BasedOn="{StaticResource MH.S.IconTextBlock}">
-    <Setter Property="BorderThickness" Value="1"/>
-    <Setter Property="Background" Value="{DynamicResource MH.B.Black5}"/>
-    <Setter Property="Padding" Value="1"/>
-    <Setter Property="TextBorderStyle" Value="{DynamicResource MH.S.Border.RoundDark}"/>
-  </Style>-->
+    <Style Selector="^.bordersRoundDark">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Background" Value="{DynamicResource MH.B.Black5}"/>
+      <Setter Property="Padding" Value="1"/>
+      <Setter Property="TextBorderClasses" Value="round dark"/>
+    </Style>
+  </ControlTheme>
 </ResourceDictionary>
