@@ -10,8 +10,6 @@ using MH.Utils.Types;
 namespace MH.UI.AvaloniaUI.Controls;
 
 public class SlidePanelHost : TemplatedControl, ISlidePanelHost {
-  private IDisposable? _boundsSubscription;
-
   private Thickness _openFrom;
   private Thickness _openTo;
   private TimeSpan _openDuration;
@@ -29,26 +27,23 @@ public class SlidePanelHost : TemplatedControl, ISlidePanelHost {
   }
 
   static SlidePanelHost() {
+    BoundsProperty.Changed.AddClassHandler<SlidePanelHost>(_onBoundsChanged);
     ViewModelProperty.Changed.AddClassHandler<SlidePanelHost>(_onViewModelChanged);
   }
 
   public event EventHandler<MH.Utils.EventsArgs.SizeChangedEventArgs>? HostSizeChangedEvent;
 
-  protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e) {
-    base.OnAttachedToVisualTree(e);
-    _boundsSubscription = BoundsProperty.Changed.AddClassHandler<SlidePanelHost>(_onBoundsChanged);
-  }
+  private void _raiseHostSizeChanged(MH.Utils.EventsArgs.SizeChangedEventArgs e) =>
+    HostSizeChangedEvent?.Invoke(this, e);
 
-  private void _onBoundsChanged(SlidePanelHost o, AvaloniaPropertyChangedEventArgs e) {
+  private static void _onBoundsChanged(SlidePanelHost o, AvaloniaPropertyChangedEventArgs e) {
+    if (!ReferenceEquals(o, e.Sender)) return;
     var oldSize = (e.OldValue is Rect oldRect ? oldRect : default).Size.ToSizeD();
     var newSize = (e.NewValue is Rect newRect ? newRect : default).Size.ToSizeD();
-    HostSizeChangedEvent?.Invoke(this, new(oldSize, newSize, newSize.Width != oldSize.Width, newSize.Height != oldSize.Height));
-  }
-
-  protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e) {
-    base.OnDetachedFromVisualTree(e);
-    _boundsSubscription?.Dispose();
-    _boundsSubscription = null;
+    var widthChanged = Math.Abs(newSize.Width - oldSize.Width) > 1;
+    var heightChanged = Math.Abs(newSize.Height - oldSize.Height) > 1;
+    if (!widthChanged && !heightChanged) return;
+    o._raiseHostSizeChanged(new(oldSize, newSize, widthChanged, heightChanged));
   }
 
   public async void OpenAnimation() {
