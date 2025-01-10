@@ -1,9 +1,9 @@
-﻿<Styles
+﻿<ResourceDictionary
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
 
-  <Style Selector="c|SlidePanelHost">
+  <ControlTheme x:Key="{x:Type c:SlidePanelHost}" TargetType="c:SlidePanelHost">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="c:SlidePanelHost">
@@ -11,5 +11,5 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-  </Style>
-</Styles>
+  </ControlTheme>
+</ResourceDictionary>

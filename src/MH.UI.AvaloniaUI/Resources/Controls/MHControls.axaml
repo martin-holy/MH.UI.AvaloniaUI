@@ -8,6 +8,7 @@
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/Buttons.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/IconTextBlock.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/IconTextBlockItemsControl.axaml"/>
+        <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/SlidePanelHost.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/SlidePanelsGridHost.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabControl.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabItem.axaml"/>
@@ -20,5 +21,4 @@
   <StyleInclude Source="Border.axaml"/>
   <StyleInclude Source="Common.axaml"/>
   <StyleInclude Source="Icon.axaml"/>
-  <StyleInclude Source="SlidePanelHost.axaml"/>
 </Styles>
