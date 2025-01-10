@@ -27,6 +27,8 @@
 
 ## Info
 - ResourceConverter doesn't look for resources in DataTemplate! so check if they are some resources in DataTemplates.
+- There is problem with DataContext in ContentPresenter when just Content is set. So do this:
+  <ContentPresenter DataContext="{Binding SlidePanelPinButton}" Content="{Binding}"/>
 
 ```cs
 public class SlidePanelHost : ContentControl {
