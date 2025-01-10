@@ -27,7 +27,7 @@
                 </Grid.ColumnDefinitions>
 
                 <GridSplitter Grid.Column="1" IsVisible="{Binding PanelLeft.IsPinned, Converter={x:Static conv:VisibilityConverter.TrueToVisible}}"/>
-                <ContentPresenter Grid.Column="2" Content="{Binding PanelMiddle}"/>
+                <ContentPresenter Grid.Column="2" Content="{Binding ViewModel.PanelMiddle, RelativeSource={RelativeSource TemplatedParent}}"/>
                 <GridSplitter Grid.Column="3" IsVisible="{Binding PanelRight.IsPinned, Converter={x:Static conv:VisibilityConverter.TrueToVisible}}"/>
               </Grid>
 
