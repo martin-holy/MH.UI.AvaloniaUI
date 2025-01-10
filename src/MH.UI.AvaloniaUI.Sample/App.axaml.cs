@@ -54,6 +54,7 @@ public partial class App : Application {
   }
 
   private void _loadDataTemplates() {
+    // include files in *.csproj as AvaloniaResource too
     var files = new[] {
       "Layout/LeftContentV.axaml",
       "Layout/MiddleContentV.axaml",
