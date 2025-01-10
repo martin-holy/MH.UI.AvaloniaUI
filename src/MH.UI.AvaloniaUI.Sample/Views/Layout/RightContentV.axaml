@@ -4,15 +4,10 @@
   xmlns:vml="clr-namespace:MH.UI.AvaloniaUI.Sample.ViewModels.Layout">
 
   <DataTemplate DataType="{x:Type vml:RightContentVM}">
-    <Grid Background="{StaticResource MH.B.C.Static.Ba}">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-      </Grid.RowDefinitions>
-
-      <ContentPresenter Content="{Binding SelectedFolder}" Grid.Row="0" Margin="4,0,0,0"/>
-      <ContentPresenter Content="{Binding SlidePanelPinButton}" Grid.Row="0" HorizontalAlignment="Right"/>
-      <ContentPresenter Content="{Binding FolderTreeView}" Grid.Row="1"/>
+    <Grid Background="{StaticResource MH.B.C.Static.Ba}" RowDefinitions="Auto,*">
+      <ContentPresenter DataContext="{Binding SelectedFolder}" Content="{Binding}" Grid.Row="0" Margin="4,0,0,0"/>
+      <ContentPresenter DataContext="{Binding SlidePanelPinButton}" Content="{Binding}" Grid.Row="0" HorizontalAlignment="Right"/>
+      <ContentPresenter DataContext="{Binding FolderTreeView}" Content="{Binding}" Grid.Row="1"/>
     </Grid>
   </DataTemplate>
 </DataTemplates>
