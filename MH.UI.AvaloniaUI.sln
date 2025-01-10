@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MH.UI.AvaloniaUI.Sample.Bro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MH.UI.AvaloniaUI.Sample.Desktop", "src\MH.UI.AvaloniaUI.Sample.Desktop\MH.UI.AvaloniaUI.Sample.Desktop.csproj", "{E5BBEB62-45BD-4BEA-A0CE-1BC0280FD698}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MH.UI", "..\MH.UI\src\MH.UI\MH.UI.csproj", "{F4857139-70D2-4B51-9156-4089CDC60787}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MH.Utils", "..\MH.Utils\src\MH.Utils\MH.Utils.csproj", "{01486820-984A-45E3-9077-7EEC8E1C29C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{E5BBEB62-45BD-4BEA-A0CE-1BC0280FD698}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5BBEB62-45BD-4BEA-A0CE-1BC0280FD698}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5BBEB62-45BD-4BEA-A0CE-1BC0280FD698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4857139-70D2-4B51-9156-4089CDC60787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4857139-70D2-4B51-9156-4089CDC60787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4857139-70D2-4B51-9156-4089CDC60787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4857139-70D2-4B51-9156-4089CDC60787}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01486820-984A-45E3-9077-7EEC8E1C29C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01486820-984A-45E3-9077-7EEC8E1C29C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01486820-984A-45E3-9077-7EEC8E1C29C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01486820-984A-45E3-9077-7EEC8E1C29C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
