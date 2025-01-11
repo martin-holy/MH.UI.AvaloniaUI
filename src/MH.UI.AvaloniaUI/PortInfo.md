@@ -13,7 +13,7 @@
 - definition:
 	- WPF: <Style x:Key="MH.S.IconTextBlockItemsControl" TargetType="{x:Type c:IconTextBlockItemsControl}">
 	- Avalonia: <Style Selector="c|IconTextBlockItemsControl">
-- Avalonia doesn't have style inheritance so try to use multiple Styles in Classes
+- Avalonia doesn't have style inheritance but ControlTheme have it
 - include styles in App.axaml using StyleInclude
 
 ## BasedOn Styles
