@@ -2,7 +2,6 @@
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
 using Avalonia.Controls.Primitives;
-using Avalonia.Styling;
 using MH.UI.AvaloniaUI.Extensions;
 using MH.UI.Controls;
 using MH.Utils.Types;
@@ -10,11 +9,9 @@ using MH.Utils.Types;
 namespace MH.UI.AvaloniaUI.Controls;
 
 public class SlidePanelHost : TemplatedControl, ISlidePanelHost {
-  private Thickness _openFrom;
   private Thickness _openTo;
   private TimeSpan _openDuration;
 
-  private Thickness _closeFrom;
   private Thickness _closeTo;
   private TimeSpan _closeDuration;
 
@@ -46,35 +43,30 @@ public class SlidePanelHost : TemplatedControl, ISlidePanelHost {
     o._raiseHostSizeChanged(new(oldSize, newSize, widthChanged, heightChanged));
   }
 
-  public async void OpenAnimation() {
-    await AnimateMarginAsync(_openFrom, _openTo, _openDuration);
-  }
+  public void OpenAnimation() =>
+    AnimateMargin(_openTo, _openDuration);
 
-  public async void CloseAnimation() {
-    await AnimateMarginAsync(_closeFrom, _closeTo, _closeDuration);
-  }
+  public void CloseAnimation() =>
+    AnimateMargin(_closeTo, _closeDuration);
 
   public void UpdateOpenAnimation(ThicknessD from, ThicknessD to, TimeSpan duration) {
-    _openFrom = from.FromThicknessD();
     _openTo = to.FromThicknessD();
     _openDuration = duration;
   }
 
   public void UpdateCloseAnimation(ThicknessD from, ThicknessD to, TimeSpan duration) {
-    _closeFrom = from.FromThicknessD();
     _closeTo = to.FromThicknessD();
     _closeDuration = duration;
   }
 
-  private async Task AnimateMarginAsync(Thickness from, Thickness to, TimeSpan duration) {
-    var animation = new Animation {
+  private void AnimateMargin(Thickness to, TimeSpan duration) {
+    var transition = new ThicknessTransition {
       Duration = duration,
-      Easing = new CubicEaseInOut(),
-      Children = {
-        new() { Cue = new(0), Setters = { new Setter(MarginProperty, from) } },
-        new() { Cue = new(1), Setters = { new Setter(MarginProperty, to) } } }
+      Property = MarginProperty,
+      Easing = new CubicEaseInOut()
     };
 
-    await animation.RunAsync(this);
+    Transitions = [transition];
+    Margin = to;
   }
 }
