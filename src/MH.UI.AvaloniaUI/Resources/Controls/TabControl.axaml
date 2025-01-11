@@ -10,7 +10,7 @@
   <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl">
     <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
     <Setter Property="BorderThickness" Value="0"/>
-    <Setter Property="TabStripPlacement" Value="{Binding Path=TabStrip.Placement, Converter={x:Static conv:DockConverter.Inst}}"/>
+    <Setter Property="TabStripPlacement" Value="{Binding TabStrip.Placement, Converter={x:Static conv:DockConverter.Inst}}"/>
     <Setter Property="ItemsSource" Value="{Binding Tabs}"/>
     <Setter Property="SelectedItem" Value="{Binding Selected, Mode=TwoWay}"/>
     <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -25,10 +25,14 @@
           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
           VerticalAlignment="{TemplateBinding VerticalAlignment}">
           <DockPanel>
-            <ItemsPresenter
-              Name="PART_ItemsPresenter"
-              ItemsPanel="{TemplateBinding ItemsPanel}"
-              DockPanel.Dock="{TemplateBinding TabStripPlacement}"/>
+            <DockPanel DockPanel.Dock="{Binding TabStrip.Placement, Converter={x:Static conv:DockConverter.Inst}}">
+              <ContentPresenter
+                DockPanel.Dock="{Binding $parent[TabControl].DataContext.TabStrip.SlotPlacement, Converter={x:Static conv:DockConverter.Inst}}"
+                Content="{Binding $parent[TabControl].DataContext.TabStrip.Slot}"/>
+
+              <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}"/>
+            </DockPanel>
+            
             <ContentPresenter
               Name="PART_SelectedContentHost"
               Margin="{TemplateBinding Padding}"
