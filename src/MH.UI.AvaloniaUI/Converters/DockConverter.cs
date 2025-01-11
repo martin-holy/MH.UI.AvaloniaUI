@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using MH.UI.AvaloniaUI.Extensions;
 
 namespace MH.UI.AvaloniaUI.Converters;
 
@@ -8,8 +9,8 @@ public class DockConverter : BaseConverter {
   public static DockConverter Inst { get { lock (_lock) { return _inst ??= new(); } } }
 
   public override object? Convert(object? value, object? parameter) =>
-    value == null ? null : (Dock)(int)(MH.UI.Controls.Dock)value;
+    value is UI.Controls.Dock dock ? dock.FromMhDock() : null;
 
   public override object? ConvertBack(object? value, object? parameter) =>
-    value == null ? null : (MH.UI.Controls.Dock)(int)(Dock)value;
+    value is Dock dock ? dock.ToMhDock() : null;
 }
