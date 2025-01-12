@@ -7,6 +7,7 @@
   DataContext="{Binding VM.MainWindow, Source={x:Static s:App.Core}}"
   Icon="/Assets/avalonia-logo.ico"
   Title="MH UI Avalonia Sample Application"
+  FontSize="13"
   Height="420"
   Width="820"
   WindowStartupLocation="CenterScreen">
