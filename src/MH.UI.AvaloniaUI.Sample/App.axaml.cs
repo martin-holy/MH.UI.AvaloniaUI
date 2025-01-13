@@ -17,6 +17,7 @@ public partial class App : Application {
 
     AvaloniaUI.Utils.Init.LoadDataTemplates(DataTemplates);
     AvaloniaUI.Utils.Init.UseRelayCommandIconAndText();
+    AvaloniaUI.Utils.Init.ControlsExtensions();
     _loadDataTemplates();
   }
 
