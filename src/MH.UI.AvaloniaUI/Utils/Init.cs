@@ -1,12 +1,11 @@
 ﻿using Avalonia.Controls.Templates;
 using Avalonia.Markup.Xaml;
-using MH.UI.AvaloniaUI.Controls.Extensions;
 
 namespace MH.UI.AvaloniaUI.Utils;
 
 public static class Init {
   public static void ControlsExtensions() {
-    TabControlExtensions.Init();
+    TabControlHelper.Init();
   }
 
   // TODO PORT

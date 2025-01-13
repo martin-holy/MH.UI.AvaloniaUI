@@ -1,10 +1,12 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 
-namespace MH.UI.AvaloniaUI.Controls.Extensions;
+namespace MH.UI.AvaloniaUI.Utils;
 
-public static class TabControlExtensions {
-  static TabControlExtensions() {
+public static class TabControlHelper {
+  public static void Init() { }
+
+  static TabControlHelper() {
     Visual.BoundsProperty.Changed.AddClassHandler<TabControl>(_onBoundsChanged);
   }
 
@@ -12,6 +14,4 @@ public static class TabControlExtensions {
     if (e.Sender is not TabControl { DataContext: UI.Controls.TabControl tc } || e.NewValue is not Rect rect) return;
     tc.UpdateMaxTabSize(rect.Width, rect.Height);
   }
-
-  public static void Init() { }
 }
