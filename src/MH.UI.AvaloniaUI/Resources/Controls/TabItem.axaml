@@ -7,9 +7,6 @@
   xmlns:uInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils"
   x:CompileBindings="True">
 
-  <x:Double x:Key="TabItemVerticalPipeHeight">24</x:Double>
-  <x:Double x:Key="TabItemPipeThickness">2</x:Double>
-
   <ControlTheme x:Key="{x:Type TabItem}" TargetType="TabItem">
     <Setter Property="Border.CornerRadius" Value="3"/>
     <Setter Property="BorderBrush" Value="Transparent"/>
@@ -45,7 +42,7 @@
           CornerRadius="{TemplateBinding Border.CornerRadius}"
           Margin="2">
 
-          <Grid x:Name="grid" Background="Transparent">
+          <Grid>
             <Grid.RenderTransform>
               <RotateTransform Angle="{Binding $parent[TabControl].((uic:TabControl)DataContext).TabStrip.RotationAngle}"/>
             </Grid.RenderTransform>
@@ -61,9 +58,10 @@
               RecognizesAccessKey="True"/>
 
             <Border
-              x:Name="btnClose"
+              x:Name="PART_BtnClose"
               Background="{StaticResource MH.B.I.Selected.Ba}"
               IsVisible="False"
+              Classes.canClose="{Binding $parent[TabControl].((uic:TabControl)DataContext).CanCloseTabs}"
               Width="22"
               Height="22"
               CornerRadius="3"
@@ -81,16 +79,6 @@
             </Border>
           </Grid>
         </Border>
-
-        <!--<ControlTemplate.Triggers>
-          <MultiDataTrigger>
-            <MultiDataTrigger.Conditions>
-              <Condition Value="True" Binding="{Binding IsMouseOver, ElementName=grid}"/>
-              <Condition Value="True" Binding="{Binding Path=DataContext.(uic:TabControl.CanCloseTabs), RelativeSource={RelativeSource AncestorType=TabControl}}"/>
-            </MultiDataTrigger.Conditions>
-            <Setter TargetName="btnClose" Property="Visibility" Value="Visible"/>
-          </MultiDataTrigger>
-        </ControlTemplate.Triggers>-->
       </ControlTemplate>
     </Setter>
 
@@ -116,8 +104,13 @@
     <Style Selector="^[TabStripPlacement=Right] /template/ ContentPresenter#PART_ContentPresenter">
       <Setter Property="Margin" Value="0,0,8,0" />
     </Style>
+
     <Style Selector="^[TabStripPlacement=Right]">
       <Setter Property="HorizontalContentAlignment" Value="Right" />
+    </Style>
+
+    <Style Selector="^:pointerover /template/ Border#PART_BtnClose.canClose">
+      <Setter Property="IsVisible" Value="True"/>
     </Style>
   </ControlTheme>
 </ResourceDictionary>
