@@ -1,13 +1,15 @@
 ﻿<ResourceDictionary
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters">
+  xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters"
+  xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI"
+  x:CompileBindings="True">
 
   <!--TODO PORT maybe use ItemsControl for tabs like in WPF to be able to not reset ScrollViewers on hidden tabs-->
 
   <Thickness x:Key="TabControlTopPlacementItemMargin">0 0 0 2</Thickness>
 
-  <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl">
+  <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl" x:DataType="uic:TabControl">
     <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
     <Setter Property="BorderThickness" Value="0"/>
     <Setter Property="TabStripPlacement" Value="{Binding TabStrip.Placement, Converter={x:Static conv:DockConverter.Inst}}"/>
@@ -27,8 +29,8 @@
           <DockPanel>
             <DockPanel DockPanel.Dock="{Binding TabStrip.Placement, Converter={x:Static conv:DockConverter.Inst}}">
               <ContentPresenter
-                DockPanel.Dock="{Binding $parent[TabControl].DataContext.TabStrip.SlotPlacement, Converter={x:Static conv:DockConverter.Inst}}"
-                Content="{Binding $parent[TabControl].DataContext.TabStrip.Slot}"/>
+                DockPanel.Dock="{Binding $parent[TabControl].((uic:TabControl)DataContext).TabStrip.SlotPlacement, Converter={x:Static conv:DockConverter.Inst}}"
+                Content="{Binding $parent[TabControl].((uic:TabControl)DataContext).TabStrip.Slot}"/>
 
               <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}"/>
             </DockPanel>
@@ -36,7 +38,7 @@
             <ContentPresenter
               Name="PART_SelectedContentHost"
               Margin="{TemplateBinding Padding}"
-              Content="{Binding $parent[TabControl].DataContext.Selected.Data}"/>
+              Content="{Binding $parent[TabControl].((uic:TabControl)DataContext).Selected.Data}"/>
           </DockPanel>
         </Border>
       </ControlTemplate>
