@@ -42,17 +42,15 @@
       </ControlTemplate>
     </Setter>
 
-    <Style Selector="^[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
-      <Setter Property="Orientation" Value="Vertical"/>
+    <Style Selector="^[TabStripPlacement=Left], ^[TabStripPlacement=Right]">
+      <Style Selector="^ /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Setter Property="Orientation" Value="Vertical"/>
+      </Style>
     </Style>
-    <Style Selector="^[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
-      <Setter Property="Orientation" Value="Vertical"/>
-    </Style>
-    <Style Selector="^[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
-      <Setter Property="Orientation" Value="Horizontal"/>
-    </Style>
-    <Style Selector="^[TabStripPlacement=Bottom] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
-      <Setter Property="Orientation" Value="Horizontal"/>
+    <Style Selector="^[TabStripPlacement=Top], ^[TabStripPlacement=Bottom]">
+      <Style Selector="^ /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+      </Style>
     </Style>
   </ControlTheme>
 
