@@ -43,10 +43,10 @@ public static class RelayCommandHelper {
       case IconButton:
       case IconTextButton:
       case SlimButton:
-      // TODO PORT
-      //case IconToggleButton:
-      //  ((Button)c).ToolTip ??= rc.Text;
-      //  break;
+      case IconToggleButton:
+        if (!c.IsSet(ToolTip.TipProperty) || c.GetValue(ToolTip.TipProperty) == null)
+          c.SetValue(ToolTip.TipProperty, rc.Text);
+        break;
       case Button:
         c.SetValue(AP.Text.TextProperty, rc.Text);
         break;
