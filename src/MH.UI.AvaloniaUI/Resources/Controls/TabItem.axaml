@@ -97,18 +97,6 @@
       <Setter Property="Background" Value="{StaticResource MH.B.I.SelectedHover.Ba}"/>
     </Style>
 
-    <Style Selector="^[TabStripPlacement=Left] /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Margin" Value="8,0,0,0" />
-    </Style>
-
-    <Style Selector="^[TabStripPlacement=Right] /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Margin" Value="0,0,8,0" />
-    </Style>
-
-    <Style Selector="^[TabStripPlacement=Right]">
-      <Setter Property="HorizontalContentAlignment" Value="Right" />
-    </Style>
-
     <Style Selector="^:pointerover /template/ Border#PART_BtnClose.canClose">
       <Setter Property="IsVisible" Value="True"/>
     </Style>
