@@ -7,8 +7,6 @@
 
   <!--TODO PORT maybe use ItemsControl for tabs like in WPF to be able to not reset ScrollViewers on hidden tabs-->
 
-  <Thickness x:Key="TabControlTopPlacementItemMargin">0 0 0 2</Thickness>
-
   <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl" x:DataType="uic:TabControl">
     <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
     <Setter Property="BorderThickness" Value="0"/>
