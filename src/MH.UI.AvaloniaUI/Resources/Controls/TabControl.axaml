@@ -53,17 +53,4 @@
       </Style>
     </Style>
   </ControlTheme>
-
-  <!--TODO PORT-->
-  <!--<DataTrigger Value="True">
-    <DataTrigger.Binding>
-      <MultiBinding Converter="{x:Static conv:MaxTabSizeConverter.Inst}">
-        <Binding/>
-        <Binding ElementName="tabPanel" Path="ActualWidth"/>
-        <Binding ElementName="tabPanel" Path="ActualHeight"/>
-      </MultiBinding>
-    </DataTrigger.Binding>
-    <Setter TargetName="tabPanel" Property="Tag" Value="{x:Null}"/>
-  </DataTrigger>-->
-
 </ResourceDictionary>
