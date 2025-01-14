@@ -65,7 +65,8 @@ public partial class App : Application {
       "Controls/ButtonsV.axaml",
       "Controls/ColorsV.axaml",
       "Controls/ControlsV.axaml",
-      "Controls/TextsV.axaml"
+      "Controls/TextsV.axaml",
+      "FolderV.axaml"
     };
 
     foreach (var file in files) {

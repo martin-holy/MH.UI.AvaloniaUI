@@ -19,6 +19,7 @@
     <AvaloniaResource Include="Views\Controls\ColorsV.axaml" />
     <AvaloniaResource Include="Views\Controls\ControlsV.axaml" />
     <AvaloniaResource Include="Views\Controls\TextsV.axaml" />
+    <AvaloniaResource Include="Views\FolderV.axaml" />
   </ItemGroup>
 
   <ItemGroup>

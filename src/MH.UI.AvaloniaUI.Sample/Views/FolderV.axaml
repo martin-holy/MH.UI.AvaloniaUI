@@ -2,22 +2,17 @@
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:res="clr-namespace:MH.UI.AvaloniaUI.Resources;assembly=MH.UI.AvaloniaUI"
-  xmlns:m="clr-namespace:MH.UI.AvaloniaUI.Sample.Models">
+  xmlns:m="clr-namespace:MH.UI.AvaloniaUI.Sample.Models"
+  xmlns:mhConv="clr-namespace:MH.UI.AvaloniaUI.Converters;assembly=MH.UI.AvaloniaUI">
     
   <DataTemplate DataType="{x:Type m:FolderM}">
-    <Grid>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="*"/>
-      </Grid.ColumnDefinitions>
-
-      <!--TODO PORT-->
-      <!--<Path
-        Classes="{StaticResource MH.S.Icon}"
+    <Grid ColumnDefinitions="Auto,*">
+      <Path
+        Classes="icon"
         Data="{Binding Icon, Converter={x:Static mhConv:ResourceConverter.Inst}}"
         Fill="{Binding Icon, Converter={x:Static mhConv:ResourceConverter.Inst},
                ConverterParameter={x:Static res:Dictionaries.IconToBrush}}"
-        HorizontalAlignment="Center"/>-->
+        HorizontalAlignment="Center"/>
 
       <TextBlock
         Text="{Binding Name}"
