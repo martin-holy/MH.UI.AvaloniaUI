@@ -22,8 +22,7 @@
     <Setter Property="VerticalContentAlignment" Value="Stretch"/>
     <!--TODO PORT Tab is not set as selected on start-->
     <!--<Setter Property="IsSelected" Value="{Binding IsSelected, DataType=uInt:ISelectable, Mode=TwoWay}"/>-->
-    <!--TODO PORT ToolTip-->
-    <!--<Setter Property="ToolTip" Value="{Binding Path=(uInt:IListItem.Name)}"/>-->
+    <Setter Property="ToolTip.Tip" Value="{Binding Name, DataType=uInt:IListItem}"/>
     <Setter Property="Header" Value="{Binding DataType=uInt:IListItem}"/>
 
     <Setter Property="HeaderTemplate">
