@@ -24,7 +24,6 @@
 
       <ListBox
         ItemsSource="{Binding ListData}"
-        IsEnabled="{Binding IsChecked, ElementName=chbEnabled}"
         ScrollViewer.HorizontalScrollBarVisibility="Visible"
         ScrollViewer.VerticalScrollBarVisibility="Visible"
         Grid.Row="2"
