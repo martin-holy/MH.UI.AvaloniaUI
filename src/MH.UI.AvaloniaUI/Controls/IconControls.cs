@@ -27,17 +27,17 @@ public class IconTextBlock : ContentControl {
     base.OnApplyTemplate(e);
     _partGrid = e.NameScope.Find<Grid>("PART_Grid");
     _partTextBorder = e.NameScope.Find<Border>("PART_TextBorder");
-    SetCompactGrid();
-    SetTextBorderClasses();
+    _setCompactGrid();
+    _setTextBorderClasses();
   }
 
   private static void _onCompactChanged(IconTextBlock o, AvaloniaPropertyChangedEventArgs e) =>
-    o.SetCompactGrid();
+    o._setCompactGrid();
 
   private static void _onTextBorderClassesChanged(IconTextBlock o, AvaloniaPropertyChangedEventArgs e) =>
-    o.SetTextBorderClasses();
+    o._setTextBorderClasses();
 
-  internal void SetCompactGrid() {
+  private void _setCompactGrid() {
     if (_partGrid == null) return;
 
     _partGrid.ColumnDefinitions.Clear();
@@ -51,7 +51,7 @@ public class IconTextBlock : ContentControl {
     }
   }
 
-  internal void SetTextBorderClasses() {
+  private void _setTextBorderClasses() {
     if (_partTextBorder == null || string.IsNullOrWhiteSpace(TextBorderClasses)) return;
     _partTextBorder.Classes.Clear();
     foreach (var cls in TextBorderClasses.Split(' ', StringSplitOptions.RemoveEmptyEntries))
