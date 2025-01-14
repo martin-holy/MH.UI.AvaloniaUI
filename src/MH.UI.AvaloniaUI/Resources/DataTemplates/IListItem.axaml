@@ -5,8 +5,7 @@
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
   xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters"
   xmlns:res="clr-namespace:MH.UI.AvaloniaUI.Resources"
-  xmlns:uInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils"
-  x:CompileBindings="True">
+  xmlns:uInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils">
 
   <!--TODO PORT binding to Shadow, Icon.Res and Compact removed because of binding to TemplatedParent. so test it-->
   <DataTemplate DataType="{x:Type uInt:IListItem}" x:Key="MH.DT.IListItem">

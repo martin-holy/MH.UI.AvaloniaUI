@@ -4,8 +4,7 @@
   xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties"
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
   xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI"
-  xmlns:uInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils"
-  x:CompileBindings="True">
+  xmlns:uInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils">
 
   <ControlTheme x:Key="{x:Type TabItem}" TargetType="TabItem">
     <Setter Property="Border.CornerRadius" Value="3"/>
