@@ -66,6 +66,7 @@ public partial class App : Application {
       "Controls/ColorsV.axaml",
       "Controls/ControlsV.axaml",
       "Controls/IconTextV.axaml",
+      "Controls/ListsV.axaml",
       "Controls/TextsV.axaml",
       "FolderV.axaml"
     };

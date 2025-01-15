@@ -5,12 +5,7 @@
   xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties;assembly=MH.UI.AvaloniaUI">
 
   <DataTemplate DataType="{x:Type vmc:ListsVM}">
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-      </Grid.RowDefinitions>
+    <Grid RowDefinitions="Auto,Auto,*">
 
       <ComboBox
         ItemsSource="{Binding ListData}"
@@ -29,14 +24,13 @@
         Grid.Row="2"
         Margin="4">
 
-        <!--TODO PORT-->
-        <!--<ap:Slot.TopContent>
+        <ap:Slot.TopContent>
           <Path
-            Classes="{StaticResource MH.S.Icon.Shadow}"
+            Classes="icon shadow"
             Data="{StaticResource IconBug}"
             Width="12"
             Height="12"/>
-        </ap:Slot.TopContent>-->
+        </ap:Slot.TopContent>
       </ListBox>
     </Grid>
   </DataTemplate>
