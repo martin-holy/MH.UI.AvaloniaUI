@@ -3,5 +3,6 @@
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceInclude Source="IListItem.axaml"/>
+    <ResourceInclude Source="TextBlock.axaml"/>
   </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

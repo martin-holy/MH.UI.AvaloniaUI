@@ -1,0 +1,16 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <DataTemplate x:Key="MH.DT.TextBlock.Border.RoundDarker">
+    <Border Classes="round darker">
+      <TextBlock Classes="inBorder"/>
+    </Border>
+  </DataTemplate>
+
+  <DataTemplate x:Key="MH.DT.TextBlock.Border.RoundDark">
+    <Border Classes="round dark">
+      <TextBlock Classes="inBorder"/>
+    </Border>
+  </DataTemplate>
+</ResourceDictionary>
