@@ -49,7 +49,7 @@
                 HorizontalScrollBarVisibility="{Binding Path=(ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
                 VerticalScrollBarVisibility="{Binding Path=(ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}">
 
-                <ItemsPresenter/>
+                <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
               </ScrollViewer>
             </Grid>
           </Border>
