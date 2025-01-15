@@ -14,6 +14,7 @@
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabItem.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabStrip.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabStripItem.axaml"/>
+        <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TextBlock.axaml"/>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Styles.Resources>
