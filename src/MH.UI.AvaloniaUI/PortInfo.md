@@ -23,6 +23,7 @@
 - Binding.DoNothing => AvaloniaProperty.UnsetValue
 - LayoutTransform is RenderTransform
 - AttachedProperties in ContntrolTemplate can't be bind like this: {Binding Path=(ap:Icon.Data)} but like this: {TemplateBinding (ap:Icon.Data)}
+- FocusVisualStyle is FocusAdorner
 
 
 ## Info
