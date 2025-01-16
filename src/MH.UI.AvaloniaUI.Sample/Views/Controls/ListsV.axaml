@@ -5,23 +5,18 @@
   xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties;assembly=MH.UI.AvaloniaUI">
 
   <DataTemplate DataType="{x:Type vmc:ListsVM}">
-    <Grid RowDefinitions="Auto,Auto,*">
+    <Grid RowDefinitions="Auto,*">
 
-      <ComboBox
-        ItemsSource="{Binding ListData}"
-        Margin="4"/>
-
-<!-- TODO PORT ComboBox.IsEditable=True -->
       <ComboBox
         ItemsSource="{Binding ListData}"
         Margin="4"
-        Grid.Row="1"/>
+        PlaceholderText="Select item"/>
 
       <ListBox
         ItemsSource="{Binding ListData}"
         ScrollViewer.HorizontalScrollBarVisibility="Visible"
         ScrollViewer.VerticalScrollBarVisibility="Visible"
-        Grid.Row="2"
+        Grid.Row="1"
         Margin="4">
 
         <ap:Slot.TopContent>
