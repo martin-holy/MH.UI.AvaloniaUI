@@ -1,0 +1,118 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <ControlTheme x:Key="{x:Type ComboBox}" TargetType="ComboBox">
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Static.Bo}"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="FocusAdorner" Value="{x:Null}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="MaxDropDownHeight" Value="400"/>
+    <Setter Property="MinHeight" Value="25"/>
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+    <Setter Property="Padding" Value="6,3,5,3"/>
+    <Setter Property="PlaceholderForeground" Value="{DynamicResource MH.B.ComboBox.Static.Glyph}"/>
+    
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <VirtualizingStackPanel/>
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+    
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DataValidationErrors>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition MinWidth="{StaticResource ScrollBar.Size}" Width="0"/>
+            </Grid.ColumnDefinitions>
+
+            <Border
+              x:Name="Background"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Background="{TemplateBinding Background}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}">
+
+              <Path
+                x:Name="DropDownGlyph"
+                Data="M 0 0 L 3.5 4 L 7 0 Z"
+                Fill="{StaticResource MH.B.ComboBox.Static.Glyph}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="0,4,4,0"
+                Width="10"
+                Height="10"
+                Stretch="Uniform"/>
+            </Border>
+
+            <TextBlock
+              x:Name="PlaceholderTextBlock"
+              Grid.Column="0"
+              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+              Margin="{TemplateBinding Padding}"
+              Text="{TemplateBinding PlaceholderText}"
+              Foreground="{TemplateBinding PlaceholderForeground}"
+              IsVisible="{TemplateBinding SelectionBoxItem, Converter={x:Static ObjectConverters.IsNull}}"/>
+
+            <ContentControl
+              x:Name="ContentPresenter"
+              Content="{TemplateBinding SelectionBoxItem}"
+              Grid.Column="0"
+              Margin="{TemplateBinding Padding}"
+              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+            <Popup
+              Name="PART_Popup"
+              WindowManagerAddShadowHint="True"
+              IsOpen="{TemplateBinding IsDropDownOpen, Mode=TwoWay}"
+              MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+              MaxHeight="{TemplateBinding MaxDropDownHeight}"
+              PlacementTarget="Background"
+              IsLightDismissEnabled="True"
+              InheritsTransform="True">
+
+              <Border
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+
+                <ScrollViewer
+                  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                  IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}">
+
+                  <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                </ScrollViewer>
+              </Border>
+            </Popup>
+          </Grid>
+        </DataValidationErrors>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:pointerover /template/ Path#DropDownGlyph">
+      <Setter Property="Fill" Value="{StaticResource MH.B.ComboBox.Hover.Glyph}"/>
+    </Style>
+    <Style Selector="^:pointerover /template/ Border#Background">
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Hover.Bo}"/>
+    </Style>
+    <Style Selector="^:disabled /template/ Path#DropDownGlyph">
+      <Setter Property="Fill" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+    </Style>
+    <Style Selector="^:focus-within">
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Focus.Bo}"/>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>
