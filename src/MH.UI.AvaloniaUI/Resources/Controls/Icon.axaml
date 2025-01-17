@@ -9,6 +9,10 @@
     <Setter Property="Stretch" Value="Uniform"/>
     <Setter Property="Data" Value="{Binding Path=(ap:Icon.Data), RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Fill" Value="{Binding Path=(ap:Icon.Fill), RelativeSource={RelativeSource Self}}"/>
+    
+    <Style Selector="^:not(ap|Icon.Fill)">
+      <Setter Property="ap:Icon.Fill" Value="{DynamicResource MH.B.White}"/>
+    </Style>
   </Style>
 
   <Style Selector="Path:disabled">
