@@ -12,6 +12,7 @@
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/IconTextBlockItemsControl.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/ListBox.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/ListBoxItem.axaml"/>
+        <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/ScrollViewer.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/SlidePanelHost.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/SlidePanelsGridHost.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabControl.axaml"/>
