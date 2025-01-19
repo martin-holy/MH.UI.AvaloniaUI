@@ -6,48 +6,61 @@
   xmlns:vm="clr-namespace:MH.UI.AvaloniaUI.Sample.ViewModels">
     
   <DataTemplate DataType="{x:Type vmc:ControlsVM}">
-    <!-- TODO PORT Avalonia doesn't have GroupBox 
-    <DataTemplate.Resources>
-      <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource {x:Type GroupBox}}">
-        <Setter Property="Width" Value="180"/>
-        <Setter Property="Height" Value="300"/>
-        <Setter Property="Margin" Value="2"/>
-      </Style>
-    </DataTemplate.Resources>-->
-
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
       <Grid
         IsEnabled="{Binding AreControlsEnabled}"
         DataContext="{ReflectionBinding MainWindow, Source={x:Static s:Core.VM}}"
-        x:DataType="vm:MainWindowVM">
+        x:DataType="vm:MainWindowVM"
+        ColumnDefinitions="Auto,Auto,Auto,Auto"
+        RowDefinitions="Auto,Auto">
 
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto"/>
-          <ColumnDefinition Width="Auto"/>
-          <ColumnDefinition Width="Auto"/>
-          <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto"/>
-          <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Grid.Styles>
+          <Style Selector="Grid.groupBox">
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Height" Value="300"/>
+            <Setter Property="Margin" Value="2"/>
+          </Style>
+          <Style Selector="Grid.groupBox > Border">
+            <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Static.Bo}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+          </Style>
+          <Style Selector="Grid.groupBox > TextBlock">
+            <Setter Property="Margin" Value="4,0,0,0"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+          </Style>
+        </Grid.Styles>
 
-        <!-- TODO PORT Avalonia doesn't have GroupBox
-        <GroupBox Header="Buttons">
-          <ContentPresenter Content="{Binding Buttons}"/>
-        </GroupBox>
+        <Grid Classes="groupBox">
+          <Border>
+            <ContentPresenter DataContext="{Binding Buttons}" Content="{Binding}"/>
+          </Border>
+          <TextBlock Text="Buttons"/>
+        </Grid>
 
-        <GroupBox Header="Sliders" Grid.Column="1" Grid.Row="0">
-          <ContentPresenter Content="{Binding Sliders}"/>
-        </GroupBox>
+        <Grid Classes="groupBox" Grid.Column="1" Grid.Row="0">
+          <Border>
+            <ContentPresenter DataContext="{Binding Sliders}" Content="{Binding}"/>
+          </Border>
+          <TextBlock Text="Sliders"/>
+        </Grid>
 
-        <GroupBox Header="Texts" Grid.Column="2" Grid.Row="0">
-          <ContentPresenter Content="{Binding Texts}"/>
-        </GroupBox>
+        <Grid Classes="groupBox" Grid.Column="2" Grid.Row="0">
+          <Border>
+            <ContentPresenter DataContext="{Binding Texts}" Content="{Binding}"/>
+          </Border>
+          <TextBlock Text="Texts"/>
+        </Grid>
 
-        <GroupBox Header="Lists" Grid.Column="3" Grid.Row="0">
-          <ContentPresenter Content="{Binding Lists}"/>
-        </GroupBox>-->
+        <Grid Classes="groupBox" Grid.Column="3" Grid.Row="0">
+          <Border>
+            <ContentPresenter DataContext="{Binding Lists}" Content="{Binding}"/>
+          </Border>
+          <TextBlock Text="Lists"/>
+        </Grid>
 
         <DockPanel
           Grid.Row="1"
