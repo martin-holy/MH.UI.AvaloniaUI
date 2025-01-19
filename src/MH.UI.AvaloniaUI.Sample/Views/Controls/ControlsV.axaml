@@ -24,6 +24,7 @@
             <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Static.Bo}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="Padding" Value="0,10,0,0"/>
           </Style>
           <Style Selector="Grid.groupBox > TextBlock">
             <Setter Property="Margin" Value="4,0,0,0"/>
