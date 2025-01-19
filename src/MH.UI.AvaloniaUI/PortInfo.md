@@ -21,7 +21,7 @@
 	- MH.S.IconTextBlockItemsControl.Borders.RoundDark
 
 - Binding.DoNothing => AvaloniaProperty.UnsetValue
-- LayoutTransform is RenderTransform
+- LayoutTransform is LayoutTransformControl
 - AttachedProperties in ContntrolTemplate can't be bind like this: {Binding Path=(ap:Icon.Data)} but like this: {TemplateBinding (ap:Icon.Data)}
 - FocusVisualStyle is FocusAdorner
 
