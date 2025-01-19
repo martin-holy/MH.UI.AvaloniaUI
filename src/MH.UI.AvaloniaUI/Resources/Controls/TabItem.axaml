@@ -12,8 +12,7 @@
     <Setter Property="BorderThickness" Value="1"/>
     <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
     <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
-    <!--TODO PORT-->
-    <!--<Setter Property="FocusVisualStyle" Value="{x:Null}"/>-->
+    <Setter Property="FocusAdorner" Value="{x:Null}"/>
     <Setter Property="Padding" Value="0,2,4,2"/>
     <Setter Property="MaxWidth" Value="{Binding $parent[TabControl].((uic:TabControl)DataContext).TabStrip.MaxTabWidth}"/>
     <Setter Property="MaxHeight" Value="{Binding $parent[TabControl].((uic:TabControl)DataContext).TabStrip.MaxTabHeight}"/>
@@ -40,42 +39,44 @@
           CornerRadius="{TemplateBinding Border.CornerRadius}"
           Margin="2">
 
-          <Grid>
-            <Grid.RenderTransform>
+          <LayoutTransformControl>
+            <LayoutTransformControl.LayoutTransform>
               <RotateTransform Angle="{Binding $parent[TabControl].((uic:TabControl)DataContext).TabStrip.RotationAngle}"/>
-            </Grid.RenderTransform>
+            </LayoutTransformControl.LayoutTransform>
+            
+            <Grid>
+              <ContentPresenter
+                Name="PART_ContentPresenter"
+                Content="{TemplateBinding Header}"
+                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                HorizontalAlignment="{Binding $parent[TabControl].HorizontalContentAlignment}"
+                VerticalAlignment="{Binding $parent[TabControl].VerticalContentAlignment}"
+                Focusable="False"
+                Margin="{TemplateBinding Padding}"
+                RecognizesAccessKey="True"/>
 
-            <ContentPresenter
-              Name="PART_ContentPresenter"
-              Content="{TemplateBinding Header}"
-              ContentTemplate="{TemplateBinding HeaderTemplate}"
-              HorizontalAlignment="{Binding $parent[TabControl].HorizontalContentAlignment}"
-              VerticalAlignment="{Binding $parent[TabControl].VerticalContentAlignment}"
-              Focusable="False"
-              Margin="{TemplateBinding Padding}"
-              RecognizesAccessKey="True"/>
+              <Border
+                x:Name="PART_BtnClose"
+                Background="{StaticResource MH.B.I.Selected.Ba}"
+                IsVisible="False"
+                Classes.canClose="{Binding $parent[TabControl].((uic:TabControl)DataContext).CanCloseTabs}"
+                Width="22"
+                Height="22"
+                CornerRadius="3"
+                Margin="2,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center">
 
-            <Border
-              x:Name="PART_BtnClose"
-              Background="{StaticResource MH.B.I.Selected.Ba}"
-              IsVisible="False"
-              Classes.canClose="{Binding $parent[TabControl].((uic:TabControl)DataContext).CanCloseTabs}"
-              Width="22"
-              Height="22"
-              CornerRadius="3"
-              Margin="2,0,0,0"
-              HorizontalAlignment="Left"
-              VerticalAlignment="Center">
-
-              <c:IconButton
-                Command="{Binding $parent[TabControl].((uic:TabControl)DataContext).CloseTabCommand}"
-                CommandParameter="{Binding DataType=uInt:IListItem}"
-                Width="18"
-                Height="18"
-                Margin="0"
-                ap:Icon.Size="12"/>
-            </Border>
-          </Grid>
+                <c:IconButton
+                  Command="{Binding $parent[TabControl].((uic:TabControl)DataContext).CloseTabCommand}"
+                  CommandParameter="{Binding DataType=uInt:IListItem}"
+                  Width="18"
+                  Height="18"
+                  Margin="0"
+                  ap:Icon.Size="12"/>
+              </Border>
+            </Grid>
+          </LayoutTransformControl>
         </Border>
       </ControlTemplate>
     </Setter>
