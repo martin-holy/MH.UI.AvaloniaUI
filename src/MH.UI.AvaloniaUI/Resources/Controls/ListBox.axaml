@@ -41,7 +41,7 @@
       </ControlTemplate>
     </Setter>
 
-    <Style Selector="^:pointerover">
+    <Style Selector="^:pointerover, ^:focus-within">
       <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Hover.Bo}"/>
     </Style>
   </ControlTheme>
