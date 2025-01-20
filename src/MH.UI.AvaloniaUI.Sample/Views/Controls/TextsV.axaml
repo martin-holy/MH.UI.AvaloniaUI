@@ -15,9 +15,7 @@
       <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Shadow="Icon"/>
       <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Shadow="Text"/>
       <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2"/>
-      <!--TODO PORT-->
-      <!--<c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Shadow="None" Classes="{StaticResource MH.S.IconTextBlock.Borders.RoundDark}"/>
-      <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Classes="{StaticResource MH.S.IconTextBlock.Borders.RoundDark}"/>-->
+      <c:IconTextBlock ap:Icon.Res="IconBug" ap:Text.Text="Sample" Margin="2" Classes="bordersRoundDark"/>
     </StackPanel>
   </DataTemplate>
 </DataTemplates>
