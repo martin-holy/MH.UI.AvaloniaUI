@@ -1,0 +1,75 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <ControlTheme x:Key="{x:Type CheckBox}" TargetType="CheckBox">
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Static.Bo}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Padding" Value="4,0,0,0"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="FocusAdorner" Value="{x:Null}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="CheckBox">
+          <Grid Background="Transparent" ColumnDefinitions="Auto,*">
+            <Border
+              Margin="1"
+              Width="18"
+              Height="18"
+              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              Background="{TemplateBinding Background}"
+              BorderBrush="{TemplateBinding BorderBrush}">
+
+              <Grid>
+                <Path
+                  x:Name="OptionMark"
+                  Data="m 0.12,2.83 c 0,0 0,2.52 0,2.52 0,0 2.9,2.52 2.9,2.52 0,0 4.85,-5.04 4.85,-5.04 0,0 0,-2.52 0,-2.52 0,0 -4.85,5.04 -4.85,5.04 0,0 -2.9,-2.52 -2.9,-2.52 z"
+                  Stretch="Uniform"
+                  Margin="2"
+                  IsVisible="False"
+                  Fill="{DynamicResource MH.B.Accent}"/>
+
+                <Rectangle
+                  x:Name="IndeterminateMark"
+                  Margin="3"
+                  IsVisible="False"
+                  Opacity="0.5"
+                  Fill="{DynamicResource MH.B.Accent}"/>
+              </Grid>
+            </Border>
+            
+            <ContentPresenter
+              Grid.Column="1"
+              ContentTemplate="{TemplateBinding ContentTemplate}"
+              Content="{TemplateBinding Content}"
+              RecognizesAccessKey="True"
+              Margin="{TemplateBinding Padding}"
+              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+              Focusable="False"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+    <Style Selector="^:pointerover">
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Hover.Bo}"/>
+    </Style>
+
+    <Style Selector="^:focus-within">
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Focus.Bo}"/>
+    </Style>
+
+    <Style Selector="^:checked /template/ Path#OptionMark">
+      <Setter Property="IsVisible" Value="True"/>
+    </Style>
+
+    <Style Selector="^:indeterminate /template/ Rectangle#IndeterminateMark">
+      <Setter Property="IsVisible" Value="True"/>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>
