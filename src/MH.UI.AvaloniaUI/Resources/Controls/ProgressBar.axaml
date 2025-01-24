@@ -1,0 +1,83 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <ControlTheme x:Key="{x:Type ProgressBar}" TargetType="ProgressBar">
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Static.Bo}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="IsTabStop" Value="False"/>
+    <Setter Property="Maximum" Value="100"/>
+    <Setter Property="Margin" Value="5"/>
+    <Setter Property="Height" Value="20"/>
+    <Setter Property="MinWidth" Value="10"/>
+    <Setter Property="Template">
+      <ControlTemplate TargetType="ProgressBar">
+        <LayoutTransformControl x:Name="PART_LayoutTransformControl">
+          <Border
+            Name="PART_Track"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+
+            <Grid>
+              <Grid Name="IndeterminateRoot" IsVisible="False">
+                <Rectangle
+                  Fill="{DynamicResource MH.B.ProgressBar.Progress}"
+                  Opacity="1"
+                  RenderTransformOrigin="0.5,0.5"
+                  StrokeThickness="0"/>
+
+                <Rectangle Name="IndeterminateRootOverlay" Opacity="0.7" StrokeThickness="1">
+                  <Rectangle.Fill>
+                    <LinearGradientBrush SpreadMethod="Repeat" StartPoint="20,1" EndPoint="0,1">
+                      <LinearGradientBrush.Transform>
+                        <SkewTransform AngleX="-30"/>
+                      </LinearGradientBrush.Transform>
+
+                      <GradientStop Offset="0" Color="{DynamicResource MH.Color.White2}"/>
+                      <GradientStop Offset="0.5" Color="{DynamicResource MH.Color.White2}"/>
+                      <GradientStop Offset="0.25" Color="{DynamicResource MH.Color.Black3}"/>
+                      <GradientStop Offset="0.75" Color="{DynamicResource MH.Color.Black3}"/>
+                    </LinearGradientBrush>
+                  </Rectangle.Fill>
+                </Rectangle>
+              </Grid>
+
+              <Border
+                x:Name="PART_Indicator"
+                HorizontalAlignment="Left"
+                Background="{DynamicResource MH.B.ProgressBar.Progress}"/>
+            </Grid>
+          </Border>
+        </LayoutTransformControl>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:vertical /template/ LayoutTransformControl#PART_LayoutTransformControl">
+      <Setter Property="LayoutTransform">
+        <Setter.Value>
+          <RotateTransform Angle="-90"/>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style Selector="^:indeterminate /template/ Border#PART_Indicator">
+      <Setter Property="IsVisible" Value="False"/>
+    </Style>
+    <Style Selector="^:indeterminate /template/ Grid#IndeterminateRoot">
+      <Setter Property="IsVisible" Value="True"/>
+    </Style>
+    <Style Selector="^:indeterminate /template/ Rectangle#IndeterminateRootOverlay">
+      <Style.Animations>
+        <Animation FillMode="None" IterationCount="Infinite" Duration="0:0:0.35">
+          <KeyFrame Cue="0%">
+            <Setter Property="TranslateTransform.X" Value="0"/>
+          </KeyFrame>
+          <KeyFrame Cue="100%">
+            <Setter Property="TranslateTransform.X" Value="20"/>
+          </KeyFrame>
+        </Animation>
+      </Style.Animations>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>
