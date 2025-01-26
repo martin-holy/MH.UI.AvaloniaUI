@@ -1,0 +1,36 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <ControlTheme x:Key="MH.S.Button.Window" TargetType="Button">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="FontSize" Value="14"/>
+    <Setter Property="FocusAdorner" Value="{x:Null}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Grid Background="{TemplateBinding Background}" Width="44" Height="30">
+            <TextBlock
+              Text="{TemplateBinding Content}"
+              FontFamily="Segoe MDL2 Assets"
+              Foreground="{TemplateBinding Foreground}"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+    <Style Selector="^:pointerover, ^:focus-within">
+      <Setter Property="Background" Value="{StaticResource MH.B.Button.Hover.Ba}"/>
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="MH.S.Button.Window.Close" TargetType="Button" BasedOn="{StaticResource MH.S.Button.Window}">
+    <Setter Property="FontSize" Value="12"/>
+    <Style Selector="^:pointerover, ^:focus-within">
+      <Setter Property="Background" Value="#E81123"/>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>
