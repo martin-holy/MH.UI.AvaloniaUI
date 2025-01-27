@@ -3,5 +3,6 @@
 	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/Abbreviations/=MH_002EB_002E/@EntryIndexedValue">MH.B.</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/Abbreviations/=MH_002EB_002EC_002E/@EntryIndexedValue">MH.B.C.</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/Abbreviations/=MH_002EB_002EI_002E/@EntryIndexedValue">MH.B.I.</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/Abbreviations/=MH_002EDT_002E/@EntryIndexedValue">MH.DT.</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/Abbreviations/=MH_002EDT_002EI/@EntryIndexedValue">MH.DT.</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/Abbreviations/=MH_002ES_002E/@EntryIndexedValue">MH.S.</s:String></wpf:ResourceDictionary>
