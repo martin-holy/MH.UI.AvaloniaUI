@@ -1,0 +1,63 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
+
+  <DataTemplate x:Key="MH.DT.CustomWindow.Buttons" DataType="{x:Type c:CustomWindow}">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button
+        ToolTip.Tip="Minimize"
+        Content="&#xE949;"
+        Theme="{StaticResource MH.S.Button.Window}"
+        Command="{x:Static c:CustomWindow.MinimizeWindowCommand}"
+        CommandParameter="{Binding}"/>
+
+      <Button
+        x:Name="btnFullScreen"
+        ToolTip.Tip="Full screen"
+        Content="&#xE2B4;"
+        Theme="{StaticResource MH.S.Button.Window}"
+        Command="{x:Static c:CustomWindow.ToggleFullScreenCommand}"
+        CommandParameter="{Binding}"
+        IsVisible="{Binding CanFullScreen}"
+        Classes.isFullScreen="{Binding IsFullScreen}"/>
+
+      <Button
+        x:Name="btnRestore"
+        ToolTip.Tip="Restore"
+        Content="&#xE923;"
+        FontSize="12"
+        Theme="{StaticResource MH.S.Button.Window}"
+        Command="{x:Static c:CustomWindow.RestoreWindowCommand}"
+        CommandParameter="{Binding}"/>
+
+      <Button
+        x:Name="btnMaximize"
+        ToolTip.Tip="Maximize"
+        Content="&#xE922;"
+        FontSize="12"
+        Theme="{StaticResource MH.S.Button.Window}"
+        Command="{x:Static c:CustomWindow.MaximizeWindowCommand}"
+        CommandParameter="{Binding}"/>
+
+      <Button
+        ToolTip.Tip="Close"
+        Content="&#xE106;"
+        Theme="{StaticResource MH.S.Button.Window.Close}"
+        Command="{x:Static c:CustomWindow.CloseWindowCommand}"
+        CommandParameter="{Binding}"/>
+
+      <StackPanel.Styles>
+        <Style Selector="c|CustomWindow[WindowState=Normal] Button#btnRestore">
+          <Setter Property="IsVisible" Value="False"/>
+        </Style>
+        <Style Selector="c|CustomWindow[WindowState=Maximized] Button#btnMaximize">
+          <Setter Property="IsVisible" Value="False"/>
+        </Style>
+        <Style Selector="Button#btnFullScreen.isFullScreen">
+          <Setter Property="Content" Value="&#xE2B3;"/>
+        </Style>
+      </StackPanel.Styles>
+    </StackPanel>
+  </DataTemplate>
+</ResourceDictionary>
