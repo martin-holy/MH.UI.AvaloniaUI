@@ -3,26 +3,6 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
 
-  <ControlTemplate x:Key="MH.CT.CustomWindow.Resize" TargetType="c:CustomWindow">
-    <Grid>
-      <Border
-        x:Name="PART_ResizeBorder"
-        BorderThickness="3"
-        BorderBrush="#01FFFFFF"/>
-
-      <Border
-        Margin="3"
-        Background="{TemplateBinding Background}"
-        BorderBrush="{TemplateBinding BorderBrush}"
-        BorderThickness="{TemplateBinding BorderThickness}">
-
-        <VisualLayerManager>
-          <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"/>
-        </VisualLayerManager>
-      </Border>
-    </Grid>
-  </ControlTemplate>
-
   <ControlTheme x:Key="{x:Type c:CustomWindow}" TargetType="c:CustomWindow">
     <Setter Property="SystemDecorations" Value="None"/>
     <Setter Property="MinHeight" Value="70"/>
@@ -37,23 +17,36 @@
 
     <Setter Property="Template">
       <ControlTemplate>
-        <Border
-          Background="{TemplateBinding Background}"
-          BorderBrush="{TemplateBinding BorderBrush}"
-          BorderThickness="{TemplateBinding BorderThickness}">
+        <Grid>
+          <Border
+            x:Name="PART_ResizeBorder"
+            BorderThickness="3"
+            BorderBrush="#01FFFFFF"/>
 
-          <VisualLayerManager>
-            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"/>
-          </VisualLayerManager>
-        </Border>
+          <Border
+            x:Name="PART_WindowBorder"
+            Margin="3"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+
+            <VisualLayerManager>
+              <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"/>
+            </VisualLayerManager>
+          </Border>
+        </Grid>
       </ControlTemplate>
     </Setter>
 
-    <Style Selector="^[WindowState=Normal]">
-      <Setter Property="Template" Value="{StaticResource MH.CT.CustomWindow.Resize}"/>
-    </Style>
     <Style Selector="^[WindowState=Maximized]">
       <Setter Property="BorderThickness" Value="0"/>
+
+      <Style Selector="^ /template/ Border#PART_ResizeBorder">
+        <Setter Property="BorderThickness" Value="0"/>
+      </Style>
+      <Style Selector="^ /template/ Border#PART_WindowBorder">
+        <Setter Property="Margin" Value="0"/>
+      </Style>
     </Style>
   </ControlTheme>
 </ResourceDictionary>
