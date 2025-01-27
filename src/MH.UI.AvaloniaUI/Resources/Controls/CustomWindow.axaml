@@ -38,7 +38,7 @@
       </ControlTemplate>
     </Setter>
 
-    <Style Selector="^[WindowState=Maximized]">
+    <Style Selector="^[WindowState=Maximized], ^[WindowState=FullScreen]">
       <Setter Property="BorderThickness" Value="0"/>
 
       <Style Selector="^ /template/ Border#PART_ResizeBorder">

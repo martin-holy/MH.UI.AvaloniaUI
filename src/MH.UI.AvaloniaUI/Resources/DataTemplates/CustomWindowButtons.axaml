@@ -19,8 +19,7 @@
         Theme="{StaticResource MH.S.Button.Window}"
         Command="{x:Static c:CustomWindow.ToggleFullScreenCommand}"
         CommandParameter="{Binding}"
-        IsVisible="{Binding CanFullScreen}"
-        Classes.isFullScreen="{Binding IsFullScreen}"/>
+        IsVisible="{Binding CanFullScreen}"/>
 
       <Button
         x:Name="btnRestore"
@@ -51,10 +50,11 @@
         <Style Selector="c|CustomWindow[WindowState=Normal] Button#btnRestore">
           <Setter Property="IsVisible" Value="False"/>
         </Style>
-        <Style Selector="c|CustomWindow[WindowState=Maximized] Button#btnMaximize">
+        <Style Selector="c|CustomWindow[WindowState=Maximized] Button#btnMaximize,
+                         c|CustomWindow[WindowState=FullScreen] Button#btnMaximize">
           <Setter Property="IsVisible" Value="False"/>
         </Style>
-        <Style Selector="Button#btnFullScreen.isFullScreen">
+        <Style Selector="c|CustomWindow[WindowState=FullScreen] Button#btnFullScreen">
           <Setter Property="Content" Value="&#xE2B3;"/>
         </Style>
       </StackPanel.Styles>

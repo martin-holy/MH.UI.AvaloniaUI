@@ -21,15 +21,13 @@ public class CustomWindow : Window {
 
   private const int _resizeCornerSize = 10;
   private const int _resizeBorderSize = 4;
+  private WindowState _fullScreenStartFromState = WindowState.Normal;
 
   public static RelayCommand<Window> MinimizeWindowCommand { get; } = new(
     x => x!.WindowState = WindowState.Minimized, x => x != null);
 
   public static RelayCommand<Window> MaximizeWindowCommand { get; } = new(
-    x => {
-      x!.MaxHeight = double.PositiveInfinity;
-      x.WindowState = WindowState.Maximized;
-    }, x => x != null);
+    x => x!.WindowState = WindowState.Maximized, x => x != null);
 
   public static RelayCommand<Window> RestoreWindowCommand { get; } = new(
     x => x!.WindowState = WindowState.Normal, x => x != null);
@@ -44,16 +42,6 @@ public class CustomWindow : Window {
     IsFullScreenProperty.Changed.AddClassHandler<CustomWindow>(_onIsFullScreenChanged);
     IsDragAreaForProperty.Changed.AddClassHandler<Control>(_onIsDragAreaChanged);
     WindowStateProperty.Changed.AddClassHandler<CustomWindow>(_onWindowStateChanged);
-  }
-
-  public CustomWindow() {
-    Loaded += delegate {
-      if (WindowState != WindowState.Maximized) return;
-      var isFullScreen = IsFullScreen;
-      WindowState = WindowState.Normal;
-      if (isFullScreen) IsFullScreen = true;
-      WindowState = WindowState.Maximized;
-    };
   }
 
   protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {
@@ -94,20 +82,18 @@ public class CustomWindow : Window {
     o._onStateChanged();
 
   private void _onStateChanged() {
-    if (WindowState == WindowState.Normal && IsFullScreen)
+    if (WindowState != WindowState.FullScreen && IsFullScreen)
       IsFullScreen = false;
-
-    if (WindowState == WindowState.Maximized && !IsFullScreen)
-      MaxHeight = Screens.Primary?.WorkingArea.Height ?? double.PositiveInfinity; // TODO PORT test it
   }
 
   private void _onIsFullScreenChanged() {
-    MaxHeight = IsFullScreen
-      ? double.PositiveInfinity
-      : Screens.Primary?.WorkingArea.Height ?? double.PositiveInfinity; // TODO PORT test it
-
-    if (IsFullScreen && WindowState != WindowState.Maximized)
-      WindowState = WindowState.Maximized;
+    if (IsFullScreen) {
+      _fullScreenStartFromState = WindowState;
+      WindowState = WindowState.FullScreen;
+    }
+    else {
+      WindowState = _fullScreenStartFromState;
+    }
   }
 
   private void _setCursor(Point position) =>
