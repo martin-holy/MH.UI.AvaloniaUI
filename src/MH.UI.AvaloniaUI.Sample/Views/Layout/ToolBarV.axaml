@@ -7,7 +7,7 @@
 
   <DataTemplate DataType="{x:Type vml:ToolBarVM}">
     <!--TODO PORT-->
-    <!--<Grid Height="30" Background="#30000000">
+    <Grid Height="30" Background="#30000000">
       <StackPanel Orientation="Horizontal">
         <StackPanel
           Orientation="Horizontal"
@@ -28,7 +28,7 @@
             VerticalAlignment="Center"/>
         </StackPanel>
 
-        <Menu VerticalAlignment="Center" Margin="5,0,0,0">
+        <!--<Menu VerticalAlignment="Center" Margin="5,0,0,0">
           <MenuItem Header="Enabled" IsCheckable="True" IsChecked="{Binding VM.MainWindow.AreControlsEnabled, Source={x:Static s:App.Core}}"/>
           <MenuItem Header="Dialogs" DataContext="{Binding VM.MainWindow, Source={x:Static s:App.Core}}">
             <MenuItem Command="{Binding OpenMessageDialogCommand}"/>
@@ -128,7 +128,7 @@
             <MenuItem Header="Item 2"/>
             <MenuItem Header="Item 3 with longer name" InputGestureText="CTRL+K"/>
           </MenuItem>
-        </Menu>
+        </Menu>-->
       </StackPanel>
 
       <Grid HorizontalAlignment="Right">
@@ -137,13 +137,14 @@
           <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ContentPresenter Content="{Binding SlidePanelPinButton}"/>
+        <ContentPresenter DataContext="{Binding SlidePanelPinButton}" Content="{Binding}"/>
 
         <ContentPresenter
           Grid.Column="1"
-          Content="{Binding RelativeSource={RelativeSource AncestorType=mhc:CustomWindow}}"
+          DataContext="{Binding RelativeSource={RelativeSource AncestorType=mhc:CustomWindow}}"
+          Content="{Binding}"
           ContentTemplate="{StaticResource MH.DT.CustomWindow.Buttons}"/>
       </Grid>
-    </Grid>-->
+    </Grid>
   </DataTemplate>
 </DataTemplates>
