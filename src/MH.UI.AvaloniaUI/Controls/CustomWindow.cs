@@ -3,7 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using MH.Utils.BaseClasses;
-using System.Runtime.InteropServices;
 
 namespace MH.UI.AvaloniaUI.Controls;
 
@@ -12,7 +11,7 @@ public class CustomWindow : Window {
 
   public static readonly StyledProperty<bool> CanFullScreenProperty = AvaloniaProperty.Register<CustomWindow, bool>(nameof(CanFullScreen));
   public static readonly StyledProperty<bool> IsFullScreenProperty = AvaloniaProperty.Register<CustomWindow, bool>(nameof(IsFullScreen));
-  public static readonly StyledProperty<Window> IsDragAreaForProperty = AvaloniaProperty.RegisterAttached<CustomWindow, Window, Window>("IsDragAreaFor");
+  public static readonly StyledProperty<Window> IsDragAreaForProperty = AvaloniaProperty.RegisterAttached<CustomWindow, Control, Window>("IsDragAreaFor");
 
   public bool CanFullScreen { get => GetValue(CanFullScreenProperty); set => SetValue(CanFullScreenProperty, value); }
   public bool IsFullScreen { get => GetValue(IsFullScreenProperty); set => SetValue(IsFullScreenProperty, value); }
@@ -22,22 +21,6 @@ public class CustomWindow : Window {
 
   private const int _resizeCornerSize = 10;
   private const int _resizeBorderSize = 4;
-  private const int _wmSysCommand = 0x112;
-
-  private enum ResizeDirection {
-    None = 0,
-    Left = 61441,
-    Right = 61442,
-    Top = 61443,
-    TopLeft = 61444,
-    TopRight = 61445,
-    Bottom = 61446,
-    BottomLeft = 61447,
-    BottomRight = 61448,
-  }
-
-  [DllImport("user32.dll", CharSet = CharSet.Auto)]
-  private static extern IntPtr SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
 
   public static RelayCommand<Window> MinimizeWindowCommand { get; } = new(
     x => x!.WindowState = WindowState.Minimized, x => x != null);
@@ -59,7 +42,7 @@ public class CustomWindow : Window {
 
   static CustomWindow() {
     IsFullScreenProperty.Changed.AddClassHandler<CustomWindow>(_onIsFullScreenChanged);
-    IsDragAreaForProperty.Changed.AddClassHandler<CustomWindow>(_onIsDragAreaChanged);
+    IsDragAreaForProperty.Changed.AddClassHandler<Control>(_onIsDragAreaChanged);
     WindowStateProperty.Changed.AddClassHandler<CustomWindow>(_onWindowStateChanged);
   }
 
@@ -82,6 +65,8 @@ public class CustomWindow : Window {
     _partResizeBorder.PointerPressed += _onResizePointerPressed;
   }
 
+  protected override Type StyleKeyOverride => typeof(CustomWindow);
+
   private void _onResizePointerEntered(object? o, PointerEventArgs e) =>
     _setCursor(e.GetCurrentPoint(this).Position);
 
@@ -89,15 +74,15 @@ public class CustomWindow : Window {
     _resetCursor(e.GetCurrentPoint(this));
 
   private void _onResizePointerPressed(object? o, PointerPressedEventArgs e) {
-    var point = e.GetCurrentPoint(o as Control);
-    if (point.Properties.IsLeftButtonPressed)
-      _resize(point.Position);
+    var point = e.GetCurrentPoint(this);
+    if (!point.Properties.IsLeftButtonPressed) return;
+    BeginResizeDrag(_getResizeEdge(point.Position), e);
   }
 
   private static void _onIsFullScreenChanged(CustomWindow o, AvaloniaPropertyChangedEventArgs e) =>
     o._onIsFullScreenChanged();
 
-  private static void _onIsDragAreaChanged(CustomWindow o, AvaloniaPropertyChangedEventArgs e) {
+  private static void _onIsDragAreaChanged(Control o, AvaloniaPropertyChangedEventArgs e) {
     if (e.NewValue is Window window)
       window.PointerPressed += (po, pe) => {
         if (po is Window w && pe.GetCurrentPoint(w).Properties.IsLeftButtonPressed)
@@ -126,53 +111,44 @@ public class CustomWindow : Window {
   }
 
   private void _setCursor(Point position) =>
-    Cursor = _resizeDirectionToCursor(_getResizeDirection(position));
+    Cursor = _windowEdgeToCursor(_getResizeEdge(position));
 
   private void _resetCursor(PointerPoint point) {
     if (!point.Properties.IsLeftButtonPressed)
       Cursor = new(StandardCursorType.Arrow);
   }
 
-  private void _resize(Point position) {
-    // TODO PORT
-    /*if (PresentationSource.FromVisual(this) is not HwndSource hwndSource) return;
-    var direction = _getResizeDirection(position);
-    Cursor = _resizeDirectionToCursor(direction);
-    SendMessage(hwndSource.Handle, _wmSysCommand, (IntPtr)direction, IntPtr.Zero);*/
-  }
-
-  private ResizeDirection _getResizeDirection(Point position) {
+  private WindowEdge _getResizeEdge(Point position) {
     if (position.X > _resizeCornerSize && position.X < Bounds.Width - _resizeCornerSize) {
-      if (position.Y < _resizeBorderSize) return ResizeDirection.Top;
-      if (position.Y > Bounds.Height - _resizeBorderSize) return ResizeDirection.Bottom;
+      if (position.Y < _resizeBorderSize) return WindowEdge.North;
+      if (position.Y > Bounds.Height - _resizeBorderSize) return WindowEdge.South;
     }
     else if (position.Y > _resizeCornerSize && position.Y < Bounds.Height - _resizeCornerSize) {
-      if (position.X < _resizeBorderSize) return ResizeDirection.Left;
-      if (position.X > Bounds.Width - _resizeBorderSize) return ResizeDirection.Right;
+      if (position.X < _resizeBorderSize) return WindowEdge.West;
+      if (position.X > Bounds.Width - _resizeBorderSize) return WindowEdge.East;
     }
     else if (position.X < _resizeCornerSize) {
-      if (position.Y < _resizeCornerSize) return ResizeDirection.TopLeft;
-      if (position.Y > Bounds.Height - _resizeCornerSize) return ResizeDirection.BottomLeft;
+      if (position.Y < _resizeCornerSize) return WindowEdge.NorthWest;
+      if (position.Y > Bounds.Height - _resizeCornerSize) return WindowEdge.SouthWest;
     }
     else if (position.X > Bounds.Width - _resizeCornerSize) {
-      if (position.Y < _resizeCornerSize) return ResizeDirection.TopRight;
-      if (position.Y > Bounds.Height - _resizeCornerSize) return ResizeDirection.BottomRight;
+      if (position.Y < _resizeCornerSize) return WindowEdge.NorthEast;
+      if (position.Y > Bounds.Height - _resizeCornerSize) return WindowEdge.SouthEast;
     }
 
-    return ResizeDirection.None;
+    return WindowEdge.NorthWest;
   }
 
-  private static Cursor _resizeDirectionToCursor(ResizeDirection direction) =>
-    new(direction switch {
-      ResizeDirection.Left => StandardCursorType.SizeWestEast,
-      ResizeDirection.Right => StandardCursorType.SizeWestEast,
-      ResizeDirection.Top => StandardCursorType.SizeNorthSouth,
-      ResizeDirection.TopLeft => StandardCursorType.TopLeftCorner,
-      ResizeDirection.TopRight => StandardCursorType.TopRightCorner,
-      ResizeDirection.Bottom => StandardCursorType.SizeNorthSouth,
-      ResizeDirection.BottomLeft => StandardCursorType.BottomLeftCorner,
-      ResizeDirection.BottomRight => StandardCursorType.BottomRightCorner,
-      ResizeDirection.None => StandardCursorType.Arrow,
+  private static Cursor _windowEdgeToCursor(WindowEdge edge) =>
+    new(edge switch {
+      WindowEdge.West => StandardCursorType.SizeWestEast,
+      WindowEdge.East => StandardCursorType.SizeWestEast,
+      WindowEdge.North => StandardCursorType.SizeNorthSouth,
+      WindowEdge.NorthWest => StandardCursorType.TopLeftCorner,
+      WindowEdge.NorthEast => StandardCursorType.TopRightCorner,
+      WindowEdge.South => StandardCursorType.SizeNorthSouth,
+      WindowEdge.SouthWest => StandardCursorType.BottomLeftCorner,
+      WindowEdge.SouthEast => StandardCursorType.BottomRightCorner,
       _ => StandardCursorType.Arrow,
     });
 }
