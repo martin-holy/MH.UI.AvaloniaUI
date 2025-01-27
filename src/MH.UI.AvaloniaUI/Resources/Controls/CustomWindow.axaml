@@ -1,0 +1,59 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
+
+  <ControlTemplate x:Key="MH.CT.CustomWindow.Resize" TargetType="c:CustomWindow">
+    <Grid>
+      <Border
+        x:Name="PART_ResizeBorder"
+        BorderThickness="3"
+        BorderBrush="#01FFFFFF"/>
+
+      <Border
+        Margin="3"
+        Background="{TemplateBinding Background}"
+        BorderBrush="{TemplateBinding BorderBrush}"
+        BorderThickness="{TemplateBinding BorderThickness}">
+
+        <VisualLayerManager>
+          <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"/>
+        </VisualLayerManager>
+      </Border>
+    </Grid>
+  </ControlTemplate>
+
+  <ControlTheme x:Key="{x:Type c:CustomWindow}" TargetType="c:CustomWindow">
+    <Setter Property="SystemDecorations" Value="None"/>
+    <Setter Property="MinHeight" Value="70"/>
+    <Setter Property="MinWidth" Value="250"/>
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource MH.B.Accent}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="FontSize" Value="{StaticResource MH.FontSize}"/>
+    <Setter Property="FontFamily" Value="{StaticResource MH.FontFamily}"/>
+    <Setter Property="UseLayoutRounding" Value="True"/>
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+          Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}">
+
+          <VisualLayerManager>
+            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"/>
+          </VisualLayerManager>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^[WindowState=Normal]">
+      <Setter Property="Template" Value="{StaticResource MH.CT.CustomWindow.Resize}"/>
+    </Style>
+    <Style Selector="^[WindowState=Maximized]">
+      <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>
