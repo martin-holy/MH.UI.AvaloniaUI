@@ -11,6 +11,7 @@
         <ResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Brushes.axaml"/>
         <ResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Effects.axaml"/>
         <ResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/DataTypes.axaml"/>
+        <ResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Fonts.axaml"/>
         <ResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Icons.axaml"/>
 
         <ResourceInclude Source="Resources/Brushes.axaml"/>
