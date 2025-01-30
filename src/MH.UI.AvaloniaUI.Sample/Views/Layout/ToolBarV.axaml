@@ -38,7 +38,7 @@
           </MenuItem>
           <MenuItem Header="Left Content" DataContext="{ReflectionBinding VM.MainWindow, Source={x:Static s:App.Core}}" x:DataType="vm:MainWindowVM">
             <MenuItem.Icon>
-              <Path Data="{StaticResource IconGroup}" Classes="shadow"/>
+              <Path Data="{StaticResource IconGroup}" Classes="icon shadow"/>
             </MenuItem.Icon>
             <MenuItem Command="{Binding OpenButtonsTabCommand}"/>
             <MenuItem Command="{Binding OpenColorsTabCommand}"/>
@@ -54,7 +54,7 @@
             <CheckBox IsChecked="True" Content="Test"/>
             <MenuItem Header="Item 3">
               <MenuItem.Icon>
-                <Path Data="{StaticResource IconBug}" Classes="shadow"/>
+                <Path Data="{StaticResource IconBug}" Classes="icon shadow"/>
               </MenuItem.Icon>
               <MenuItem Header="Item 1" InputGesture="CTRL+K"/>
               <MenuItem Header="Item 2" IsEnabled="False" IsChecked="True">
@@ -123,7 +123,7 @@
           </MenuItem>
           <MenuItem Padding="6,2,-2,2">
             <MenuItem.Icon>
-              <Path Data="{StaticResource IconGroup}" Classes="shadow"/>
+              <Path Data="{StaticResource IconGroup}" Classes="icon shadow"/>
             </MenuItem.Icon>
             <MenuItem Header="Item 1 with longer name"/>
             <MenuItem Header="Item 2"/>
