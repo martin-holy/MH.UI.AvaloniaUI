@@ -71,11 +71,15 @@ public class CustomWindow : Window {
     o._onIsFullScreenChanged();
 
   private static void _onIsDragAreaChanged(Control o, AvaloniaPropertyChangedEventArgs e) {
-    if (e.NewValue is Window window)
-      window.PointerPressed += (po, pe) => {
-        if (po is Window w && pe.GetCurrentPoint(w).Properties.IsLeftButtonPressed)
-          w.BeginMoveDrag(pe);
-      };
+    if (e.OldValue is CustomWindow oldWindow)
+      o.PointerPressed -= oldWindow._onDragAreaPointerPressed;
+    if (e.NewValue is CustomWindow newWindow)
+      o.PointerPressed += newWindow._onDragAreaPointerPressed;
+  }
+
+  private void _onDragAreaPointerPressed(object? o, PointerPressedEventArgs e) {
+    if (e.GetCurrentPoint(o as Visual).Properties.IsLeftButtonPressed)
+      BeginMoveDrag(e);
   }
 
   private static void _onWindowStateChanged(CustomWindow o, AvaloniaPropertyChangedEventArgs e) =>
