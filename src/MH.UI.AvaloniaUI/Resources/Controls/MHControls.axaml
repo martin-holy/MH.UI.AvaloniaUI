@@ -25,8 +25,6 @@
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/SlidePanelsGridHost.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabControl.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabItem.axaml"/>
-        <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabStrip.axaml"/>
-        <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TabStripItem.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TextBlock.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/TextBox.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/ToolTip.axaml"/>
