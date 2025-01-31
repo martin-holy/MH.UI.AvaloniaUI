@@ -16,6 +16,7 @@
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/Label.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/ListBox.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/ListBoxItem.axaml"/>
+        <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/Menu.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/ProgressBar.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/RadioButton.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/RepeatButton.axaml"/>

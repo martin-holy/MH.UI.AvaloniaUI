@@ -1,0 +1,363 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:conv="using:Avalonia.Controls.Converters">
+
+  <Geometry x:Key="DownArrow">M 0,0 3.5,4 7,0 Z</Geometry>
+  <Geometry x:Key="UpArrow">M 0,4 3.5,0 7,4 Z</Geometry>
+  <Geometry x:Key="RightArrow">M 0,0 4,3.5 0,7 Z</Geometry>
+  <Geometry x:Key="Checkmark">F1 M 10.0,1.2 L 4.7,9.1 L 4.5,9.1 L 0,5.2 L 1.3,3.5 L 4.3,6.1L 8.3,0 L 10.0,1.2 Z</Geometry>
+  <conv:PlatformKeyGestureConverter x:Key="KeyGestureConverter"/>
+
+  <ControlTheme x:Key="MH.S.Menu.ScrollButton" TargetType="RepeatButton">
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    <Setter Property="RenderTransform" Value="{x:Null}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="RepeatButton">
+          <Border Background="Transparent">
+            <ContentPresenter
+              Content="{TemplateBinding Content}"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Margin="6"/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="MH.S.Menu.ScrollViewer" TargetType="ScrollViewer">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid RowDefinitions="Auto,*,Auto">
+          <RepeatButton
+            Grid.Row="0"
+            Theme="{StaticResource MH.S.Menu.ScrollButton}"
+            Command="{Binding LineUp, RelativeSource={RelativeSource TemplatedParent}}">
+            <RepeatButton.IsVisible>
+              <MultiBinding
+                Converter="{x:Static conv:MenuScrollingVisibilityConverter.Instance}"
+                ConverterParameter="0">
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="VerticalScrollBarVisibility"/>
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Offset.Y"/>
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Extent.Height"/>
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Viewport.Height"/>
+              </MultiBinding>
+            </RepeatButton.IsVisible>
+
+            <Path Data="{StaticResource UpArrow}" Fill="{TemplateBinding Foreground}"/>
+          </RepeatButton>
+
+          <ScrollContentPresenter Name="PART_ContentPresenter" Grid.Row="1">
+            <ScrollContentPresenter.GestureRecognizers>
+              <ScrollGestureRecognizer
+                CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"/>
+            </ScrollContentPresenter.GestureRecognizers>
+          </ScrollContentPresenter>
+
+          <RepeatButton
+            Grid.Row="2"
+            Theme="{StaticResource MH.S.Menu.ScrollButton}"
+            Command="{Binding LineDown, RelativeSource={RelativeSource TemplatedParent}}">
+            <RepeatButton.IsVisible>
+              <MultiBinding
+                Converter="{x:Static conv:MenuScrollingVisibilityConverter.Instance}"
+                ConverterParameter="100">
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="VerticalScrollBarVisibility"/>
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Offset.Y"/>
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Extent.Height"/>
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Viewport.Height"/>
+              </MultiBinding>
+            </RepeatButton.IsVisible>
+
+            <Path Data="{StaticResource DownArrow}" Fill="{TemplateBinding Foreground}"/>
+          </RepeatButton>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="MH.S.MenuItem.Checkmark" TargetType="Path">
+    <Setter Property="Data" Value="{StaticResource Checkmark}"/>
+    <Setter Property="Fill" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="Width" Value="10"/>
+    <Setter Property="Height" Value="10"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+
+    <Style Selector="^:disabled">
+      <Setter Property="Fill" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="MH.S.MenuItem.CheckmarkPanel" TargetType="Border">
+    <Setter Property="Background" Value="{StaticResource MH.B.I.Hover.Ba}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.Hover.Bo}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Width" Value="22"/>
+    <Setter Property="Height" Value="22"/>
+    <Setter Property="Margin" Value="2,0,0,0"/>
+    <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+
+    <Style Selector="^:disabled">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="MH.S.MenuItem.VerticalSeparator" TargetType="Border">
+    <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="Margin" Value="29,2,0,2"/>
+    <Setter Property="BorderThickness" Value="1,0,0,0"/>
+  </ControlTheme>
+
+  <ControlTheme x:Key="MH.CT.MenuItem.TopLevelItem" TargetType="MenuItem">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="Height" Value="26"/>
+    <Setter Property="Padding" Value="6,2"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+          Name="PART_LayoutRoot"
+          Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}"
+          CornerRadius="{TemplateBinding CornerRadius}">
+
+          <Grid ColumnDefinitions="Auto,Auto">
+            <ContentPresenter x:Name="PART_IconPresenter" Content="{TemplateBinding Icon}" Margin="3,0,0,0"/>
+
+            <Border
+              x:Name="PART_ToggleIconPresenter"
+              Grid.Column="0"
+              Theme="{StaticResource MH.S.MenuItem.CheckmarkPanel}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              Margin="1,0,0,0"
+              IsVisible="False">
+  
+              <Path Theme="{StaticResource MH.S.MenuItem.Checkmark}"/>
+            </Border>
+
+            <ContentPresenter
+              Name="PART_HeaderPresenter"
+              Grid.Column="1"
+              Content="{TemplateBinding Header}"
+              ContentTemplate="{TemplateBinding HeaderTemplate}"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Stretch"
+              RecognizesAccessKey="True"
+              Margin="{TemplateBinding Padding}"/>
+
+            <Popup
+              Name="PART_Popup"
+              Grid.Column="0"
+              IsLightDismissEnabled="True"
+              IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}"
+              Placement="BottomEdgeAlignedLeft"
+              OverlayInputPassThroughElement="{Binding $parent[Menu]}"
+              WindowManagerAddShadowHint="True">
+
+              <Border
+                Background="{StaticResource MH.B.C.Static.Ba}"
+                BorderBrush="{StaticResource MH.B.C.Static.Bo}"
+                BorderThickness="1"
+                Padding="2">
+
+                <ScrollViewer Theme="{StaticResource MH.S.Menu.ScrollViewer}">
+                  <Grid>
+                    <Border Theme="{StaticResource MH.S.MenuItem.VerticalSeparator}"/>
+
+                    <ItemsPresenter
+                      Name="PART_ItemsPresenter"
+                      ItemsPanel="{TemplateBinding ItemsPanel}"
+                      Grid.IsSharedSizeScope="True"/>
+                  </Grid>
+                </ScrollViewer>
+              </Border>
+            </Popup>
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:not(:icon) /template/ ContentPresenter#PART_IconPresenter">
+      <Setter Property="IsVisible" Value="False"/>
+    </Style>
+
+    <Style Selector="^:selected">
+      <Setter Property="Background" Value="{StaticResource MH.B.I.Hover.Ba}"/>
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.Hover.Bo}"/>
+    </Style>
+
+    <Style Selector="^:disabled">
+      <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
+
+    <!--TODO PORT :checked:radio-->
+    <Style Selector="^:checked:toggle /template/ Border#PART_ToggleIconPresenter">
+      <Setter Property="IsVisible" Value="True"/>
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type MenuItem}" TargetType="MenuItem">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="Height" Value="26"/>
+    <Setter Property="Padding" Value="12,2,6,2"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <Border
+            Name="PART_LayoutRoot"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}">
+
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24" SharedSizeGroup="MenuItemIconAndToggle"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemGestureAndChevron"/>
+              </Grid.ColumnDefinitions>
+
+              <ContentPresenter x:Name="PART_IconPresenter" Content="{TemplateBinding Icon}" Margin="2,0,0,0"/>
+
+              <Border
+                x:Name="PART_ToggleIconPresenter"
+                Grid.Column="0"
+                Theme="{StaticResource MH.S.MenuItem.CheckmarkPanel}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Margin="1,0,0,0"
+                IsVisible="False">
+  
+                <Path Theme="{StaticResource MH.S.MenuItem.Checkmark}"/>
+              </Border>
+
+              <ContentPresenter
+                Name="PART_HeaderPresenter"
+                Grid.Column="1"
+                Content="{TemplateBinding Header}"
+                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="{TemplateBinding Padding}"
+                RecognizesAccessKey="True"/>
+
+              <TextBlock
+                x:Name="PART_InputGestureText"
+                Grid.Column="2"
+                Margin="6,2"
+                Opacity="0.7"
+                FontSize="12"
+                Text="{TemplateBinding InputGesture, Converter={StaticResource KeyGestureConverter}}"
+                VerticalAlignment="Center"/>
+
+              <Path
+                Name="PART_ChevronPath"
+                Grid.Column="2"
+                Data="{StaticResource RightArrow}"
+                Fill="{StaticResource MH.B.C.Static.Fo}"
+                Margin="6,2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"/>
+            </Grid>
+          </Border>
+
+          <Popup
+            Name="PART_Popup"
+            HorizontalOffset="-4"
+            IsLightDismissEnabled="False"
+            IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}"
+            Placement="RightEdgeAlignedTop"
+            WindowManagerAddShadowHint="True">
+
+            <Border
+              Background="{StaticResource MH.B.C.Static.Ba}"
+              BorderBrush="{StaticResource MH.B.C.Static.Bo}"
+              BorderThickness="1"
+              Padding="2">
+
+              <ScrollViewer Theme="{StaticResource MH.S.Menu.ScrollViewer}">
+                <Grid>
+                  <Border Theme="{StaticResource MH.S.MenuItem.VerticalSeparator}"/>
+
+                  <ItemsPresenter
+                    Name="PART_ItemsPresenter"
+                    ItemsPanel="{TemplateBinding ItemsPanel}"
+                    Grid.IsSharedSizeScope="True"/>
+                </Grid>
+              </ScrollViewer>
+            </Border>
+          </Popup>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:not(:icon) /template/ ContentControl#PART_IconPresenter">
+      <Setter Property="IsVisible" Value="False"/>
+    </Style>
+
+    <Style Selector="^:selected">
+      <Setter Property="Background" Value="{StaticResource MH.B.I.Hover.Ba}"/>
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.Hover.Bo}"/>
+    </Style>
+
+    <Style Selector="^:empty /template/ Path#PART_ChevronPath">
+      <Setter Property="IsVisible" Value="False"/>
+    </Style>
+
+    <Style Selector="^:separator">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Separator/>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+    
+    <Style Selector="^ /template/ Image#PART_ToggleIconImage">
+      <Setter Property="IsVisible" Value="True"/>
+    </Style>
+
+    <!--TODO PORT :checked:radio-->
+    <Style Selector="^:checked:toggle /template/ Border#PART_ToggleIconPresenter">
+      <Setter Property="IsVisible" Value="True"/>
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type Menu}" TargetType="Menu">
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="ItemContainerTheme" Value="{StaticResource MH.CT.MenuItem.TopLevelItem}"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+          Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}"
+          CornerRadius="{TemplateBinding CornerRadius}"
+          HorizontalAlignment="Stretch"
+          Padding="{TemplateBinding Padding}">
+
+          <ItemsPresenter
+            Name="PART_ItemsPresenter"
+            ItemsPanel="{TemplateBinding ItemsPanel}"
+            VerticalAlignment="Stretch"
+            KeyboardNavigation.TabNavigation="Continue"/>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>
