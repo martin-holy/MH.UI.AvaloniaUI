@@ -47,8 +47,10 @@
         Grid.Column="0"
         Grid.ColumnSpan="3"
         Value="3"
+        Maximum="10"
         Margin="0,5"
-        TickPlacement="BottomRight"/>
+        TickPlacement="BottomRight"
+        TickFrequency="1"/>
 
       <!--<Slider
         Grid.Row="2"
@@ -82,9 +84,11 @@
         Grid.Column="1"
         Orientation="Vertical"
         Value="6"
+        Maximum="10"
         Margin="5,0"
         TickPlacement="TopLeft"
-        HorizontalAlignment="Center"/>
+        HorizontalAlignment="Center"
+        TickFrequency="1"/>
 
       <!--<mhc:RangeSlider
         Grid.Row="4"
