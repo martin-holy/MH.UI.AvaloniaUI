@@ -1,0 +1,9 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
+
+  <ControlTheme x:Key="{x:Type c:TreeViewHost}" TargetType="c:TreeViewHost" BasedOn="{StaticResource {x:Type TreeView}}">
+  </ControlTheme>
+
+</ResourceDictionary>
