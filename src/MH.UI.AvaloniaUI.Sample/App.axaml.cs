@@ -71,6 +71,7 @@ public partial class App : Application {
       "Controls/ButtonsV.axaml",
       "Controls/ColorsV.axaml",
       "Controls/ControlsV.axaml",
+      "Controls/FolderTreeViewV.axaml",
       "Controls/IconTextV.axaml",
       "Controls/ListsV.axaml",
       "Controls/SlidersV.axaml",

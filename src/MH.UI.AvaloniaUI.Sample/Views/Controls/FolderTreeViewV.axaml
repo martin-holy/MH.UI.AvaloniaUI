@@ -6,13 +6,12 @@
   xmlns:m="clr-namespace:MH.UI.AvaloniaUI.Sample.Models">
 
   <DataTemplate DataType="{x:Type vmc:FolderTreeViewVM}">
-    <!--TODO PORT-->
-    <!--<mhc:TreeViewHost ViewModel="{Binding}">
+    <mhc:TreeViewHost ViewModel="{Binding}">
       <mhc:TreeViewHost.ItemTemplate>
-        <HierarchicalDataTemplate DataType="{x:Type m:FolderM}" ItemsSource="{Binding Items}">
+        <TreeDataTemplate DataType="{x:Type m:FolderM}" ItemsSource="{Binding Items}">
           <ContentPresenter Content="{Binding}"/>
-        </HierarchicalDataTemplate>
+        </TreeDataTemplate>
       </mhc:TreeViewHost.ItemTemplate>
-    </mhc:TreeViewHost>-->
+    </mhc:TreeViewHost>
   </DataTemplate>
 </DataTemplates>

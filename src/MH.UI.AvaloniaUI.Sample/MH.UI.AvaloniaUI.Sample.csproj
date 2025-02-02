@@ -19,6 +19,7 @@
     <AvaloniaResource Include="Views\Controls\ButtonsV.axaml" />
     <AvaloniaResource Include="Views\Controls\ColorsV.axaml" />
     <AvaloniaResource Include="Views\Controls\ControlsV.axaml" />
+    <AvaloniaResource Include="Views\Controls\FolderTreeViewV.axaml" />
     <AvaloniaResource Include="Views\Controls\IconTextV.axaml" />
     <AvaloniaResource Include="Views\Controls\ListsV.axaml" />
     <AvaloniaResource Include="Views\Controls\SlidersV.axaml" />
