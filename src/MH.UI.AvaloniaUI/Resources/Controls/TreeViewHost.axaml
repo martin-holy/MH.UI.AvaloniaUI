@@ -1,9 +1,301 @@
 <ResourceDictionary
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
+  xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties"
+  xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters"
+  xmlns:res="clr-namespace:MH.UI.AvaloniaUI.Resources"
+  xmlns:ubc="clr-namespace:MH.Utils.BaseClasses;assembly=MH.Utils"
+  xmlns:uInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils"
+  xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI">
 
-  <ControlTheme x:Key="{x:Type c:TreeViewHost}" TargetType="c:TreeViewHost" BasedOn="{StaticResource {x:Type TreeView}}">
+  <PathGeometry x:Key="TreeArrowRight" Figures="M0,0 L0,8 L4,4 z"/>
+  <PathGeometry x:Key="TreeArrowDown" Figures="M0,6 L6,6 L6,0 z"/>
+
+  <ControlTheme x:Key="MH.S.ToggleButton.TreeExpandCollapse" TargetType="ToggleButton">
+    <Setter Property="Focusable" Value="False"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="ClickMode" Value="Press"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ToggleButton">
+          <Border Background="Transparent" Width="20" Height="20">
+            <Path
+              x:Name="path"
+              VerticalAlignment="Center"
+              Data="{StaticResource TreeArrowRight}" 
+              Fill="Transparent"
+              Stroke="{StaticResource MH.B.C.Static.Fo}"
+              StrokeThickness="1"
+              Stretch="None"
+              Width="8"
+              Height="8">
+            </Path>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+    <Style Selector="^:checked /template/ Path#path">
+      <Setter Property="Fill" Value="{StaticResource MH.B.C.Static.Fo}"/>
+      <Setter Property="Data" Value="{StaticResource TreeArrowDown}"/>
+    </Style>
+
+    <Style Selector="^:pointerover /template/ Path#path">
+      <Setter Property="Fill" Value="{DynamicResource MH.B.Accent}"/>
+      <Setter Property="Stroke" Value="{DynamicResource MH.B.Accent}"/>
+    </Style>
   </ControlTheme>
 
+  <ControlTheme x:Key="MH.S.TreeViewItem.Lite" TargetType="TreeViewItem">
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="FocusAdorner" Value="{x:Null}"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="MinHeight" Value="25"/>
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="IsExpanded" Value="{Binding IsExpanded, DataType=uInt:ITreeItem, Mode=TwoWay}"/>
+
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <VirtualizingStackPanel/>
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="TreeViewItem">
+          <Grid RowDefinitions="Auto,*">
+            <ContentPresenter
+              x:Name="PART_Header"
+              Content="{TemplateBinding Header}"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"/>
+
+            <ItemsPresenter
+              x:Name="ItemsHost"
+              Grid.Row="1"
+              IsVisible="{TemplateBinding IsExpanded}"
+              ItemsPanel="{TemplateBinding ItemsPanel}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="MH.S.TreeViewItem" TargetType="TreeViewItem" BasedOn="{StaticResource MH.S.TreeViewItem.Lite}">
+    <Setter Property="IsVisible" Value="{Binding !IsHidden, DataType=uInt:ITreeItem}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="TreeViewItem">
+          <Grid RowDefinitions="Auto,*">
+            <Border
+              x:Name="Border"
+              BorderBrush="Transparent" 
+              BorderThickness="1" 
+              Background="{StaticResource MH.B.C.Static.Ba}"
+              FocusAdorner="{x:Null}"
+              MinHeight="25">
+
+              <!--TODO PORT-->
+              <!--<Interaction.Behaviors>
+                <ExecuteCommandOnPointerPressedBehavior
+                  Command="{Binding ViewModel.SelectItemCommand, RelativeSource=
+                           {RelativeSource AncestorType=c:TreeViewHost}}"
+                  CommandParameter="{Binding DataType=uInt:ITreeItem}"/>
+              </Interaction.Behaviors>-->
+
+              <!--<b:Interaction.Triggers>
+                <b:EventTrigger EventName="MouseLeftButtonUp">
+                  <b:InvokeCommandAction
+                    Command="{Binding ViewModel.SelectItemCommand, RelativeSource=
+                             {RelativeSource AncestorType=c:TreeViewHost}}"
+                    CommandParameter="{Binding}"/>
+                </b:EventTrigger>
+                <b:EventTrigger EventName="RequestBringIntoView">
+                  <b:InvokeCommandAction
+                    Command="{Binding TreeItemIntoViewCommand, RelativeSource=
+                             {RelativeSource AncestorType=c:TreeViewHost}}"
+                    PassEventArgsToCommand="True"/>
+                </b:EventTrigger>
+              </b:Interaction.Triggers>-->
+
+              <Grid
+                Margin="{Binding DataType=uInt:ITreeItem, Converter={x:Static conv:TreeMarginConverter.Inst}, ConverterParameter=16}"
+                ColumnDefinitions="20,*">
+
+                <ToggleButton
+                  x:Name="Expander"
+                  Theme="{StaticResource MH.S.ToggleButton.TreeExpandCollapse}"
+                  IsChecked="{Binding IsExpanded, DataType=uInt:ITreeItem, Mode=TwoWay}"/>
+
+                <ContentPresenter
+                  x:Name="PART_Header"
+                  Grid.Column="1"
+                  Content="{TemplateBinding Header}"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"/>
+              </Grid>
+            </Border>
+
+            <ItemsPresenter
+              x:Name="ItemsHost"
+              Grid.Row="1"
+              IsVisible="{TemplateBinding IsExpanded}"
+              ItemsPanel="{TemplateBinding ItemsPanel}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+    <Style Selector="^:pointerover /template/ Border#Border">
+      <Setter Property="Background" Value="{StaticResource MH.B.I.Hover.Ba}"/>
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.Hover.Bo}"/>
+    </Style>
+
+    <!--TODO PORT limit selection with TreeView.ShowTreeItemSelection-->
+    <Style Selector="^:selected /template/ Border#Border">
+      <Setter Property="Background" Value="{StaticResource MH.B.I.Selected.Ba}"/>
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.Selected.Bo}"/>
+    </Style>
+
+    <Style Selector="^:selected /template/ Border#Border:pointerover">
+      <Setter Property="Background" Value="{StaticResource MH.B.I.SelectedHover.Ba}"/>
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.SelectedHover.Bo}"/>
+    </Style>
+
+    <Style Selector="^:empty /template/ ToggleButton#Expander">
+      <Setter Property="IsVisible" Value="False"/>
+    </Style>
+  </ControlTheme>
+
+  <DataTemplate x:Key="MH.DT.TreeViewHost.ScrollButtons" DataType="{x:Type uic:TreeView}">
+    <Grid RowDefinitions="Auto,Auto,Auto">
+      <RepeatButton
+        Command="{Binding ScrollToTopCommand}"
+        Content="M30,0 60,30 0,30z"
+        ToolTip.Tip="Scroll to top"
+        Theme="{DynamicResource MH.S.ScrollBar.Button}"/>
+
+      <RepeatButton
+        Command="{Binding ScrollLevelUpCommand}"
+        Content="M30,0 60,30 0,30z"
+        ToolTip.Tip="Scroll one level up"
+        Grid.Row="1"
+        Theme="{DynamicResource MH.S.ScrollBar.Button}"/>
+
+      <RepeatButton
+        Command="{Binding ScrollSiblingUpCommand}"
+        Content="M30,0 60,30 0,30z"
+        ToolTip.Tip="Scroll one sibling up"
+        Grid.Row="2"
+        Theme="{DynamicResource MH.S.ScrollBar.Button}"/>
+    </Grid>
+  </DataTemplate>
+
+  <DataTemplate x:Key="MH.DT.TreeView-PathToRootBar" DataType="{x:Type uic:TreeView}">
+    <ItemsControl
+      ItemsSource="{Binding TopTreeItemPath}"
+      BorderThickness="0"
+      HorizontalAlignment="Left">
+
+      <ItemsControl.ItemTemplate>
+        <DataTemplate DataType="{x:Type uInt:IListItem}">
+          <Button
+            Command="{Binding $parent[ItemsControl].((uic:TreeView)DataContext).ScrollToItemCommand}"
+            CommandParameter="{Binding}"
+            ap:Text.Text="{Binding Name}"
+            ap:Icon.Data="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst}}"
+            ap:Icon.Fill="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst},
+                           ConverterParameter={x:Static res:Dictionaries.IconToBrush}}">
+            <Button.Theme>
+              <ControlTheme TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+
+                <Style Selector="^:pointerover, ^:focus-within">
+                  <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.Hover.Bo}"/>
+                  <Style Selector="^ /template/ Border#PART_OverLayer">
+                    <Setter Property="Background" Value="{StaticResource MH.B.I.Hover.Ba}"/>
+                  </Style>
+                </Style>
+
+                <Style Selector="^:pressed">
+                  <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.Selected.Bo}"/>
+                  <Style Selector="^ /template/ Border#PART_OverLayer">
+                    <Setter Property="Background" Value="{StaticResource MH.B.I.Selected.Ba}"/>
+                  </Style>
+                </Style>
+              </ControlTheme>
+            </Button.Theme>
+          </Button>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"/>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+    </ItemsControl>
+  </DataTemplate>
+
+  <ControlTheme x:Key="{x:Type c:TreeViewHost}" TargetType="c:TreeViewHost">
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Static.Bo}"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Padding" Value="1"/>
+    <Setter Property="ItemContainerTheme" Value="{StaticResource MH.S.TreeViewItem}"/>
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+    <Setter Property="ap:Slot.TopContent" Value="{Binding ViewModel, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="ap:Slot.TopContentTemplate" Value="{StaticResource MH.DT.TreeView-PathToRootBar}"/>
+
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <VirtualizingStackPanel/>
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="c:TreeViewHost">
+          <Grid RowDefinitions="Auto,*">
+            <ContentPresenter
+              Content="{Binding Path=(ap:Slot.TopContent), RelativeSource={RelativeSource TemplatedParent}}"
+              ContentTemplate="{Binding Path=(ap:Slot.TopContentTemplate), RelativeSource={RelativeSource TemplatedParent}}"/>
+
+            <ScrollViewer
+              x:Name="PART_ScrollViewer"
+              Grid.Row="1"
+              Focusable="False"
+              Padding="{TemplateBinding Padding}"
+              ap:Slot.TopContent="{Binding ViewModel, RelativeSource={RelativeSource TemplatedParent}}"
+              ap:Slot.TopContentTemplate="{StaticResource MH.DT.TreeViewHost.ScrollButtons}"
+              Background="{TemplateBinding Background}"
+              HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+              VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+              IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+              IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+              AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+              BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}">
+
+              <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}"/>
+            </ScrollViewer>
+          </Grid>
+
+          <!--TODO PORT-->
+          <!--<ControlTemplate.Triggers>
+            <Trigger SourceName="PART_ScrollViewer" Property="ComputedVerticalScrollBarVisibility" Value="Collapsed">
+              <Setter TargetName="PART_ScrollViewer" Property="ap:Slot.TopContent" Value="{x:Null}"/>
+              <Setter TargetName="PART_ScrollViewer" Property="ap:Slot.TopContentTemplate" Value="{x:Null}"/>
+            </Trigger>
+          </ControlTemplate.Triggers>-->
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </ControlTheme>
 </ResourceDictionary>
