@@ -99,21 +99,15 @@
               FocusAdorner="{x:Null}"
               MinHeight="25">
 
-              <!--TODO PORT-->
-              <!--<Interaction.Behaviors>
-                <ExecuteCommandOnPointerPressedBehavior
+              <Interaction.Behaviors>
+                <ExecuteCommandOnTappedBehavior
                   Command="{Binding ViewModel.SelectItemCommand, RelativeSource=
                            {RelativeSource AncestorType=c:TreeViewHost}}"
                   CommandParameter="{Binding DataType=uInt:ITreeItem}"/>
-              </Interaction.Behaviors>-->
+              </Interaction.Behaviors>
 
+              <!--TODO PORT-->
               <!--<b:Interaction.Triggers>
-                <b:EventTrigger EventName="MouseLeftButtonUp">
-                  <b:InvokeCommandAction
-                    Command="{Binding ViewModel.SelectItemCommand, RelativeSource=
-                             {RelativeSource AncestorType=c:TreeViewHost}}"
-                    CommandParameter="{Binding}"/>
-                </b:EventTrigger>
                 <b:EventTrigger EventName="RequestBringIntoView">
                   <b:InvokeCommandAction
                     Command="{Binding TreeItemIntoViewCommand, RelativeSource=
@@ -150,7 +144,7 @@
       </Setter.Value>
     </Setter>
 
-    <Style Selector="^:pointerover /template/ Border#Border">
+    <Style Selector="^ /template/ Border#Border:pointerover">
       <Setter Property="Background" Value="{StaticResource MH.B.I.Hover.Ba}"/>
       <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.Hover.Bo}"/>
     </Style>
