@@ -99,10 +99,12 @@
               MinHeight="25">
 
               <Interaction.Behaviors>
-                <ExecuteCommandOnTappedBehavior
-                  Command="{Binding ViewModel.SelectItemCommand, RelativeSource=
-                           {RelativeSource AncestorType=c:TreeViewHost}}"
-                  CommandParameter="{Binding DataType=uInt:ITreeItem}"/>
+                <DataTriggerBehavior Binding="{TemplateBinding IsSelected}" Value="True">
+                  <InvokeCommandAction
+                    Command="{Binding ViewModel.SelectItemCommand, RelativeSource=
+                             {RelativeSource AncestorType=c:TreeViewHost}}"
+                    CommandParameter="{Binding DataType=uInt:ITreeItem}"/>
+                </DataTriggerBehavior>
               </Interaction.Behaviors>
 
               <!--TODO PORT-->
