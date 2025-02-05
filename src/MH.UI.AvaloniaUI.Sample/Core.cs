@@ -19,7 +19,7 @@ public sealed class Core {
   public Task InitAsync(IProgress<string> progress) {
     return Task.Run(() => {
       progress.Report("Loading ...");
-      System.Threading.Thread.Sleep(2000);
+      System.Threading.Thread.Sleep(250);
     });
   }
 
