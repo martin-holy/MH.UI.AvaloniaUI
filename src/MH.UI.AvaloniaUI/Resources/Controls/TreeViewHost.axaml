@@ -5,7 +5,6 @@
   xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties"
   xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters"
   xmlns:res="clr-namespace:MH.UI.AvaloniaUI.Resources"
-  xmlns:ubc="clr-namespace:MH.Utils.BaseClasses;assembly=MH.Utils"
   xmlns:uInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils"
   xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI">
 
@@ -280,14 +279,6 @@
               <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}"/>
             </ScrollViewer>
           </Grid>
-
-          <!--TODO PORT-->
-          <!--<ControlTemplate.Triggers>
-            <Trigger SourceName="PART_ScrollViewer" Property="ComputedVerticalScrollBarVisibility" Value="Collapsed">
-              <Setter TargetName="PART_ScrollViewer" Property="ap:Slot.TopContent" Value="{x:Null}"/>
-              <Setter TargetName="PART_ScrollViewer" Property="ap:Slot.TopContentTemplate" Value="{x:Null}"/>
-            </Trigger>
-          </ControlTemplate.Triggers>-->
         </ControlTemplate>
       </Setter.Value>
     </Setter>
