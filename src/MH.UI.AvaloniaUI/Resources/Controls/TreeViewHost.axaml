@@ -55,13 +55,13 @@
     <Setter Property="Padding" Value="0"/>
     <Setter Property="IsExpanded" Value="{Binding IsExpanded, DataType=uInt:ITreeItem, Mode=TwoWay}"/>
 
-    <Setter Property="ItemsPanel">
+    <!--<Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
           <VirtualizingStackPanel/>
         </ItemsPanelTemplate>
       </Setter.Value>
-    </Setter>
+    </Setter>-->
 
     <Setter Property="Template">
       <Setter.Value>
