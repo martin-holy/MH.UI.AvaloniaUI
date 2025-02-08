@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Models.TreeDataGrid;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Selection;
 using Avalonia.Controls.Templates;
 using Avalonia.Threading;
 using MH.Utils.Interfaces;
@@ -12,6 +13,7 @@ namespace MH.UI.AvaloniaUI.Controls;
 
 public class TreeDataGridHost : TreeDataGrid, UIC.ITreeViewHost {
   private ScrollViewer _sv = null!;
+  private HierarchicalTreeDataGridSource<ITreeItem>? _source;
 
   private readonly IDataTemplate _defaultSingleColumnTemplate = new FuncDataTemplate<object>((item, _) =>
     new ContentPresenter { Content = item });
@@ -63,17 +65,30 @@ public class TreeDataGridHost : TreeDataGrid, UIC.ITreeViewHost {
       root.IsExpanded = false;
     }
 
-    Source = new HierarchicalTreeDataGridSource<ITreeItem>(ViewModel.RootHolder) {
+    if (_source?.RowSelection != null)
+      _source.RowSelection.SelectionChanged -= _onRowSelectionChanged;
+
+    _source = new(ViewModel.RootHolder) {
       Columns = {
         new HierarchicalExpanderColumn<ITreeItem>(
           new TemplateColumn<ITreeItem>(null, SingleColumnTemplate ?? _defaultSingleColumnTemplate),
           x => x.Items,
           null,
           x => x.IsExpanded)
-      },
+      }
     };
 
+    if (_source?.RowSelection != null)
+      _source.RowSelection.SelectionChanged += _onRowSelectionChanged;
+
+    Source = _source;
+
     if (expand) ExpandRootWhenReady(root!);
+  }
+
+  private void _onRowSelectionChanged(object? sender, TreeSelectionModelSelectionChangedEventArgs<ITreeItem> e) {
+    if (e.SelectedItems.Count > 0 && e.SelectedItems[0] is { } item)
+      ViewModel?.SelectItemCommand.Execute(item);
   }
 
   public void ScrollToTop() {
