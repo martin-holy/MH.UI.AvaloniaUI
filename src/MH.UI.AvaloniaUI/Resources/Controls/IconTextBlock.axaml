@@ -74,7 +74,7 @@
       <Setter Property="FontSize" Value="10"/>
       <Setter Property="FontWeight" Value="Bold"/>
 
-      <Style Selector="^ /template/ Path#PART_Icon">
+      <Style Selector="^ /template/ Panel#PART_Icon">
         <Setter Property="Margin" Value="2,2,0,0"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -86,7 +86,7 @@
       </Style>
     </Style>
 
-    <Style Selector="^[Shadow=Icon] /template/ Path#PART_Icon, ^[Shadow=Both] /template/ Path#PART_Icon">
+    <Style Selector="^[Shadow=Icon] /template/ Panel#PART_Icon, ^[Shadow=Both] /template/ Panel#PART_Icon">
       <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
     </Style>
 
