@@ -33,15 +33,20 @@
             Padding="{Binding Padding}">
 
             <Grid x:Name="PART_Grid" ColumnDefinitions="Auto,*">
-              <Path
+              <Panel
                 x:Name="PART_Icon"
-                Data="{TemplateBinding (ap:Icon.Data)}"
-                Fill="{TemplateBinding (ap:Icon.Fill)}"
                 Width="{TemplateBinding (ap:Icon.Size)}"
                 Height="{TemplateBinding (ap:Icon.Size)}"
                 Margin="2"
-                Stretch="Uniform"
-                IsVisible="{TemplateBinding (ap:Icon.Data), Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                IsVisible="{TemplateBinding (ap:Icon.Data), Converter={x:Static ObjectConverters.IsNotNull}}">
+
+                <Path
+                  Data="{TemplateBinding (ap:Icon.Data)}"
+                  Fill="{TemplateBinding (ap:Icon.Fill)}"
+                  Stretch="Uniform"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"/>
+              </Panel>
 
               <Border
                 x:Name="PART_TextBorder"
