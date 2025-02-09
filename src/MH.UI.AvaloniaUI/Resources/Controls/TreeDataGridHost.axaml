@@ -1,6 +1,7 @@
 <Styles
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties"
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
 
   <StyleInclude Source="avares://Avalonia.Controls.TreeDataGrid/Themes/Generic.axaml"/>
@@ -16,8 +17,57 @@
         </ResourceDictionary>
       </ResourceDictionary.ThemeDictionaries>
 
-      <ControlTheme x:Key="{x:Type c:TreeDataGridHost}" TargetType="TreeDataGrid" BasedOn="{StaticResource {x:Type TreeDataGrid}}">
+      <ControlTheme x:Key="{x:Type c:TreeDataGridHost}" TargetType="c:TreeDataGridHost" BasedOn="{StaticResource {x:Type TreeDataGrid}}">
         <Setter Property="ShowColumnHeaders" Value="False"/>
+        <Setter Property="ap:Slot.TopContent" Value="{Binding ViewModel, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="ap:Slot.TopContentTemplate" Value="{StaticResource MH.DT.TreeView-PathToRootBar}"/>
+
+        <Setter Property="Template">
+          <ControlTemplate>
+            <Border
+              x:Name="RootBorder"
+              Background="{TemplateBinding Background}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              CornerRadius="{TemplateBinding CornerRadius}">
+
+              <Grid RowDefinitions="24,Auto,*">
+                <ContentPresenter
+                  Content="{Binding Path=(ap:Slot.TopContent), RelativeSource={RelativeSource TemplatedParent}}"
+                  ContentTemplate="{Binding Path=(ap:Slot.TopContentTemplate), RelativeSource={RelativeSource TemplatedParent}}"/>
+
+                <ScrollViewer
+                  Name="PART_HeaderScrollViewer"
+                  Grid.Row="1"
+                  IsVisible="{TemplateBinding ShowColumnHeaders}"
+                  HorizontalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Disabled"
+                  BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}">
+
+                  <Border x:Name="ColumnHeadersPresenterBorder">
+                    <TreeDataGridColumnHeadersPresenter
+                      Name="PART_ColumnHeadersPresenter"
+                      ElementFactory="{TemplateBinding ElementFactory}"
+                      Items="{TemplateBinding Columns}"/>
+                  </Border>
+                </ScrollViewer>
+
+                <ScrollViewer
+                  Name="PART_ScrollViewer"
+                  Grid.Row="2"
+                  HorizontalScrollBarVisibility="Auto"
+                  BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}">
+
+                  <TreeDataGridRowsPresenter
+                    Name="PART_RowsPresenter"
+                    Columns="{TemplateBinding Columns}"
+                    ElementFactory="{TemplateBinding ElementFactory}"
+                    Items="{TemplateBinding Rows}"/>
+                </ScrollViewer>
+              </Grid>
+            </Border>
+          </ControlTemplate>
+        </Setter>
       </ControlTheme>
 
       <ControlTheme x:Key="{x:Type TreeDataGridRow}" TargetType="TreeDataGridRow" BasedOn="{StaticResource {x:Type TreeDataGridRow}}">
