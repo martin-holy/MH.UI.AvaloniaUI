@@ -6,12 +6,14 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Selection;
 using Avalonia.Controls.Templates;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 using MH.Utils.Interfaces;
 using UIC = MH.UI.Controls;
 
 namespace MH.UI.AvaloniaUI.Controls;
 
 public class TreeDataGridHost : TreeDataGrid, UIC.ITreeViewHost {
+  private bool _isScrollingTo;
   private ScrollViewer _sv = null!;
   private HierarchicalTreeDataGridSource<ITreeItem>? _source;
 
@@ -52,9 +54,9 @@ public class TreeDataGridHost : TreeDataGrid, UIC.ITreeViewHost {
   private void _raiseHostIsVisibleChanged(bool value) => HostIsVisibleChangedEvent?.Invoke(this, value);
 
   private void _onScrollChanged(object? sender, ScrollChangedEventArgs e) {
-    // TODO PORT
+    if (!_isScrollingTo && ViewModel != null && _sv.IsVisible)
+      ViewModel.TopTreeItem = _getHitTestItem(10, 10);
   }
-
 
   private void _setItemsSource() {
     if (ViewModel == null) return;
@@ -101,6 +103,13 @@ public class TreeDataGridHost : TreeDataGrid, UIC.ITreeViewHost {
   private void _scrollToItems(object[] items, bool exactly) {
     // TODO PORT
   }
+
+  private ITreeItem? _getHitTestItem(double x, double y) =>
+    _sv.GetVisualsAt(new(x, y))
+      .OfType<Control>()
+      .Select(c => c.DataContext)
+      .OfType<ITreeItem>()
+      .FirstOrDefault(ViewModel!.IsHitTestItem);
 
   /// <summary>
   /// TreeView loads all items when everything is expanded.
