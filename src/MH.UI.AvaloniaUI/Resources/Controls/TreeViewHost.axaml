@@ -194,7 +194,8 @@
     <ItemsControl
       ItemsSource="{Binding TopTreeItemPath}"
       BorderThickness="0"
-      HorizontalAlignment="Left">
+      HorizontalAlignment="Left"
+      MaxHeight="24">
 
       <ItemsControl.ItemTemplate>
         <DataTemplate DataType="{x:Type uInt:IListItem}">
@@ -209,6 +210,9 @@
               <ControlTheme TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="MinWidth" Value="0"/>
+                <Setter Property="MinHeight" Value="0"/>
+                <Setter Property="Margin" Value="0"/>
 
                 <Style Selector="^:pointerover, ^:focus-within">
                   <Setter Property="BorderBrush" Value="{StaticResource MH.B.I.Hover.Bo}"/>
