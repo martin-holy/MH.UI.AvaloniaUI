@@ -22,14 +22,8 @@
     <!--<Setter Property="IsSelected" Value="{Binding IsSelected, DataType=uInt:ISelectable, Mode=TwoWay}"/>-->
     <Setter Property="ToolTip.Tip" Value="{Binding Name, DataType=uInt:IListItem}"/>
     <Setter Property="Header" Value="{Binding DataType=uInt:IListItem}"/>
+    <Setter Property="HeaderTemplate" Value="{DynamicResource MH.DT.IListItem}"/>
 
-    <Setter Property="HeaderTemplate">
-      <Setter.Value>
-        <DataTemplate x:DataType="uInt:IListItem">
-          <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource MH.DT.IListItem}"/>
-        </DataTemplate>
-      </Setter.Value>
-    </Setter>
     <Setter Property="Template">
       <ControlTemplate>
         <Border
