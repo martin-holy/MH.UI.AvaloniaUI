@@ -1,0 +1,38 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties">
+  
+  <ControlTheme x:Key="{x:Type PathIcon}" TargetType="PathIcon">
+    <Setter Property="Data" Value="{Binding Path=(ap:Icon.Data), RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="Foreground" Value="{Binding Path=(ap:Icon.Fill), RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Height" Value="18"/>
+    <Setter Property="Width" Value="18"/>
+    <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+          Background="{TemplateBinding Background}"
+          Height="{TemplateBinding Height}"
+          Width="{TemplateBinding Width}">
+
+          <Path
+            Fill="{TemplateBinding Foreground}"
+            Data="{TemplateBinding Data}"
+            Stretch="Uniform"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:not(ap|Icon.Fill)">
+      <Setter Property="Foreground" Value="{DynamicResource MH.B.White}"/>
+    </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>
