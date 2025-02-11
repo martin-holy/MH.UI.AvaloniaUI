@@ -33,19 +33,14 @@
             Padding="{Binding Padding}">
 
             <Grid x:Name="PART_Grid" ColumnDefinitions="Auto,*">
-              <!--INFO there is a problem with RotateTransform when Path is a child of another control (Border, Panel, PathIcon)
-                  and Path.Data can't be centered using just Path control. Setting just Path.Width fixes only the VerticalAlignment. -->
-              <Path
+              <PathIcon
                 x:Name="PART_Icon"
                 Width="{TemplateBinding (ap:Icon.Size)}"
-                MaxHeight="{TemplateBinding (ap:Icon.Size)}"
+                Height="{TemplateBinding (ap:Icon.Size)}"
                 Margin="2"
                 IsVisible="{TemplateBinding (ap:Icon.Data), Converter={x:Static ObjectConverters.IsNotNull}}"
                 Data="{TemplateBinding (ap:Icon.Data)}"
-                Fill="{TemplateBinding (ap:Icon.Fill)}"
-                Stretch="Uniform"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"/>
+                Foreground="{TemplateBinding (ap:Icon.Fill)}"/>
 
               <Border
                 x:Name="PART_TextBorder"
@@ -73,7 +68,7 @@
       <Setter Property="FontSize" Value="10"/>
       <Setter Property="FontWeight" Value="Bold"/>
 
-      <Style Selector="^ /template/ Path#PART_Icon">
+      <Style Selector="^ /template/ PathIcon#PART_Icon">
         <Setter Property="Margin" Value="2,2,0,0"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -85,7 +80,7 @@
       </Style>
     </Style>
 
-    <Style Selector="^[Shadow=Icon] /template/ Path#PART_Icon, ^[Shadow=Both] /template/ Path#PART_Icon">
+    <Style Selector="^[Shadow=Icon] /template/ PathIcon#PART_Icon, ^[Shadow=Both] /template/ PathIcon#PART_Icon">
       <Setter Property="Effect" Value="{StaticResource MH.Effects.DropShadow}"/>
     </Style>
 
