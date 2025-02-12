@@ -7,12 +7,10 @@
     
   <DataTemplate DataType="{x:Type m:FolderM}">
     <Grid ColumnDefinitions="Auto,*">
-      <Path
-        Classes="icon"
+      <PathIcon
         Data="{Binding Icon, Converter={x:Static mhConv:ResourceConverter.Inst}}"
-        Fill="{Binding Icon, Converter={x:Static mhConv:ResourceConverter.Inst},
-               ConverterParameter={x:Static res:Dictionaries.IconToBrush}}"
-        HorizontalAlignment="Center"/>
+        Foreground="{Binding Icon, Converter={x:Static mhConv:ResourceConverter.Inst},
+                     ConverterParameter={x:Static res:Dictionaries.IconToBrush}}"/>
 
       <TextBlock
         Text="{Binding Name}"
