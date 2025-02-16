@@ -41,5 +41,7 @@
   <StyleInclude Source="Border.axaml"/>
   <StyleInclude Source="Common.axaml"/>
   <StyleInclude Source="Icon.axaml"/>
+
+  <StyleInclude Source="CatTreeView.axaml"/>
   <StyleInclude Source="TreeDataGridHost.axaml"/>
 </Styles>

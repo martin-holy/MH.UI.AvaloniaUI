@@ -1,0 +1,13 @@
+<Styles
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
+
+  <Styles.Resources>
+    <ResourceDictionary>
+      <ControlTheme x:Key="{x:Type c:CatTreeView}" TargetType="c:CatTreeView" BasedOn="{StaticResource {x:Type c:TreeDataGridHost}}">
+        <!--TODO PORT drag and drop-->
+      </ControlTheme>
+    </ResourceDictionary>
+  </Styles.Resources>
+</Styles>
