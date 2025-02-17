@@ -2,9 +2,8 @@
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters"
-  xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI">
-
-  <!--TODO PORT maybe use ItemsControl for tabs like in WPF to be able to not reset ScrollViewers on hidden tabs-->
+  xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI"
+  xmlns:uInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils">
 
   <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl" x:DataType="uic:TabControl">
     <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
@@ -13,6 +12,12 @@
     <Setter Property="ItemsSource" Value="{Binding Tabs}"/>
     <Setter Property="SelectedItem" Value="{Binding Selected, Mode=TwoWay}"/>
     <Setter Property="HorizontalContentAlignment" Value="Left"/>
+
+    <Setter Property="ContentTemplate">
+      <DataTemplate DataType="{x:Type uInt:IListItem}">
+        <ContentPresenter DataContext="{Binding Data}" Content="{Binding}"/>
+      </DataTemplate>
+    </Setter>
 
     <Setter Property="Template">
       <ControlTemplate>
@@ -31,11 +36,26 @@
 
               <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}"/>
             </DockPanel>
-            
-            <ContentPresenter
-              Name="PART_SelectedContentHost"
-              Margin="{TemplateBinding Padding}"
-              Content="{Binding $parent[TabControl].((uic:TabControl)DataContext).Selected.Data}"/>
+
+            <ItemsControl ItemsSource="{Binding Tabs}" ItemTemplate="{TemplateBinding ContentTemplate}">
+              <ItemsControl.Template>
+                <ControlTemplate TargetType="ItemsControl">
+                  <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                </ControlTemplate>
+              </ItemsControl.Template>
+                
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <Grid/>
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+
+              <ItemsControl.ItemContainerTheme>
+                <ControlTheme TargetType="ContentPresenter">
+                  <Setter Property="IsVisible" Value="{Binding IsSelected, DataType=uInt:IListItem}"/>
+                </ControlTheme>
+              </ItemsControl.ItemContainerTheme>
+            </ItemsControl>
           </DockPanel>
         </Border>
       </ControlTemplate>
