@@ -29,7 +29,7 @@
     </Setter>
 
     <Style Selector="^:not(ap|Icon.Fill)">
-      <Setter Property="Foreground" Value="{DynamicResource MH.B.White}"/>
+      <Setter Property="ap:Icon.Fill" Value="{DynamicResource MH.B.White}"/>
     </Style>
     <Style Selector="^:disabled">
       <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
