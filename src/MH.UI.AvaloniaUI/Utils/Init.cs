@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls.Templates;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 
 namespace MH.UI.AvaloniaUI.Utils;
 
@@ -20,11 +21,11 @@ public static class Init {
     MH.Utils.Imaging.GetBitmapHashPixels = Imaging.GetBitmapHashPixels;
     MH.Utils.Imaging.ResizeJpg = Imaging.ResizeJpg;
 
-    MH.UI.Controls.Dialog.Show = DialogHost.Show;
+    MH.UI.Controls.Dialog.Show = DialogHost.Show;*/
 
-    MH.Utils.Tasks.Dispatch = action => Application.Current.Dispatcher.Invoke(DispatcherPriority.Render, action);
+    MH.Utils.Tasks.Dispatch = action => Dispatcher.UIThread.Post(action, DispatcherPriority.Render);
 
-    CommandManager.RequerySuggested += RelayCommandBase.RaiseCanExecuteChanged;*/
+    //CommandManager.RequerySuggested += RelayCommandBase.RaiseCanExecuteChanged;
   }
 
   public static void LoadDataTemplates(DataTemplates dataTemplates) {
