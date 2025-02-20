@@ -43,5 +43,6 @@
   <StyleInclude Source="Icon.axaml"/>
 
   <StyleInclude Source="CatTreeView.axaml"/>
+  <StyleInclude Source="CollectionViewHost.axaml"/>
   <StyleInclude Source="TreeDataGridHost.axaml"/>
 </Styles>
