@@ -110,10 +110,11 @@
             BorderBrush="Black"
             Margin="1">
 
-            <!--<ContentPresenter
+            <ContentPresenter
+              DataContext="{Binding}"
               Content="{Binding}"
               ContentTemplate="{Binding RelativeSource={RelativeSource Self},
-                                Converter={x:Static conv:CollectionViewItemTemplateConverter.Inst}}"/>-->
+                                Converter={x:Static conv:CollectionViewItemTemplateConverter.Inst}}"/>
           </Border>
 
           <Border
