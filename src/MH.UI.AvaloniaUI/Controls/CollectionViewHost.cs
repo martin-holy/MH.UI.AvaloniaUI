@@ -1,6 +1,5 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using MH.UI.Interfaces;
 using MH.Utils.BaseClasses;
@@ -27,11 +26,6 @@ public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
   }
 
   public static RelayCommand<SizeChangedEventArgs> SetGroupWidthCommand { get; } = new(_setGroupWidth);
-
-  protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {
-    base.OnApplyTemplate(e);
-    DataTemplates.Add(new CollectionViewTemplateSelector());
-  }
 
   private static void _setGroupWidth(SizeChangedEventArgs? e) {
     if (e is { WidthChanged: true, Source: StyledElement { DataContext: ICollectionViewGroup group } }) {

@@ -15,7 +15,14 @@
       <ControlTheme
         x:Key="{x:Type c:CollectionViewHost}"
         TargetType="c:CollectionViewHost"
-        BasedOn="{StaticResource {x:Type c:TreeDataGridHost}}"/>
+        BasedOn="{StaticResource {x:Type c:TreeDataGridHost}}">
+
+        <Setter Property="SingleColumnTemplate">
+          <Setter.Value>
+            <c:CollectionViewTemplateSelector/>
+          </Setter.Value>
+        </Setter>
+      </ControlTheme>
 
       <TreeDataTemplate x:Key="MH.DT.CollectionViewGroup" ItemsSource="{Binding Items}" x:CompileBindings="False">
         <Border
