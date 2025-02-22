@@ -10,6 +10,16 @@
   xmlns:rd="clr-namespace:MH.UI.AvaloniaUI.Resources"
   xmlns:ubc="clr-namespace:MH.Utils.BaseClasses;assembly=MH.Utils">
 
+  <Style Selector="c|CollectionViewHost TreeDataGridExpanderCell">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Decorator Name="PART_Content"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <Styles.Resources>
     <ResourceDictionary>
       <ControlTheme
