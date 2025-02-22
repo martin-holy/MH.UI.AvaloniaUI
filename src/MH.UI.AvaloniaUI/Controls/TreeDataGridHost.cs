@@ -73,7 +73,7 @@ public class TreeDataGridHost : TreeDataGrid, UIC.ITreeViewHost {
     _source = new(ViewModel.RootHolder) {
       Columns = {
         new HierarchicalExpanderColumn<ITreeItem>(
-          new TemplateColumn<ITreeItem>(null, SingleColumnTemplate ?? _defaultSingleColumnTemplate),
+          new TemplateColumn<ITreeItem>(null, SingleColumnTemplate ?? _defaultSingleColumnTemplate, null, GridLength.Star),
           x => x.Items,
           null,
           x => x.IsExpanded)
