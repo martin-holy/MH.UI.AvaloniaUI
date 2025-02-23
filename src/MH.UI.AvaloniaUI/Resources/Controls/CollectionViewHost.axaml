@@ -20,6 +20,26 @@
     </Setter>
   </Style>
 
+  <Style Selector="c|CollectionViewHost TreeDataGridRow">
+    <Setter Property="Theme">
+      <Setter.Value>
+        <ControlTheme TargetType="TreeDataGridRow">
+          <Setter Property="Template">
+            <ControlTemplate>
+              <Border>
+                <TreeDataGridCellsPresenter
+                  Name="PART_CellsPresenter"
+                  ElementFactory="{TemplateBinding ElementFactory}"
+                  Items="{TemplateBinding Columns}"
+                  Rows="{TemplateBinding Rows}"/>
+              </Border>
+            </ControlTemplate>
+          </Setter>
+        </ControlTheme>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
   <Styles.Resources>
     <ResourceDictionary>
       <ControlTheme
