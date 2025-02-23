@@ -74,10 +74,10 @@
             ColumnDefinitions="Auto,Auto,Auto,Auto">
 
             <ToggleButton
-              x:Name="expander"
               Grid.Column="0"
               Theme="{DynamicResource MH.S.ToggleButton.TreeExpandCollapse}"
-              IsChecked="{Binding IsExpanded, Mode=TwoWay}"/>
+              IsChecked="{Binding IsExpanded, Mode=TwoWay}"
+              IsVisible="{Binding Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}"/>
 
             <!-- Menu -->
             <Menu
@@ -130,9 +130,6 @@
 
         <!--TODO PORT-->
         <!--<HierarchicalDataTemplate.Triggers>
-          <DataTrigger Binding="{Binding Items.Count}" Value="0">
-            <Setter TargetName="expander" Property="Visibility" Value="Hidden"/>
-          </DataTrigger>
           <DataTrigger Binding="{Binding View.ViewModesCommands.Length}" Value="1">
             <Setter TargetName="miView" Property="Visibility" Value="Collapsed"/>
           </DataTrigger>
