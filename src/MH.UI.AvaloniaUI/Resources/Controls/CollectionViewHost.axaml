@@ -99,7 +99,7 @@
                 <MenuItem Command="{Binding View.ShuffleCommand}" CommandParameter="{Binding}"/>
                 <MenuItem Command="{Binding View.SortCommand}" CommandParameter="{Binding}"/>
 
-                <MenuItem x:Name="miView" Header="View" ItemsSource="{Binding View.ViewModesCommands}">
+                <MenuItem Header="View" ItemsSource="{Binding View.ViewModesCommands}" IsVisible="{Binding View.HasMoreThanOneViewMode}">
                   <MenuItem.ItemContainerTheme>
                     <ControlTheme TargetType="MenuItem">
                       <Setter Property="Header" Value="{Binding Text}"/>
@@ -127,13 +127,6 @@
               FontSize="14"/>
           </Grid>
         </Border>
-
-        <!--TODO PORT-->
-        <!--<HierarchicalDataTemplate.Triggers>
-          <DataTrigger Binding="{Binding View.ViewModesCommands.Length}" Value="1">
-            <Setter TargetName="miView" Property="Visibility" Value="Collapsed"/>
-          </DataTrigger>
-        </HierarchicalDataTemplate.Triggers>-->
       </TreeDataTemplate>
 
       <DataTemplate x:Key="MH.DT.CollectionViewItem" DataType="{x:Type mhuInt:ISelectable}">
