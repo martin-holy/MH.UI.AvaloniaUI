@@ -26,11 +26,11 @@
         <ControlTheme TargetType="TreeDataGridRow">
           <Setter Property="Template">
             <ControlTemplate>
-                <TreeDataGridCellsPresenter
-                  Name="PART_CellsPresenter"
-                  ElementFactory="{TemplateBinding ElementFactory}"
-                  Items="{TemplateBinding Columns}"
-                  Rows="{TemplateBinding Rows}"/>
+              <TreeDataGridCellsPresenter
+                Name="PART_CellsPresenter"
+                ElementFactory="{TemplateBinding ElementFactory}"
+                Items="{TemplateBinding Columns}"
+                Rows="{TemplateBinding Rows}"/>
             </ControlTemplate>
           </Setter>
         </ControlTheme>
@@ -191,12 +191,12 @@
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
 
-          <!--<ItemsControl.ItemContainerTheme>
-            <ControlTheme TargetType="FrameworkElement">
+          <ItemsControl.ItemContainerTheme>
+            <ControlTheme TargetType="Control">
               <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource Self},
                 Converter={x:Static conv:CollectionViewItemSizeConverter.Inst}}"/>
             </ControlTheme>
-          </ItemsControl.ItemContainerTheme>-->
+          </ItemsControl.ItemContainerTheme>
         </ItemsControl>
       </DataTemplate>
     </ResourceDictionary>
