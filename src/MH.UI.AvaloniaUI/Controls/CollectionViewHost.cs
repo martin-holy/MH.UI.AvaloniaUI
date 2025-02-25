@@ -53,3 +53,17 @@ public class CollectionViewTemplateSelector : IDataTemplate {
   public bool Match(object? data) =>
     data is ICollectionViewGroup or ICollectionViewRow;
 }
+
+public class CollectionViewItemContainer : ContentControl {
+  public static readonly StyledProperty<IDataTemplate?> InnerContentTemplateProperty =
+    AvaloniaProperty.Register<CollectionViewItemContainer, IDataTemplate?>(nameof(InnerContentTemplate));
+
+  public IDataTemplate? InnerContentTemplate {
+    get => GetValue(InnerContentTemplateProperty);
+    set => SetValue(InnerContentTemplateProperty, value);
+  }
+
+  static CollectionViewItemContainer() {
+    AffectsRender<CollectionViewItemContainer>(InnerContentTemplateProperty);
+  }
+}
