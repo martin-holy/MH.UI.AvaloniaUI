@@ -1,14 +1,11 @@
 <Styles
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI"
   xmlns:uii="clr-namespace:MH.UI.Interfaces;assembly=MH.UI"
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
-  xmlns:u="clr-namespace:MH.UI.AvaloniaUI.Utils"
   xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters"
   xmlns:mhuInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils"
-  xmlns:rd="clr-namespace:MH.UI.AvaloniaUI.Resources"
-  xmlns:ubc="clr-namespace:MH.Utils.BaseClasses;assembly=MH.Utils">
+  xmlns:rd="clr-namespace:MH.UI.AvaloniaUI.Resources">
 
   <Style Selector="c|CollectionViewHost TreeDataGridExpanderCell">
     <Setter Property="Template">
@@ -127,53 +124,54 @@
         </Border>
       </TreeDataTemplate>
 
-      <DataTemplate x:Key="MH.DT.CollectionViewItem" DataType="{x:Type mhuInt:ISelectable}">
-        <Grid UseLayoutRounding="True">
-          <Border
-            x:Name="border"
-            BorderThickness="2"
-            BorderBrush="Black"
-            Margin="1">
+      <ControlTheme x:Key="{x:Type c:CollectionViewRowItemsControl}" TargetType="c:CollectionViewRowItemsControl">
+        <Setter Property="Template">
+          <ControlTemplate>
+            <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
+          </ControlTemplate>
+        </Setter>
+      </ControlTheme>
 
-            <ContentPresenter
-              DataContext="{Binding}"
-              Content="{Binding}"
-              ContentTemplate="{Binding RelativeSource={RelativeSource Self},
-                                Converter={x:Static conv:CollectionViewItemTemplateConverter.Inst}}"/>
-          </Border>
+      <ControlTheme x:Key="{x:Type c:CollectionViewItemContainer}" TargetType="c:CollectionViewItemContainer">
+        <Setter Property="Template">
+          <ControlTemplate>
+            <Grid UseLayoutRounding="True" x:CompileBindings="False">
+              <Border BorderThickness="2" BorderBrush="Black" Margin="1">
+                <ContentPresenter Content="{Binding}" ContentTemplate="{TemplateBinding InnerContentTemplate}"/>
+              </Border>
 
-          <Border
-            x:Name="selectionBorder"
-            BorderThickness="2"
-            BorderBrush="{DynamicResource MH.B.Accent}"
-            Margin="0"
-            Opacity="0"
-            Classes.visible="{Binding IsSelected}">
+              <Border
+                x:Name="selectionBorder"
+                BorderThickness="2"
+                BorderBrush="{DynamicResource MH.B.Accent}"
+                Margin="0"
+                Opacity="0"
+                Classes.visible="{Binding IsSelected}">
 
-            <Polygon
-              Width="40"
-              Height="40"
-              Points="0,40 40,40 40,0"
-              Stroke="Black"
-              StrokeThickness="1"
-              HorizontalAlignment="Right"
-              VerticalAlignment="Bottom"
-              Fill="{DynamicResource MH.B.Accent9}"/>
-          </Border>
+                <Polygon
+                  Width="40"
+                  Height="40"
+                  Points="0,40 40,40 40,0"
+                  Stroke="Black"
+                  StrokeThickness="1"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Bottom"
+                  Fill="{DynamicResource MH.B.Accent9}"/>
+              </Border>
 
-          <Grid.Styles>
-            <Style Selector="Border#selectionBorder.visible">
-              <Setter Property="Opacity" Value="100"/>
-            </Style>
-          </Grid.Styles>
-        </Grid>
-      </DataTemplate>
+              <Grid.Styles>
+                <Style Selector="Border#selectionBorder.visible">
+                  <Setter Property="Opacity" Value="100"/>
+                </Style>
+              </Grid.Styles>
+            </Grid>
+          </ControlTemplate>
+        </Setter>
+      </ControlTheme>
 
       <DataTemplate x:Key="MH.DT.CollectionViewRow" x:CompileBindings="False">
-        <ItemsControl
-          x:Name="ic"
+        <c:CollectionViewRowItemsControl
           ItemsSource="{Binding Leaves}"
-          ItemTemplate="{StaticResource MH.DT.CollectionViewItem}"
           MaxWidth="{Binding ((uii:ICollectionViewGroup)Parent).Width}">
 
           <!--<b:Interaction.Triggers>
@@ -190,14 +188,7 @@
               <StackPanel Orientation="Horizontal" Background="Transparent"/>
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
-
-          <ItemsControl.ItemContainerTheme>
-            <ControlTheme TargetType="Control">
-              <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource Self},
-                Converter={x:Static conv:CollectionViewItemSizeConverter.Inst}}"/>
-            </ControlTheme>
-          </ItemsControl.ItemContainerTheme>
-        </ItemsControl>
+        </c:CollectionViewRowItemsControl>
       </DataTemplate>
     </ResourceDictionary>
   </Styles.Resources>
