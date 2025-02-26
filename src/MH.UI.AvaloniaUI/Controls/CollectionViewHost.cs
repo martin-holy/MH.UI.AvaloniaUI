@@ -1,8 +1,12 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Markup.Xaml.Templates;
+using MH.UI.AvaloniaUI.Converters;
 using MH.UI.Interfaces;
 using MH.Utils.BaseClasses;
+using MH.Utils.Interfaces;
 using UIC = MH.UI.Controls;
 
 namespace MH.UI.AvaloniaUI.Controls;
@@ -65,5 +69,27 @@ public class CollectionViewItemContainer : ContentControl {
 
   static CollectionViewItemContainer() {
     AffectsRender<CollectionViewItemContainer>(InnerContentTemplateProperty);
+  }
+}
+
+public class CollectionViewRowItemsControl : ItemsControl {
+  private ICollectionViewGroup? _group;
+  private IDataTemplate? _innerItemTemplate;
+
+  protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {
+    base.OnApplyTemplate(e);
+    _group = (DataContext as ITreeItem)?.Parent as ICollectionViewGroup;
+    _innerItemTemplate = ResourceConverter.Inst.Convert(_group?.GetItemTemplateName(), null) as DataTemplate;
+  }
+
+  protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) {
+    var container = new CollectionViewItemContainer { InnerContentTemplate = _innerItemTemplate };
+
+    if (item != null && _group != null) {
+      container.Width = _group.GetItemSize(item, true);
+      container.Height = _group.GetItemSize(item, false);
+    }
+
+    return container;
   }
 }
