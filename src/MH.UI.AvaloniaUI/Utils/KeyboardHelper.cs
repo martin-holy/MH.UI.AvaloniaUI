@@ -16,8 +16,8 @@ public static class KeyboardHelper {
   }
 
   private static void _updateKeyModifiers(TopLevel o, KeyEventArgs e) {
-    IsCtrlOn = e.KeyModifiers == KeyModifiers.Control;
-    IsAltOn = e.KeyModifiers == KeyModifiers.Alt;
-    IsShiftOn = e.KeyModifiers == KeyModifiers.Shift;
+    IsCtrlOn = (e.KeyModifiers & KeyModifiers.Control) > 0;
+    IsAltOn = (e.KeyModifiers & KeyModifiers.Alt) > 0;
+    IsShiftOn = (e.KeyModifiers & KeyModifiers.Shift) > 0;
   }
 }
