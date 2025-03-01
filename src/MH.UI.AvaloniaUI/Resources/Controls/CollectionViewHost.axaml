@@ -178,16 +178,10 @@
             <EventTriggerBehavior EventName="DoubleTapped">
               <InvokeCommandAction Command="{x:Static c:CollectionViewHost.OpenItemCommand}" PassEventArgsToCommand="True"/>
             </EventTriggerBehavior>
+            <EventTriggerBehavior EventName="PointerReleased">
+              <InvokeCommandAction Command="{x:Static c:CollectionViewHost.SelectItemCommand}" PassEventArgsToCommand="True"/>
+            </EventTriggerBehavior>
           </Interaction.Behaviors>
-
-          <!--<b:Interaction.Triggers>
-            <b:EventTrigger EventName="PreviewMouseDoubleClick">
-              <b:InvokeCommandAction Command="c:CollectionViewHost.OpenItemCommand" PassEventArgsToCommand="True"/>
-            </b:EventTrigger>
-            <b:EventTrigger EventName="PreviewMouseUp">
-              <b:InvokeCommandAction Command="c:CollectionViewHost.SelectItemCommand" PassEventArgsToCommand="True"/>
-            </b:EventTrigger>
-          </b:Interaction.Triggers>-->
 
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>

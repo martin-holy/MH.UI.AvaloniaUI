@@ -2,7 +2,9 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml.Templates;
+using Avalonia.VisualTree;
 using MH.UI.AvaloniaUI.Converters;
 using MH.UI.Interfaces;
 using MH.Utils.BaseClasses;
@@ -33,6 +35,7 @@ public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
   }
 
   public static RelayCommand<TappedEventArgs> OpenItemCommand { get; } = new(_openItem);
+  public static RelayCommand<PointerReleasedEventArgs> SelectItemCommand { get; } = new(_selectItem);
   public static RelayCommand<SizeChangedEventArgs> SetGroupWidthCommand { get; } = new(_setGroupWidth);
 
   private static void _openItem(TappedEventArgs? e) {
@@ -45,6 +48,38 @@ public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
     ViewModel?.OpenItem(item);
     _openTime = (DateTime.Now - startTime).TotalMilliseconds;
   }
+
+  private static void _selectItem(PointerReleasedEventArgs? e) {
+    if ((e?.Source as Control)?.FindAncestorOfType<CollectionViewHost>() is not { ViewModel.CanOpen: true } cv
+        || cv._doubleClicking()) return;
+
+    var item = _getDataContext(e.Source);
+    var row = (e.Source as Control)?.FindAncestorOfType<CollectionViewRowItemsControl>()?.DataContext;
+    var btn = e.Source as Button ?? (e.Source as Control)?.FindAncestorOfType<Button>();
+
+    if (item == null || row == null || btn != null) return;
+
+    bool isCtrlOn;
+    bool isShiftOn;
+
+    if (e.GetCurrentPoint(null).Properties.PointerUpdateKind != PointerUpdateKind.LeftButtonReleased) {
+      isCtrlOn = true;
+      isShiftOn = false;
+    }
+    else {
+      isCtrlOn = (e.KeyModifiers & KeyModifiers.Control) > 0;
+      isShiftOn = (e.KeyModifiers & KeyModifiers.Shift) > 0;
+    }
+
+    cv.ViewModel.SelectItem(row, item, isCtrlOn, isShiftOn);
+  }
+
+  private bool _doubleClicking() {
+    var sinceLastClick = (DateTime.Now - _lastClickTime).TotalMilliseconds;
+    _lastClickTime = DateTime.Now;
+    return sinceLastClick - _openTime < 300;
+  }
+
   // TODO PORT
   private static object? _getDataContext(object source) =>
     (source as Control)?.DataContext;
