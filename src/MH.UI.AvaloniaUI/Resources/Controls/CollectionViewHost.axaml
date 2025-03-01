@@ -174,6 +174,12 @@
           ItemsSource="{Binding Leaves}"
           MaxWidth="{Binding ((uii:ICollectionViewGroup)Parent).Width}">
 
+          <Interaction.Behaviors>
+            <EventTriggerBehavior EventName="DoubleTapped">
+              <InvokeCommandAction Command="{x:Static c:CollectionViewHost.OpenItemCommand}" PassEventArgsToCommand="True"/>
+            </EventTriggerBehavior>
+          </Interaction.Behaviors>
+
           <!--<b:Interaction.Triggers>
             <b:EventTrigger EventName="PreviewMouseDoubleClick">
               <b:InvokeCommandAction Command="c:CollectionViewHost.OpenItemCommand" PassEventArgsToCommand="True"/>

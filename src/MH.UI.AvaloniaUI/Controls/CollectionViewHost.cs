@@ -12,6 +12,9 @@ using UIC = MH.UI.Controls;
 namespace MH.UI.AvaloniaUI.Controls;
 
 public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
+  private double _openTime;
+  private DateTime _lastClickTime = DateTime.Now;
+
   public new static readonly StyledProperty<UIC.TreeView?> ViewModelProperty =
     AvaloniaProperty.Register<CollectionViewHost, UIC.TreeView?>(nameof(ViewModel));
 
@@ -29,7 +32,22 @@ public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
     ViewModelProperty.Changed.AddClassHandler<CollectionViewHost>(_onViewModelChanged);
   }
 
+  public static RelayCommand<TappedEventArgs> OpenItemCommand { get; } = new(_openItem);
   public static RelayCommand<SizeChangedEventArgs> SetGroupWidthCommand { get; } = new(_setGroupWidth);
+
+  private static void _openItem(TappedEventArgs? e) {
+    if ((e?.Source as Control)?.FindAncestorOfType<CollectionViewHost>() is not { ViewModel.CanOpen: true } cv) return;
+    cv._openItem(_getDataContext(e.Source));
+  }
+
+  private void _openItem(object? item) {
+    var startTime = DateTime.Now;
+    ViewModel?.OpenItem(item);
+    _openTime = (DateTime.Now - startTime).TotalMilliseconds;
+  }
+  // TODO PORT
+  private static object? _getDataContext(object source) =>
+    (source as Control)?.DataContext;
 
   private static void _setGroupWidth(SizeChangedEventArgs? e) {
     if (e is { WidthChanged: true, Source: StyledElement { DataContext: ICollectionViewGroup group } }) {
