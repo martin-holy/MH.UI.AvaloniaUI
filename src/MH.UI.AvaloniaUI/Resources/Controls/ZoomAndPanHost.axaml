@@ -1,0 +1,35 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls">
+
+  <ControlTheme x:Key="{x:Type c:ZoomAndPanHost}" TargetType="c:ZoomAndPanHost">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="c:ZoomAndPanHost">
+          <Canvas x:Name="PART_Canvas">
+            <ContentPresenter
+              x:Name="PART_Content"
+              Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+              RenderTransformOrigin="0,0"
+              Width="{Binding ViewModel.ContentWidth, RelativeSource={RelativeSource TemplatedParent}}"
+              Height="{Binding ViewModel.ContentHeight, RelativeSource={RelativeSource TemplatedParent}}">
+
+              <ContentPresenter.RenderTransform>
+                <TransformGroup>
+                  <ScaleTransform
+                    ScaleX="{Binding ViewModel.ScaleX, RelativeSource={RelativeSource TemplatedParent}}"
+                    ScaleY="{Binding ViewModel.ScaleY, RelativeSource={RelativeSource TemplatedParent}}"/>
+
+                  <TranslateTransform
+                    X="{Binding ViewModel.TransformX, RelativeSource={RelativeSource TemplatedParent}}"
+                    Y="{Binding ViewModel.TransformY, RelativeSource={RelativeSource TemplatedParent}}"/>
+                </TransformGroup>
+              </ContentPresenter.RenderTransform>
+            </ContentPresenter>
+          </Canvas>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>
