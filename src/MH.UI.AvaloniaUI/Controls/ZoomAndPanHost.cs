@@ -82,5 +82,5 @@ public class ZoomAndPanHost : ContentControl, UIC.IZoomAndPanHost {
   }
 
   private void _onContentPointerWheel(object? sender, PointerWheelEventArgs e) =>
-    HostMouseWheelEvent?.Invoke(this, ((int)e.Delta.Length, e.GetPosition(_content).ToPointD()));
+    HostMouseWheelEvent?.Invoke(this, ((int)e.Delta.Y, e.GetPosition(_content).ToPointD()));
 }
