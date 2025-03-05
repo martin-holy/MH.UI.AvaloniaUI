@@ -22,6 +22,7 @@ public class ZoomAndPanHost : ContentControl, UIC.IZoomAndPanHost {
   }
 
   static ZoomAndPanHost() {
+    BoundsProperty.Changed.AddClassHandler<ZoomAndPanHost>(_onBoundsChanged);
     ViewModelProperty.Changed.AddClassHandler<ZoomAndPanHost>(_onViewModelChanged);
   }
 
@@ -38,7 +39,6 @@ public class ZoomAndPanHost : ContentControl, UIC.IZoomAndPanHost {
     base.OnApplyTemplate(e);
 
     _canvas = e.NameScope.Find<Canvas>("PART_Canvas")!;
-    _canvas.SizeChanged += _onCanvasSizeChanged;
     _canvas.PointerMoved += _onCanvasPointerMoved;
 
     _content = e.NameScope.Find<Control>("PART_Content")!;
@@ -56,7 +56,10 @@ public class ZoomAndPanHost : ContentControl, UIC.IZoomAndPanHost {
     throw new NotImplementedException();
   }
 
-  private void _onCanvasSizeChanged(object? sender, SizeChangedEventArgs e) =>
+  private static void _onBoundsChanged(ZoomAndPanHost o, AvaloniaPropertyChangedEventArgs e) =>
+    o._raiseHostSizeChanged();
+
+  private void _raiseHostSizeChanged() =>
     HostSizeChangedEvent?.Invoke(this, EventArgs.Empty);
 
   private void _onCanvasPointerMoved(object? sender, PointerEventArgs e) {
