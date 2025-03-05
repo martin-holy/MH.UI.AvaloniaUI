@@ -68,9 +68,9 @@ public class ZoomAndPanHost : ContentControl, UIC.IZoomAndPanHost {
   }
 
   private void _onContentPointerPressed(object? sender, PointerPressedEventArgs e) {
-    var point = e.GetCurrentPoint(_canvas);
-    if (!point.Properties.IsLeftButtonPressed) return;
-    HostMouseDownEvent?.Invoke(this, new(point.Position.ToPointD(), point.Position.ToPointD()));
+    var canvasPoint = e.GetCurrentPoint(_canvas);
+    if (!canvasPoint.Properties.IsLeftButtonPressed) return;
+    HostMouseDownEvent?.Invoke(this, new(canvasPoint.Position.ToPointD(), e.GetPosition(_content).ToPointD()));
     _canvas.Cursor = new(StandardCursorType.Hand);
     e.Pointer.Capture(_content);
   }
