@@ -55,3 +55,17 @@ public class SlidePanelHost : ContentControl {
   }
 }
 ```
+
+```
+<Style Selector="TickBar">
+  <Setter Property="ReservedSpace" Value="{Binding #PART_Track.Thumb.Bounds}"/>
+</Style>
+
+DockPanel.Dock="{Binding $parent[TabControl].((uic:TabControl)DataContext).TabStrip.SlotPlacement, Converter={x:Static conv:DockConverter.Inst}}"
+
+IsVisible="{Binding $parent[ToggleButton].IsChecked}"
+
+Content="{Binding Path=(ap:Slot.TopContent), RelativeSource={RelativeSource TemplatedParent}}"
+
+{Binding IsExpanded, DataType=uInt:ITreeItem}
+```
