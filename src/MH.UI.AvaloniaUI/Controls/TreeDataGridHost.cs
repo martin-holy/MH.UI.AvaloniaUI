@@ -3,7 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Models.TreeDataGrid;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Selection;
 using Avalonia.Controls.Templates;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
@@ -47,6 +46,8 @@ public class TreeDataGridHost : TreeDataGrid, UIC.ITreeViewHost {
       _sv.ScrollChanged += _onScrollChanged;
       _raiseHostIsVisibleChanged(_sv.IsVisible);
     }
+
+    SelectionChanging += (_, se) => se.Cancel = true;
     
     _setItemsSource();
   }
@@ -67,9 +68,6 @@ public class TreeDataGridHost : TreeDataGrid, UIC.ITreeViewHost {
       root.IsExpanded = false;
     }
 
-    if (_source?.RowSelection != null)
-      _source.RowSelection.SelectionChanged -= _onRowSelectionChanged;
-
     _source = new(ViewModel.RootHolder) {
       Columns = {
         new HierarchicalExpanderColumn<ITreeItem>(
@@ -80,17 +78,9 @@ public class TreeDataGridHost : TreeDataGrid, UIC.ITreeViewHost {
       }
     };
 
-    if (_source?.RowSelection != null)
-      _source.RowSelection.SelectionChanged += _onRowSelectionChanged;
-
     Source = _source;
 
     if (expand) ExpandRootWhenReady(root!);
-  }
-
-  private void _onRowSelectionChanged(object? sender, TreeSelectionModelSelectionChangedEventArgs<ITreeItem> e) {
-    if (e.SelectedItems.Count > 0 && e.SelectedItems[0] is { } item)
-      ViewModel?.SelectItemCommand.Execute(item);
   }
 
   public void ScrollToTop() {
