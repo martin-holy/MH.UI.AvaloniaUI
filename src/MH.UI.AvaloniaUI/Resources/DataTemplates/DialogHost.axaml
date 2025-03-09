@@ -1,0 +1,71 @@
+<DataTemplates
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
+  xmlns:uic="clr-namespace:MH.UI.Controls;assembly=MH.UI"
+  xmlns:rd="clr-namespace:MH.UI.AvaloniaUI.Resources"
+  xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters">
+
+  <DataTemplate DataType="{x:Type c:DialogHost}">
+    <Grid x:Name="root" RowDefinitions="30,*,Auto">
+      <Grid.KeyBindings>
+        <KeyBinding
+          Gesture="Escape"
+          Command="{x:Static uic:Dialog.CloseCommand}"
+          CommandParameter="{Binding #root.((c:DialogHost)DataContext).Content}"/>
+      </Grid.KeyBindings>
+
+      <Grid Grid.Row="0" Background="{DynamicResource MH.B.Black2}" ColumnDefinitions="Auto,*,Auto">
+        <PathIcon
+          Grid.Column="0"
+          Classes="shadow"
+          Margin="4,0,6,2"
+          Data="{Binding ((uic:Dialog)Content).Icon,
+                 Converter={x:Static conv:ResourceConverter.Inst}}"
+          Foreground="{Binding ((uic:Dialog)Content).Icon,
+                       Converter={x:Static conv:ResourceConverter.Inst},
+                       ConverterParameter={x:Static rd:Dictionaries.IconToBrush}}"/>
+
+        <TextBlock
+          Grid.Column="1"
+          Text="{Binding ((uic:Dialog)Content).Title}"
+          VerticalAlignment="Center"
+          Background="Transparent"
+          c:CustomWindow.IsDragAreaFor="{Binding RelativeSource={RelativeSource AncestorType={x:Type c:CustomWindow}}}"/>
+
+        <Button
+          Grid.Column="2"
+          ToolTip.Tip="Close"
+          Content="&#xE106;"
+          Theme="{DynamicResource MH.S.Button.Window.Close}"
+          Command="{x:Static uic:Dialog.CloseCommand}"
+          CommandParameter="{Binding #root.((c:DialogHost)DataContext).Content}"/>
+      </Grid>
+
+      <!--TODO PORT ContentTemplateSelector-->
+      <ContentPresenter
+        Grid.Row="1"
+        DataContext="{Binding Content}"
+        Content="{Binding}"/>
+
+      <ItemsControl Grid.Row="2" ItemsSource="{Binding Content.Buttons}" Focusable="False">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5"/>
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+
+        <ItemsControl.ItemTemplate>
+          <DataTemplate DataType="uic:DialogButton">
+            <!--TODO PORT CommandParameter-->
+            <Button
+              IsDefault="{Binding IsDefault}"
+              IsCancel="{Binding IsCancel}"
+              Command="{Binding Command}"
+              TabIndex="99"/>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </Grid>
+  </DataTemplate>
+</DataTemplates>
