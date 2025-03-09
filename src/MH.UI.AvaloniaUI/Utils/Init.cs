@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls.Templates;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
+using MH.UI.AvaloniaUI.Controls;
 
 namespace MH.UI.AvaloniaUI.Utils;
 
@@ -19,9 +20,9 @@ public static class Init {
     /*MH.Utils.Clipboard.SetText = Clipboard.SetText;
 
     MH.Utils.Imaging.GetBitmapHashPixels = Imaging.GetBitmapHashPixels;
-    MH.Utils.Imaging.ResizeJpg = Imaging.ResizeJpg;
+    MH.Utils.Imaging.ResizeJpg = Imaging.ResizeJpg;*/
 
-    MH.UI.Controls.Dialog.Show = DialogHost.Show;*/
+    MH.UI.Controls.Dialog.Show = DialogHost.Show;
 
     MH.Utils.Tasks.Dispatch = action => Dispatcher.UIThread.Post(action, DispatcherPriority.Render);
 
@@ -30,6 +31,7 @@ public static class Init {
 
   public static void LoadDataTemplates(DataTemplates dataTemplates) {
     var files = new[] {
+      "DialogHost.axaml",
       "SlidePanelPinButton.axaml"
     };
 
