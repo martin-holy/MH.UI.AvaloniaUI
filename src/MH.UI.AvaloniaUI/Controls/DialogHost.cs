@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Threading;
 using MH.UI.Controls;
 using MH.Utils.BaseClasses;
 using MH.Utils.Extensions;
@@ -33,10 +34,19 @@ public class DialogHost : ObservableObject {
     var dh = new DialogHost(content);
     var owner = _getOwner();
 
-    if (owner == null)
+    if (owner == null) {
       dh.Window.Show();
-    else
-      dh.Window.ShowDialog(owner).GetAwaiter().GetResult();
+      return content.Result;
+    }
+
+    // TODO PORT this works only on desktop
+    var task = dh.Window.ShowDialog(owner);
+    if (!task.IsCompleted) {
+      var frame = new DispatcherFrame();
+      task.ContinueWith(static (_, s) => ((DispatcherFrame)s).Continue = false, frame);
+      Dispatcher.UIThread.PushFrame(frame);
+    }
+    task.GetAwaiter().GetResult();
 
     return content.Result;
   }
