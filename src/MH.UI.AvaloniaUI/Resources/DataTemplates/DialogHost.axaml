@@ -57,11 +57,11 @@
 
         <ItemsControl.ItemTemplate>
           <DataTemplate DataType="uic:DialogButton">
-            <!--TODO PORT CommandParameter-->
             <Button
               IsDefault="{Binding IsDefault}"
               IsCancel="{Binding IsCancel}"
               Command="{Binding Command}"
+              CommandParameter="{Binding ((c:DialogHost)DataContext).Content, RelativeSource={RelativeSource AncestorType=Grid}}"
               TabIndex="99"/>
           </DataTemplate>
         </ItemsControl.ItemTemplate>
