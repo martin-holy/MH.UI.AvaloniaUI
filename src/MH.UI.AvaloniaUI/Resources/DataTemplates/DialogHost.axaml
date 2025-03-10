@@ -12,7 +12,7 @@
         <KeyBinding
           Gesture="Escape"
           Command="{x:Static uic:Dialog.CloseCommand}"
-          CommandParameter="{Binding #root.((c:DialogHost)DataContext).Content}"/>
+          CommandParameter="{Binding Content}"/>
       </Grid.KeyBindings>
 
       <Grid Grid.Row="0" Background="{DynamicResource MH.B.Black2}" ColumnDefinitions="Auto,*,Auto">
