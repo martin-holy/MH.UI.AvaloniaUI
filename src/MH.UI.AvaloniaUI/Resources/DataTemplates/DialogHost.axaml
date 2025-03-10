@@ -7,12 +7,12 @@
   xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters">
 
   <DataTemplate DataType="{x:Type c:DialogHost}">
-    <Grid x:Name="root" RowDefinitions="30,*,Auto">
+    <Grid RowDefinitions="30,*,Auto" DataContext="{Binding Content}">
       <Grid.KeyBindings>
         <KeyBinding
           Gesture="Escape"
           Command="{x:Static uic:Dialog.CloseCommand}"
-          CommandParameter="{Binding Content}"/>
+          CommandParameter="{Binding}"/>
       </Grid.KeyBindings>
 
       <Grid Grid.Row="0" Background="{DynamicResource MH.B.Black2}" ColumnDefinitions="Auto,*,Auto">
@@ -20,15 +20,15 @@
           Grid.Column="0"
           Classes="shadow"
           Margin="4,0,6,2"
-          Data="{Binding ((uic:Dialog)Content).Icon,
+          Data="{Binding Icon,
                  Converter={x:Static conv:ResourceConverter.Inst}}"
-          Foreground="{Binding ((uic:Dialog)Content).Icon,
+          Foreground="{Binding Icon,
                        Converter={x:Static conv:ResourceConverter.Inst},
                        ConverterParameter={x:Static rd:Dictionaries.IconToBrush}}"/>
 
         <TextBlock
           Grid.Column="1"
-          Text="{Binding ((uic:Dialog)Content).Title}"
+          Text="{Binding Title}"
           VerticalAlignment="Center"
           Background="Transparent"
           c:CustomWindow.IsDragAreaFor="{Binding RelativeSource={RelativeSource AncestorType={x:Type c:CustomWindow}}}"/>
@@ -39,16 +39,16 @@
           Content="&#xE106;"
           Theme="{DynamicResource MH.S.Button.Window.Close}"
           Command="{x:Static uic:Dialog.CloseCommand}"
-          CommandParameter="{Binding #root.((c:DialogHost)DataContext).Content}"/>
+          CommandParameter="{Binding}"/>
       </Grid>
 
       <ContentPresenter
         Grid.Row="1"
-        DataContext="{Binding Content}"
+        DataContext="{Binding}"
         Content="{Binding}"
         ContentTemplate="{x:Static c:DialogHost.ContentTemplateSelector}"/>
 
-      <ItemsControl Grid.Row="2" ItemsSource="{Binding Content.Buttons}" Focusable="False">
+      <ItemsControl Grid.Row="2" ItemsSource="{Binding Buttons}" Focusable="False">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5"/>
@@ -61,7 +61,7 @@
               IsDefault="{Binding IsDefault}"
               IsCancel="{Binding IsCancel}"
               Command="{Binding Command}"
-              CommandParameter="{Binding ((c:DialogHost)DataContext).Content, RelativeSource={RelativeSource AncestorType=Grid}}"
+              CommandParameter="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Grid}}"
               TabIndex="99"/>
           </DataTemplate>
         </ItemsControl.ItemTemplate>
