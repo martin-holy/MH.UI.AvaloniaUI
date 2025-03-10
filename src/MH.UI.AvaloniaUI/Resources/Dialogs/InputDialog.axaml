@@ -1,0 +1,50 @@
+<DataTemplates
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:rd="clr-namespace:MH.UI.AvaloniaUI.Resources"
+  xmlns:dlg="clr-namespace:MH.UI.Dialogs;assembly=MH.UI"
+  xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters">
+
+  <DataTemplate DataType="{x:Type dlg:InputDialog}">
+    <Grid
+      VerticalAlignment="Center"
+      MinWidth="300"
+      Margin="0,10,0,10"
+      RowDefinitions="Auto,Auto"
+      ColumnDefinitions="Auto,*">
+
+      <PathIcon
+        Grid.RowSpan="2"
+        Classes="shadow"
+        Data="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst}}"
+        Foreground="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst},
+                     ConverterParameter={x:Static rd:Dictionaries.IconToBrush}}"
+        Width="32"
+        Height="32"
+        HorizontalAlignment="Center"
+        Margin="10"/>
+
+      <TextBlock
+        Grid.Row="0"
+        Grid.Column="1"
+        Text="{Binding Message}"
+        VerticalAlignment="Center"
+        Margin="5"/>
+
+      <!--TODO PORT KeyboardFocus.On-->
+      <TextBox
+        Grid.Row="1"
+        Grid.Column="1"
+        Margin="5,5,10,5"
+        Text="{Binding Answer, UpdateSourceTrigger=PropertyChanged}"
+        ToolTip.Tip="{Binding ErrorMessage}"
+        Classes.error="{Binding Error}"/>
+
+      <Grid.Styles>
+        <Style Selector="TextBox.error">
+          <Setter Property="Background" Value="#7FFF0000"/>
+        </Style>
+      </Grid.Styles>
+    </Grid>
+  </DataTemplate>
+</DataTemplates>

@@ -31,12 +31,13 @@ public static class Init {
 
   public static void LoadDataTemplates(DataTemplates dataTemplates) {
     var files = new[] {
-      "DialogHost.axaml",
-      "SlidePanelPinButton.axaml"
+      "DataTemplates/DialogHost.axaml",
+      "DataTemplates/SlidePanelPinButton.axaml",
+      "Dialogs/InputDialog.axaml"
     };
 
     foreach (var file in files) {
-      var uri = new Uri($"avares://MH.UI.AvaloniaUI/Resources/DataTemplates/{file}");
+      var uri = new Uri($"avares://MH.UI.AvaloniaUI/Resources/{file}");
       if (AvaloniaXamlLoader.Load(uri) is DataTemplates dts)
         dataTemplates.AddRange(dts);
     }
