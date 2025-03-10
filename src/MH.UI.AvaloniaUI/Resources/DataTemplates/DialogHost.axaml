@@ -42,11 +42,11 @@
           CommandParameter="{Binding #root.((c:DialogHost)DataContext).Content}"/>
       </Grid>
 
-      <!--TODO PORT ContentTemplateSelector-->
       <ContentPresenter
         Grid.Row="1"
         DataContext="{Binding Content}"
-        Content="{Binding}"/>
+        Content="{Binding}"
+        ContentTemplate="{x:Static c:DialogHost.ContentTemplateSelector}"/>
 
       <ItemsControl Grid.Row="2" ItemsSource="{Binding Content.Buttons}" Focusable="False">
         <ItemsControl.ItemsPanel>

@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Templates;
 using Avalonia.Threading;
 using MH.UI.Controls;
 using MH.Utils.BaseClasses;
@@ -12,6 +13,7 @@ namespace MH.UI.AvaloniaUI.Controls;
 public class DialogHost : ObservableObject {
   public Dialog Content { get; }
   public CustomWindow Window { get; }
+  public static IDataTemplate? ContentTemplateSelector { get; set; }
 
   private DialogHost(Dialog content) {
     Content = content;
