@@ -1,0 +1,26 @@
+<DataTemplates
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:rd="clr-namespace:MH.UI.AvaloniaUI.Resources"
+  xmlns:dlg="clr-namespace:MH.UI.Dialogs;assembly=MH.UI"
+  xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters">
+
+  <DataTemplate DataType="{x:Type dlg:MessageDialog}">
+    <DockPanel MinWidth="300" Margin="0,10,0,10">
+      <PathIcon
+        DockPanel.Dock="Left"
+        Classes="shadow"
+        Width="32"
+        Height="32"
+        Margin="10"
+        Data="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst}}"
+        Foreground="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst},
+                     ConverterParameter={x:Static rd:Dictionaries.IconToBrush}}"/>
+
+      <TextBlock
+        Text="{Binding Message}"
+        VerticalAlignment="Center"
+        Margin="5,5,10,5"/>
+    </DockPanel>
+  </DataTemplate>
+</DataTemplates>

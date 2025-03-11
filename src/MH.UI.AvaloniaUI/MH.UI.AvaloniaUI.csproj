@@ -18,6 +18,7 @@
     <AvaloniaResource Include="Resources\DataTemplates\DialogHost.axaml" />
     <AvaloniaResource Include="Resources\DataTemplates\SlidePanelPinButton.axaml" />
     <AvaloniaResource Include="Resources\Dialogs\InputDialog.axaml" />
+    <AvaloniaResource Include="Resources\Dialogs\MessageDialog.axaml" />
   </ItemGroup>
 
   <ItemGroup>

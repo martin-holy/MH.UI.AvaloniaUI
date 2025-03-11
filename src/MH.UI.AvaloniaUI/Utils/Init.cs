@@ -33,7 +33,8 @@ public static class Init {
     var files = new[] {
       "DataTemplates/DialogHost.axaml",
       "DataTemplates/SlidePanelPinButton.axaml",
-      "Dialogs/InputDialog.axaml"
+      "Dialogs/InputDialog.axaml",
+      "Dialogs/MessageDialog.axaml"
     };
 
     foreach (var file in files) {
