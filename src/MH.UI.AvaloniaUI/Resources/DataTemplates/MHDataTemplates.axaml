@@ -3,8 +3,9 @@
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceInclude Source="CustomWindowButtons.axaml"/>
-    <ResourceInclude Source="../Dialogs/GroupByDialog.axaml"/>
     <ResourceInclude Source="IListItem.axaml"/>
     <ResourceInclude Source="TextBlock.axaml"/>
+    <ResourceInclude Source="../Dialogs/GroupByDialog.axaml"/>
+    <ResourceInclude Source="../Dialogs/ProgressDialog.axaml"/>
   </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
