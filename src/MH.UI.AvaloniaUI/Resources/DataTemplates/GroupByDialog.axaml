@@ -1,0 +1,42 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
+  xmlns:ubc="clr-namespace:MH.Utils.BaseClasses;assembly=MH.Utils">
+
+  <DataTemplate x:Key="MH.UI.Dialogs.GroupByDialog`1" x:CompileBindings="False">
+    <Grid RowDefinitions="300,Auto,Auto">
+      <Grid.Resources>
+        <TreeDataTemplate x:Key="DialogTreeItem" DataType="{x:Type ubc:TreeItem}" ItemsSource="{Binding Items}">
+          <ContentPresenter
+            DataContext="{Binding Data}"
+            Content="{Binding}"
+            ContentTemplate="{x:Static c:CollectionViewHost.GroupByDialogDataTemplateSelector}"
+            HorizontalAlignment="Left"/>
+        </TreeDataTemplate>
+      </Grid.Resources>
+
+      <c:TreeDataGridHost
+        ViewModel="{Binding TreeView}"
+        SingleColumnTemplate="{StaticResource DialogTreeItem}"/>
+      
+      <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <RadioButton
+          IsChecked="{Binding IsGroupBy}"
+          Content="Group by"
+          Margin="5"/>
+
+        <RadioButton
+          IsChecked="{Binding IsThenBy}"
+          Content="Group by - Then by"
+          Margin="5"/>
+      </StackPanel>
+
+      <CheckBox
+        Grid.Row="2"
+        IsChecked="{Binding IsRecursive}"
+        Content="Group recursive"
+        Margin="5"/>
+    </Grid>
+  </DataTemplate>
+</ResourceDictionary>
