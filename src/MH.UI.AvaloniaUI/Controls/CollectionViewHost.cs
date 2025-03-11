@@ -17,6 +17,8 @@ public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
   private double _openTime;
   private DateTime _lastClickTime = DateTime.Now;
 
+  public static IDataTemplate? GroupByDialogDataTemplateSelector { get; set; }
+
   public new static readonly StyledProperty<UIC.TreeView?> ViewModelProperty =
     AvaloniaProperty.Register<CollectionViewHost, UIC.TreeView?>(nameof(ViewModel));
 
