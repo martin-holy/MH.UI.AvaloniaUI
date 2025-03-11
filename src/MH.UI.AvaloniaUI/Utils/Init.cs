@@ -34,7 +34,8 @@ public static class Init {
       "DataTemplates/DialogHost.axaml",
       "DataTemplates/SlidePanelPinButton.axaml",
       "Dialogs/InputDialog.axaml",
-      "Dialogs/MessageDialog.axaml"
+      "Dialogs/MessageDialog.axaml",
+      "Dialogs/ToggleDialog.axaml"
     };
 
     foreach (var file in files) {
