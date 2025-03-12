@@ -69,3 +69,9 @@ Content="{Binding Path=(ap:Slot.TopContent), RelativeSource={RelativeSource Temp
 
 {Binding IsExpanded, DataType=uInt:ITreeItem}
 ```
+
+popup.AddHandler(PointerReleasedEvent, _onPopupPointerReleased, RoutingStrategies.Tunnel);
+
+protected override void OnAttachedToVisualTree(CompositeDisposable disposable) {
+  disposable.Add(control.AddDisposableHandler(InputElement.PointerReleasedEvent, _onPointerReleased, EventRoutingStrategy));
+}
