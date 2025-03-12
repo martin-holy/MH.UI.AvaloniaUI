@@ -7,23 +7,10 @@
 
   <!--TODO PORT-->
   <DataTemplate DataType="{x:Type vmc:SlidersVM}">
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-      </Grid.RowDefinitions>
-
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-      </Grid.ColumnDefinitions>
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" ColumnDefinitions="*,*,*">
 
       <!--Popup-->
-      <!--<mhc:PopupSlider
+      <mhc:PopupSlider
         Grid.Row="0"
         Grid.Column="0"
         Grid.ColumnSpan="3"
@@ -35,11 +22,11 @@
         Value="{Binding PopupSliderValue, Mode=TwoWay}">
         <mhc:PopupSlider.Content>
           <mhc:IconTextButton
-            ToolTip="Image scale"
+            ToolTip.Tip="Image scale"
             ap:Icon.Data="{StaticResource IconImage}"
             ap:Text.Text="{Binding PopupSliderValue, StringFormat={}{0:G2}}"/>
         </mhc:PopupSlider.Content>
-      </mhc:PopupSlider>-->
+      </mhc:PopupSlider>
 
       <!--Horizontal-->
       <Slider
@@ -52,16 +39,14 @@
         TickPlacement="BottomRight"
         TickFrequency="1"/>
 
-      <!--<Slider
+      <Slider
         Grid.Row="2"
         Grid.Column="0"
         Grid.ColumnSpan="3"
         Value="6"
-        Margin="0,5"
-        TickPlacement="Both"
-        IsSelectionRangeEnabled="True"/>
+        Margin="0,5"/>
 
-      <mhc:RangeSlider
+      <!--<mhc:RangeSlider
         Grid.Row="3"
         Grid.Column="0"
         Grid.ColumnSpan="3"
@@ -69,15 +54,13 @@
         TickFrequency="0.1"/>-->
 
       <!--Vertical-->
-      <!--<Slider
+      <Slider
         Grid.Row="4"
         Grid.Column="0"
         Orientation="Vertical"
         Value="3"
         Margin="5,0"
-        TickPlacement="Both"
-        IsSelectionRangeEnabled="True"
-        HorizontalAlignment="Center"/>-->
+        HorizontalAlignment="Center"/>
 
       <Slider
         Grid.Row="4"
