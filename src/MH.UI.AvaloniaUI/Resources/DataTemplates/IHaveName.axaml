@@ -1,0 +1,11 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mhuInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils">
+
+  <DataTemplate x:Key="MH.T.IHaveName.Border.RoundDarker" DataType="{x:Type mhuInt:IHaveName}">
+    <Border Classes="round darker">
+      <TextBlock Text="{Binding Name}"/>
+    </Border>
+  </DataTemplate>
+</ResourceDictionary>
