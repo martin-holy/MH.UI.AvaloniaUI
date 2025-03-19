@@ -130,14 +130,20 @@ public class CollectionViewItemContainer : ContentControl {
 public class CollectionViewRowItemsControl : ItemsControl {
   private ICollectionViewGroup? _group;
   private IDataTemplate? _innerItemTemplate;
+  private string? _innerItemTemplateKey;
 
   protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {
     base.OnApplyTemplate(e);
     _group = (DataContext as ITreeItem)?.Parent as ICollectionViewGroup;
-    _innerItemTemplate = ResourceConverter.Inst.Convert(_group?.GetItemTemplateName(), null) as DataTemplate;
   }
 
   protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) {
+    var templateKey = _group?.GetItemTemplateName();
+    if (!string.Equals(_innerItemTemplateKey, templateKey)) {
+      _innerItemTemplateKey = templateKey;
+      _innerItemTemplate = ResourceConverter.Inst.Convert(templateKey, null) as DataTemplate;
+    }
+    
     var container = new CollectionViewItemContainer { InnerContentTemplate = _innerItemTemplate };
 
     if (item != null && _group != null) {
