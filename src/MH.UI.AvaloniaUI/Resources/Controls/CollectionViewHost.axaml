@@ -96,7 +96,7 @@
 
                 <MenuItem Header="View" ItemsSource="{Binding View.ViewModesCommands}" IsVisible="{Binding View.HasMoreThanOneViewMode}">
                   <MenuItem.ItemContainerTheme>
-                    <ControlTheme TargetType="MenuItem">
+                    <ControlTheme TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                       <Setter Property="Header" Value="{Binding Text}"/>
                       <Setter Property="Command" Value="{Binding}"/>
                       <Setter Property="CommandParameter" Value="{Binding DataContext, ElementName=border}"/>
