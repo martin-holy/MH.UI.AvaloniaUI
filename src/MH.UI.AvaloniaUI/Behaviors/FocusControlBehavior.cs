@@ -30,6 +30,7 @@ public class FocusControlBehavior : Behavior<Control> {
   }
 
   private void _onAttachedToVisualTree(object? sender, VisualTreeAttachmentEventArgs e) {
-    AssociatedObject?.Focus();
+    if (AssociatedObject != null && When)
+      AssociatedObject.Focus();
   }
 }
