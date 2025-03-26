@@ -1,0 +1,137 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
+  xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters">
+
+  <ControlTheme x:Key="MH.S.RangeSlider-Thumb" TargetType="Thumb">
+    <Setter Property="Focusable" Value="False"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Width" Value="10"/>
+    <Setter Property="Height" Value="20"/>
+    <Setter Property="Margin" Value="-5,0"/>
+    <Setter Property="Background" Value="{StaticResource MH.B.Slider-Thumb.Static.Ba}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Thumb">
+          <Rectangle
+            x:Name="grip"
+            RadiusX="2"
+            RadiusY="2"
+            Width="{TemplateBinding Width}"
+            Height="{TemplateBinding Height}"
+            Margin="{TemplateBinding Margin}"
+            Fill="{TemplateBinding Background}"
+            Stroke="{StaticResource MH.B.Slider-Thumb.Static.Bo}"
+            StrokeThickness="1"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type c:RangeSlider}" TargetType="c:RangeSlider">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="Height" Value="40"/>
+    <Setter Property="FontSize" Value="12"/>
+
+    <Setter Property="Template">
+      <ControlTemplate TargetType="c:RangeSlider">
+        <Border
+          x:Name="root"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}"
+          Background="{TemplateBinding Background}" 
+          Width="{TemplateBinding Width}"
+          Height="{TemplateBinding Height}"
+          Padding="5,0,5,10">
+
+          <Grid RowDefinitions="Auto,Auto">
+            <UniformGrid
+              Grid.Row="0"
+              Columns="4"
+              Margin="0,0,0,-10"
+              DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+
+              <TextBlock Text="{Binding Range.Min}"/>
+              <TextBlock
+                Text="{Binding Range.Start}"
+                HorizontalAlignment="Center"
+                IsVisible="{Binding Range.IsOnMin, Converter={x:Static conv:VisibilityConverter.TrueToHidden}}"/>
+              <TextBlock
+                Text="{Binding Range.End}"
+                HorizontalAlignment="Center"
+                IsVisible="{Binding Range.IsOnMax, Converter={x:Static conv:VisibilityConverter.TrueToHidden}}"/>
+              <TextBlock Text="{Binding Range.Max}" HorizontalAlignment="Right"/>
+            </UniformGrid>
+
+            <Grid
+              x:Name="PART_SliderContainer"
+              Grid.Row="1"
+              Background="Transparent"
+              ColumnDefinitions="Auto,*,Auto">
+
+              <Border
+                x:Name="PART_StartArea"
+                Grid.Column="0"
+                Height="4"
+                Background="{StaticResource MH.B.Slider-Track.Static.Ba}"
+                IsHitTestVisible="False"/>
+
+              <Border
+                x:Name="PART_SelectedArea"
+                Grid.Column="1"
+                Height="4"
+                Background="{StaticResource MH.B.Slider-Track.Selection.Ba}"
+                IsHitTestVisible="False"/>
+
+              <Border
+                x:Name="PART_EndArea"
+                Grid.Column="2"
+                Height="4"
+                Background="{StaticResource MH.B.Slider-Track.Static.Ba}"
+                IsHitTestVisible="False"/>
+
+              <Thumb
+                x:Name="PART_StartThumb"
+                Grid.Column="0"
+                HorizontalAlignment="Right"
+                Theme="{StaticResource MH.S.RangeSlider-Thumb}"/>
+
+              <Thumb
+                x:Name="PART_EndThumb"
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                Theme="{StaticResource MH.S.RangeSlider-Thumb}"/>
+            </Grid>
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^[Orientation=Vertical]">
+      <Setter Property="RenderTransform">
+        <Setter.Value>
+          <RotateTransform Angle="-90"/>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style Selector="^:disabled /template/ Border#PART_StartArea">
+      <Setter Property="Background" Value="{StaticResource MH.B.Slider-Track.Disabled.Ba}"/>
+    </Style>
+    <Style Selector="^:disabled /template/ Border#PART_SelectedArea">
+      <Setter Property="Background" Value="{StaticResource MH.B.C.Disabled.Accent}"/>
+    </Style>
+    <Style Selector="^:disabled /template/ Border#PART_EndArea">
+      <Setter Property="Background" Value="{StaticResource MH.B.Slider-Track.Disabled.Ba}"/>
+    </Style>
+
+    <Style Selector="^ /template/ Thumb:pointerover, ^ /template/ Thumb:focus-within">
+      <Setter Property="Background" Value="{StaticResource MH.B.Slider-Thumb.Hover.Ba}"/>
+    </Style>
+    <Style Selector="^ /template/ Thumb:pressed">
+      <Setter Property="Background" Value="{StaticResource MH.B.Slider-Thumb.Pressed.Ba}"/>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>
