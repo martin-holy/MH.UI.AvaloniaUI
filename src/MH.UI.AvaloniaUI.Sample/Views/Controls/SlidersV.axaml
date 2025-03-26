@@ -5,7 +5,6 @@
   xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties;assembly=MH.UI.AvaloniaUI"
   xmlns:vmc="clr-namespace:MH.UI.AvaloniaUI.Sample.ViewModels.Controls">
 
-  <!--TODO PORT-->
   <DataTemplate DataType="{x:Type vmc:SlidersVM}">
     <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" ColumnDefinitions="*,*,*">
 
@@ -46,12 +45,12 @@
         Value="6"
         Margin="0,5"/>
 
-      <!--<mhc:RangeSlider
+      <mhc:RangeSlider
         Grid.Row="3"
         Grid.Column="0"
         Grid.ColumnSpan="3"
         Range="{Binding SelRangeA}"
-        TickFrequency="0.1"/>-->
+        TickFrequency="0.1"/>
 
       <!--Vertical-->
       <Slider
@@ -73,12 +72,12 @@
         HorizontalAlignment="Center"
         TickFrequency="1"/>
 
-      <!--<mhc:RangeSlider
+      <mhc:RangeSlider
         Grid.Row="4"
         Grid.Column="2"
         Range="{Binding SelRangeB}"
         Orientation="Vertical"
-        HorizontalAlignment="Center"/>-->
+        HorizontalAlignment="Center"/>
     </Grid>
   </DataTemplate>
 </DataTemplates>
