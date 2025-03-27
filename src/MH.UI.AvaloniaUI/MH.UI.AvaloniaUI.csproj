@@ -20,6 +20,7 @@
     <AvaloniaResource Include="Resources\DataTemplates\SlidePanelPinButton.axaml" />
     <AvaloniaResource Include="Resources\Dialogs\InputDialog.axaml" />
     <AvaloniaResource Include="Resources\Dialogs\MessageDialog.axaml" />
+    <AvaloniaResource Include="Resources\Dialogs\SelectFromListDialog.axaml" />
     <AvaloniaResource Include="Resources\Dialogs\ToggleDialog.axaml" />
   </ItemGroup>
 
