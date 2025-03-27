@@ -2,6 +2,7 @@
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
+  xmlns:ap="clr-namespace:MH.UI.AvaloniaUI.AttachedProperties"
   xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters">
 
   <ControlTheme x:Key="MH.S.RangeSlider-Thumb" TargetType="Thumb">
@@ -57,11 +58,11 @@
               <TextBlock
                 Text="{Binding Range.Start}"
                 HorizontalAlignment="Center"
-                IsVisible="{Binding Range.IsOnMin, Converter={x:Static conv:VisibilityConverter.TrueToHidden}}"/>
+                ap:VisibleInLayout.When="{Binding !Range.IsOnMin}"/>
               <TextBlock
                 Text="{Binding Range.End}"
                 HorizontalAlignment="Center"
-                IsVisible="{Binding Range.IsOnMax, Converter={x:Static conv:VisibilityConverter.TrueToHidden}}"/>
+                ap:VisibleInLayout.When="{Binding !Range.IsOnMax}"/>
               <TextBlock Text="{Binding Range.Max}" HorizontalAlignment="Right"/>
             </UniformGrid>
 
