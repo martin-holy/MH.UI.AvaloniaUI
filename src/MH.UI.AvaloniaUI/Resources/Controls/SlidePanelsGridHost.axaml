@@ -32,13 +32,14 @@
               </Grid>
 
               <c:SlidePanelHost
-                x:Name="PART_LeftSlidePanel"
+                x:Name="PART_LeftPanel"
                 Grid.Row="1"
                 HorizontalAlignment="Left"
                 Width="{Binding PanelLeft.Size, Mode=OneWay}"
                 ViewModel="{Binding PanelLeft}"/>
 
               <c:SlidePanelHost
+                x:Name="PART_RightPanel"
                 Grid.Row="1"
                 HorizontalAlignment="Right"
                 Width="{Binding PanelRight.Size, Mode=OneWay}"
@@ -46,6 +47,7 @@
             </Grid>
 
             <c:SlidePanelHost
+              x:Name="PART_TopPanel"
               VerticalAlignment="Top"
               Height="{Binding PanelTop.Size, Mode=OneWay}"
               ViewModel="{Binding PanelTop}"/>
