@@ -32,6 +32,7 @@
               </Grid>
 
               <c:SlidePanelHost
+                x:Name="PART_LeftSlidePanel"
                 Grid.Row="1"
                 HorizontalAlignment="Left"
                 Width="{Binding PanelLeft.Size, Mode=OneWay}"
