@@ -140,7 +140,7 @@ public class DragDropHelper : AvaloniaObject {
 
   private static void _drop(object? sender, DragEventArgs e) {
     if (_data == null) return;
-    GetDoDrop((Control)sender!)?.Invoke(_data, ReferenceEquals(sender, _sourceControl));
+    _ = GetDoDrop((Control)sender!)?.Invoke(_data, ReferenceEquals(sender, _sourceControl));
   }
 
   private static DragDropEffects _convertEffects(MH.Utils.DragDropEffects effects) =>
