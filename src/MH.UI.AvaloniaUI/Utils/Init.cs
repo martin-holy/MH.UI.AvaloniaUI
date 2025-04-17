@@ -22,7 +22,7 @@ public static class Init {
     MH.Utils.Imaging.GetBitmapHashPixels = Imaging.GetBitmapHashPixels;
     MH.Utils.Imaging.ResizeJpg = Imaging.ResizeJpg;*/
 
-    MH.UI.Controls.Dialog.Show = DialogHost.Show;
+    MH.UI.Controls.Dialog.SetShowAsyncImplementation(DialogHost.ShowAsync);
 
     MH.Utils.Tasks.Dispatch = action => Dispatcher.UIThread.Post(action, DispatcherPriority.Render);
 
@@ -31,7 +31,6 @@ public static class Init {
 
   public static void LoadDataTemplates(DataTemplates dataTemplates) {
     var files = new[] {
-      "DataTemplates/DialogHost",
       "DataTemplates/SlidePanelPinButton",
       "Dialogs/InputDialog",
       "Dialogs/MessageDialog",

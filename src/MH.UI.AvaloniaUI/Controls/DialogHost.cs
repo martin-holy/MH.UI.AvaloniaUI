@@ -1,64 +1,44 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
-using Avalonia.Threading;
 using MH.UI.Controls;
-using MH.Utils.BaseClasses;
-using MH.Utils.Extensions;
+using System.Collections.ObjectModel;
 
 namespace MH.UI.AvaloniaUI.Controls;
 
-// TODO PORT DialogHost as layer in single window app
-public class DialogHost : ObservableObject {
-  public Dialog Content { get; }
-  public CustomWindow Window { get; }
-  public static IDataTemplate? ContentTemplateSelector { get; set; }
+public class DialogHost : TemplatedControl {
+  private static DialogHost? _inst;
 
-  private DialogHost(Dialog content) {
-    Content = content;
-    
-    Window = new() {
-      Content = this,
-      WindowStartupLocation = WindowStartupLocation.CenterOwner,
-      ShowInTaskbar = false,
-      CanResize = false,
-      SizeToContent = SizeToContent.WidthAndHeight
-    };
+  public static readonly ObservableCollection<object> ActiveDialogs = [];
 
-    content.PropertyChanged += (_, e) => {
-      if (e.Is(nameof(content.Result)))
-        Window.Close();
+  public static readonly StyledProperty<IDataTemplate?> DialogTemplateProperty =
+    AvaloniaProperty.Register<DialogHost, IDataTemplate?>(nameof(DialogTemplate));
+
+  public IDataTemplate? DialogTemplate {
+    get => GetValue(DialogTemplateProperty);
+    set => SetValue(DialogTemplateProperty, value);
+  }
+
+  static DialogHost() {
+    ActiveDialogs.CollectionChanged += (_, _) => {
+      if (_inst != null)
+        _inst.IsVisible = ActiveDialogs.Count > 0;
     };
   }
 
-  public static int Show(Dialog content) {
-    var dh = new DialogHost(content);
-    var owner = _getOwner();
-
-    if (owner == null) {
-      dh.Window.Show();
-      return content.Result;
-    }
-
-    // TODO PORT this works only on desktop
-    var task = dh.Window.ShowDialog(owner);
-    if (!task.IsCompleted) {
-      var frame = new DispatcherFrame();
-      task.ContinueWith(static (_, s) => ((DispatcherFrame)s).Continue = false, frame);
-      Dispatcher.UIThread.PushFrame(frame);
-    }
-    task.GetAwaiter().GetResult();
-
-    return content.Result;
+  protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {
+    base.OnApplyTemplate(e);
+    _inst = this;
+    IsVisible = ActiveDialogs.Count > 0;
   }
 
-  private static Window? _getOwner() {
-    if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop)
-      return null;
+  public static async Task<int> ShowAsync(Dialog dialog) {
+    if (!ActiveDialogs.Contains(dialog))
+      ActiveDialogs.Add(dialog);
 
-    return desktop.Windows[^1].Content is DialogHost dh
-      ? dh.Window
-      : desktop.MainWindow!;
+    var result = await dialog.TaskCompletionSource.Task;
+    ActiveDialogs.Remove(dialog);
+
+    return result;
   }
 }

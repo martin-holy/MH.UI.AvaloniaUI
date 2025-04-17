@@ -1,4 +1,4 @@
-<DataTemplates
+<ResourceDictionary
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:c="clr-namespace:MH.UI.AvaloniaUI.Controls"
@@ -6,8 +6,8 @@
   xmlns:rd="clr-namespace:MH.UI.AvaloniaUI.Resources"
   xmlns:conv="clr-namespace:MH.UI.AvaloniaUI.Converters">
 
-  <DataTemplate DataType="{x:Type c:DialogHost}">
-    <Grid RowDefinitions="30,*,Auto" DataContext="{Binding Content}">
+  <DataTemplate x:Key="MH.DT.Dialog" DataType="{x:Type uic:Dialog}">
+    <Grid RowDefinitions="30,*,Auto">
       <Grid.KeyBindings>
         <KeyBinding
           Gesture="Escape"
@@ -30,8 +30,7 @@
           Grid.Column="1"
           Text="{Binding Title}"
           VerticalAlignment="Center"
-          Background="Transparent"
-          c:CustomWindow.IsDragAreaFor="{Binding RelativeSource={RelativeSource AncestorType={x:Type c:CustomWindow}}}"/>
+          Background="Transparent"/>
 
         <Button
           Grid.Column="2"
@@ -46,7 +45,7 @@
         Grid.Row="1"
         DataContext="{Binding}"
         Content="{Binding}"
-        ContentTemplate="{x:Static c:DialogHost.ContentTemplateSelector}"/>
+        ContentTemplate="{Binding DialogTemplate, RelativeSource={RelativeSource AncestorType=c:DialogHost}}"/>
 
       <ItemsControl Grid.Row="2" ItemsSource="{Binding Buttons}" Focusable="False">
         <ItemsControl.ItemsPanel>
@@ -68,4 +67,30 @@
       </ItemsControl>
     </Grid>
   </DataTemplate>
-</DataTemplates>
+
+  <ControlTheme x:Key="{x:Type c:DialogHost}" TargetType="c:DialogHost">
+    <Setter Property="Focusable" Value="False"/>
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource MH.B.Accent}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="c:DialogHost">
+          <Grid IsVisible="{TemplateBinding IsVisible}">
+            <Rectangle Fill="Transparent"/>
+            <ItemsControl
+              ItemsSource="{Binding Source={x:Static c:DialogHost.ActiveDialogs}}"
+              ItemTemplate="{StaticResource MH.DT.Dialog}"
+              Background="{TemplateBinding Background}"
+              Foreground="{TemplateBinding Foreground}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>
