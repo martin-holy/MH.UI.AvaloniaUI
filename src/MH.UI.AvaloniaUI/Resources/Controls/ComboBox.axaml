@@ -114,5 +114,10 @@
     <Style Selector="^:focus-within">
       <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Focus.Bo}"/>
     </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Disabled.Bo}"/>
+      <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+      <Setter Property="PlaceholderForeground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+    </Style>
   </ControlTheme>
 </ResourceDictionary>
