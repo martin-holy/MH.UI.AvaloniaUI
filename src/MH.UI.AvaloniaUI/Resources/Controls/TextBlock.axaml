@@ -7,6 +7,10 @@
     <Setter Property="TextWrapping" Value="NoWrap"/>
     <Setter Property="TextTrimming" Value="None"/>
 
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+    </Style>
+
     <Style Selector="^.inBorder">
       <Setter Property="Text" Value="{ReflectionBinding}"/>
       <!--TODO PORT-->
