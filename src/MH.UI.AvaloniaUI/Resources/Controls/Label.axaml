@@ -25,5 +25,9 @@
         </Border>
       </ControlTemplate>
     </Setter>
+
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+    </Style>
   </ControlTheme>
 </ResourceDictionary>
