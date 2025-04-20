@@ -34,15 +34,13 @@
             Padding="{TemplateBinding Padding}">
 
             <Grid VerticalAlignment="Center" ColumnDefinitions="Auto,*">
-              <Path
-                x:Name="icon"
+              <PathIcon
                 Data="{Binding Path=(ap:Icon.Data), RelativeSource={RelativeSource TemplatedParent}}"
-                Fill="{Binding Path=(ap:Icon.Fill), RelativeSource={RelativeSource TemplatedParent}}"
+                Foreground="{Binding Path=(ap:Icon.Fill), RelativeSource={RelativeSource TemplatedParent}}"
                 Width="{Binding Path=(ap:Icon.Size), RelativeSource={RelativeSource TemplatedParent}}"
                 Height="{Binding Path=(ap:Icon.Size), RelativeSource={RelativeSource TemplatedParent}}"
                 Effect="{StaticResource MH.Effects.DropShadow}"
-                Margin="2"
-                Stretch="Uniform"/>
+                Margin="2"/>
 
               <ScrollViewer
                 Grid.Column="1"
