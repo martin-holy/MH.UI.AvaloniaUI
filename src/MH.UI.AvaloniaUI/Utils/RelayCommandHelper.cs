@@ -54,10 +54,14 @@ public static class RelayCommandHelper {
     }
   }
 
-  private static Avalonia.Controls.Shapes.Path _getIcon(string icon) =>
-    new() {
-      Data = ResourceConverter.Inst.Convert(icon, null) as Geometry,
-      Fill = ResourceConverter.Inst.Convert(icon, Resources.Dictionaries.IconToBrush) as Brush,
+  private static Avalonia.Controls.Shapes.Path _getIcon(string icon) {
+    var path = new Avalonia.Controls.Shapes.Path {
       Classes = { "icon", "shadow" }
     };
+
+    path.SetValue(AP.Icon.DataProperty, ResourceConverter.Inst.Convert(icon, null) as Geometry);
+    path.SetValue(AP.Icon.FillProperty, ResourceConverter.Inst.Convert(icon, Resources.Dictionaries.IconToBrush) as Brush);
+
+    return path;
+  }
 }
