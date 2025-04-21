@@ -44,5 +44,9 @@
     <Style Selector="^:pointerover, ^:focus-within">
       <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Hover.Bo}"/>
     </Style>
+
+    <Style Selector="^:disabled">
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Disabled.Bo}"/>
+    </Style>
   </ControlTheme>
 </ResourceDictionary>
