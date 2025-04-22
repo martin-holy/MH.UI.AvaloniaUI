@@ -172,6 +172,9 @@
     </Setter>
 
     <Style Selector="^:disabled">
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Disabled.Bo}"/>
+      <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+
       <Style Selector="^ /template/ TextBlock#PART_Watermark, ^ /template/ TextBlock#PART_FloatingWatermark">
         <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Accent}"/>
       </Style>
