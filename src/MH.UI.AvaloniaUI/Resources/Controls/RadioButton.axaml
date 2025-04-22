@@ -58,5 +58,14 @@
     <Style Selector="^:checked /template/ Ellipse#OptionMark">
       <Setter Property="IsVisible" Value="True"/>
     </Style>
+
+    <Style Selector="^:disabled">
+      <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Disabled.Bo}"/>
+      <Setter Property="Foreground" Value="{StaticResource MH.B.C.Disabled.Fo}"/>
+
+      <Style Selector="^ /template/ Ellipse#OptionMark">
+        <Setter Property="Fill" Value="{StaticResource MH.B.C.Disabled.Accent}"/>
+      </Style>
+    </Style>
   </ControlTheme>
 </ResourceDictionary>
