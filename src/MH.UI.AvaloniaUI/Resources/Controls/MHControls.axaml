@@ -19,6 +19,7 @@
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/ListBox.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/ListBoxItem.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/Menu.axaml"/>
+        <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/MenuFlyoutPresenter.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/PathIcon.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/PopupRoot.axaml"/>
         <MergeResourceInclude Source="avares://MH.UI.AvaloniaUI/Resources/Controls/PopupSlider.axaml"/>
