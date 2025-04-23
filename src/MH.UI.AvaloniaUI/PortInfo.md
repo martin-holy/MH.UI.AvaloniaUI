@@ -75,3 +75,6 @@ popup.AddHandler(PointerReleasedEvent, _onPopupPointerReleased, RoutingStrategie
 protected override void OnAttachedToVisualTree(CompositeDisposable disposable) {
   disposable.Add(control.AddDisposableHandler(InputElement.PointerReleasedEvent, _onPointerReleased, EventRoutingStrategy));
 }
+
+# Style based on platform
+<Setter Property="ContextFlyout" Value="{OnFormFactor Desktop={StaticResource DefaultTextBoxContextFlyout}, Mobile={StaticResource HorizontalTextBoxContextFlyout}}"/>
