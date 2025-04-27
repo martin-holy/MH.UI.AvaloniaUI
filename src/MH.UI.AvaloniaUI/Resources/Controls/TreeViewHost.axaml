@@ -289,4 +289,44 @@
       </Setter.Value>
     </Setter>
   </ControlTheme>
+
+  <DataTemplate x:Key="MH.DT.TreeViewItem" x:DataType="c:FlatItem">
+    <Grid
+      Margin="{Binding Converter={x:Static conv:TreeMarginConverter.Inst}, ConverterParameter=16}"
+      ColumnDefinitions="20,*">
+
+      <ToggleButton
+        x:Name="Expander"
+        Theme="{StaticResource MH.S.ToggleButton.TreeExpandCollapse}"
+        IsChecked="{Binding Node.IsExpanded, Mode=OneWay}"
+        IsVisible="{Binding Node.Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}">
+
+        <Interaction.Behaviors>
+          <EventTriggerBehavior EventName="IsCheckedChanged">
+            <InvokeCommandAction
+              Command="{Binding IsExpandedChangedCommand, RelativeSource=
+                       {RelativeSource AncestorType=c:TreeViewHost2}}"
+              CommandParameter="{Binding DataType=c:FlatItem}"/>
+          </EventTriggerBehavior>
+        </Interaction.Behaviors>
+      </ToggleButton>
+
+      <ContentPresenter
+        Grid.Column="1"
+        Content="{Binding Node}"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"/>
+    </Grid>
+  </DataTemplate>
+
+  <ControlTheme x:Key="{x:Type c:TreeViewHost2}" TargetType="c:TreeViewHost2" BasedOn="{StaticResource {x:Type ListBox}}">
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="ItemContainerTheme">
+      <Setter.Value>
+        <ControlTheme TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+          <Setter Property="ContentTemplate" Value="{StaticResource MH.DT.TreeViewItem}"/>
+        </ControlTheme>
+      </Setter.Value>
+    </Setter>
+  </ControlTheme>
 </ResourceDictionary>

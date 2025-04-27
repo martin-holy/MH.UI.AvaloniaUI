@@ -5,7 +5,7 @@
 
   <Styles.Resources>
     <ResourceDictionary>
-      <ControlTheme x:Key="{x:Type c:CatTreeView}" TargetType="c:CatTreeView" BasedOn="{StaticResource {x:Type c:TreeDataGridHost}}">
+      <ControlTheme x:Key="{x:Type c:CatTreeView}" TargetType="c:CatTreeView" BasedOn="{StaticResource {x:Type c:TreeViewHost2}}">
         <!--TODO PORT drag and drop-->
       </ControlTheme>
     </ResourceDictionary>

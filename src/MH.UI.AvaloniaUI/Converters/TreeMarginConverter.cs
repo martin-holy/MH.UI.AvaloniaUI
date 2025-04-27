@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using MH.UI.AvaloniaUI.Controls;
 using MH.Utils;
 using MH.Utils.Interfaces;
 
@@ -10,8 +11,12 @@ public class TreeMarginConverter : BaseConverter {
   public static TreeMarginConverter Inst { get { lock (_lock) { return _inst ??= new(); } } }
 
   public override object Convert(object? value, object? parameter) {
-    var level = value is ITreeItem ti ? ti.GetLevel() : 0;
     var length = int.TryParse(parameter as string, out var l) ? l : 0;
+    var level = value switch {
+      ITreeItem ti => ti.GetLevel(),
+      FlatItem fi => fi.Level,
+      _ => 0
+    };
 
     return new Thickness(length * level, 0.0, 0.0, 0.0);
   }
