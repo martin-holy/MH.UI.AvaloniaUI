@@ -6,7 +6,8 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 using MH.Utils.BaseClasses;
 using MH.Utils.Interfaces;
-using System.Collections.ObjectModel;
+using System.ComponentModel;
+using MH.Utils.Extensions;
 using UIC = MH.UI.Controls;
 
 namespace MH.UI.AvaloniaUI.Controls;
@@ -146,13 +147,7 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
     ViewModelProperty.Changed.AddClassHandler<TreeViewHost2>(_onViewModelChanged);
   }
 
-  public RelayCommand<FlatItem> IsExpandedChangedCommand { get; }
-
   public event EventHandler<bool>? HostIsVisibleChangedEvent;
-
-  public TreeViewHost2() {
-    IsExpandedChangedCommand = new(_isExpandedChanged);
-  }
 
   protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {
     base.OnApplyTemplate(e);
@@ -163,7 +158,7 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
       _sv.ScrollChanged += _onScrollChanged;
       _raiseHostIsVisibleChanged(_sv.IsVisible);
     }
-    
+
     _setItemsSource();
   }
 
@@ -177,12 +172,15 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
   private void _setItemsSource() {
     if (ViewModel == null) return;
 
-    // TODO exclude hidden items
-    ItemsSource = new ObservableCollection<FlatItem>(TreeFlattener.FlattenTree(
+    var newFlatItems = TreeFlattener.FlattenTree(
       ViewModel.RootHolder,
       fixedItemHeight: 32,
       getRowHeight: node => 32
-    ));
+    ).ToArray();
+
+    _updateTreeItemSubscriptions(ItemsSource as IEnumerable<FlatItem>, newFlatItems);
+
+    ItemsSource = newFlatItems;
   }
 
   public void ScrollToTop() {
@@ -215,14 +213,24 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
     o.ViewModel.SelectItemCommand.Execute(fi.Node);
   }
 
-  private void _isExpandedChanged(FlatItem? item) {
-    if (item == null) return;
-    item.Node.IsExpanded = !item.Node.IsExpanded;
-    _setItemsSource();
+  private void _updateTreeItemSubscriptions(IEnumerable<FlatItem>? oldItems, IEnumerable<FlatItem>? newItems) {
+    var o = oldItems?.Except(newItems ?? []).ToArray() ?? [];
+    var n = newItems?.Except(oldItems ?? []).ToArray() ?? [];
+
+    foreach (var item in o)
+      item.Node.PropertyChanged -= _onTreeItemPropertyChanged;
+
+    foreach (var item in n)
+      item.Node.PropertyChanged += _onTreeItemPropertyChanged;
+  }
+
+  private void _onTreeItemPropertyChanged(object? sender, PropertyChangedEventArgs e) {
+    if (e.Is(nameof(TreeItem.IsExpanded)))
+      _setItemsSource();
   }
 }
 
-public class FlatItem {
+public class FlatItem : IEquatable<FlatItem> {
   public ITreeItem Node { get; } // Folder, group, or row
   public int Level { get; } // For indentation
   public double Height { get; } // Item height
@@ -234,9 +242,14 @@ public class FlatItem {
     Height = height;
     CumulativeHeight = cumulativeHeight;
   }
+
+  public bool Equals(FlatItem? other) => other is not null && ReferenceEquals(Node, other.Node);
+  public override bool Equals(object? obj) => obj?.GetType() == GetType() && ReferenceEquals(Node, ((FlatItem)obj).Node);
+  public override int GetHashCode() => Node.GetHashCode();
 }
 
 public static class TreeFlattener {
+  // TODO exclude hidden items
   public static List<FlatItem> FlattenTree(IEnumerable<ITreeItem> roots, double fixedItemHeight, Func<ITreeItem, double>? getRowHeight = null) {
     var flatItems = new List<FlatItem>();
     var stack = new Stack<(ITreeItem Node, int Level)>();
