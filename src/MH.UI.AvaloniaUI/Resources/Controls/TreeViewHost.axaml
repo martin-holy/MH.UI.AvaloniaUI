@@ -298,18 +298,8 @@
       <ToggleButton
         x:Name="Expander"
         Theme="{StaticResource MH.S.ToggleButton.TreeExpandCollapse}"
-        IsChecked="{Binding Node.IsExpanded, Mode=OneWay}"
-        IsVisible="{Binding Node.Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}">
-
-        <Interaction.Behaviors>
-          <EventTriggerBehavior EventName="IsCheckedChanged">
-            <InvokeCommandAction
-              Command="{Binding IsExpandedChangedCommand, RelativeSource=
-                       {RelativeSource AncestorType=c:TreeViewHost2}}"
-              CommandParameter="{Binding DataType=c:FlatItem}"/>
-          </EventTriggerBehavior>
-        </Interaction.Behaviors>
-      </ToggleButton>
+        IsChecked="{Binding Node.IsExpanded, Mode=TwoWay}"
+        IsVisible="{Binding Node.Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}"/>
 
       <ContentPresenter
         Grid.Column="1"
@@ -324,6 +314,7 @@
     <Setter Property="ItemContainerTheme">
       <Setter.Value>
         <ControlTheme TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+          <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
           <Setter Property="ContentTemplate" Value="{StaticResource MH.DT.TreeViewItem}"/>
         </ControlTheme>
       </Setter.Value>
