@@ -7,49 +7,43 @@
   xmlns:mhuInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils"
   xmlns:rd="clr-namespace:MH.UI.AvaloniaUI.Resources">
 
-  <Style Selector="c|CollectionViewHost TreeDataGridExpanderCell">
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Decorator Name="PART_Content"/>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="c|CollectionViewHost TreeDataGridRow">
-    <Setter Property="Theme">
-      <Setter.Value>
-        <ControlTheme TargetType="TreeDataGridRow">
-          <Setter Property="Template">
-            <ControlTemplate>
-              <TreeDataGridCellsPresenter
-                Name="PART_CellsPresenter"
-                ElementFactory="{TemplateBinding ElementFactory}"
-                Items="{TemplateBinding Columns}"
-                Rows="{TemplateBinding Rows}"/>
-            </ControlTemplate>
-          </Setter>
-        </ControlTheme>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
   <Styles.Resources>
     <ResourceDictionary>
-      <ControlTheme
-        x:Key="{x:Type c:CollectionViewHost}"
-        TargetType="c:CollectionViewHost"
-        BasedOn="{StaticResource {x:Type c:TreeDataGridHost}}">
+      <ControlTheme x:Key="MH.CT.CollectionView-ItemContainer" TargetType="ListBoxItem">
+        <Setter Property="MinHeight" Value="25"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="FocusAdorner" Value="{x:Null}"/>
 
-        <Setter Property="SingleColumnTemplate">
+        <Setter Property="Template">
+          <ControlTemplate>
+            <Border
+              BorderBrush="{TemplateBinding BorderBrush}" 
+              BorderThickness="{TemplateBinding BorderThickness}" 
+              Background="{TemplateBinding Background}" 
+              Padding="{TemplateBinding Padding}" >
+
+              <ContentPresenter
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                Content="{TemplateBinding Content}"
+                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+            </Border>
+          </ControlTemplate>
+        </Setter>
+
+        <Setter Property="ContentTemplate">
           <Setter.Value>
             <c:CollectionViewTemplateSelector/>
           </Setter.Value>
         </Setter>
       </ControlTheme>
 
-      <TreeDataTemplate x:Key="MH.DT.CollectionViewGroup" ItemsSource="{Binding Items}" x:CompileBindings="False">
+      <ControlTheme x:Key="{x:Type c:CollectionViewHost}" TargetType="c:CollectionViewHost" BasedOn="{StaticResource {x:Type c:TreeViewHost2}}">
+        <Setter Property="ItemContainerTheme" Value="{StaticResource MH.CT.CollectionView-ItemContainer}"/>
+      </ControlTheme>
+
+      <DataTemplate x:Key="MH.DT.CollectionViewGroup" x:CompileBindings="False">
         <Border
           x:Name="border"
           BorderBrush="Black"
@@ -71,8 +65,8 @@
             <ToggleButton
               Grid.Column="0"
               Theme="{DynamicResource MH.S.ToggleButton.TreeExpandCollapse}"
-              IsChecked="{Binding IsExpanded, Mode=TwoWay}"
-              IsVisible="{Binding Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}"/>
+              IsChecked="{Binding Node.IsExpanded, Mode=TwoWay}"
+              IsVisible="{Binding Node.Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}"/>
 
             <!-- Menu -->
             <Menu
@@ -84,21 +78,25 @@
               <MenuItem Padding="6,2,-2,2">
                 <MenuItem.Icon>
                   <PathIcon
-                    Data="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst}}"
-                    Foreground="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst},
+                    Data="{Binding Node.Icon, Converter={x:Static conv:ResourceConverter.Inst}}"
+                    Foreground="{Binding Node.Icon, Converter={x:Static conv:ResourceConverter.Inst},
                                  ConverterParameter={x:Static rd:Dictionaries.IconToBrush}}"
                     Classes="shadow"/>
                 </MenuItem.Icon>
 
-                <MenuItem Command="{Binding View.OpenGroupByDialogCommand}" CommandParameter="{Binding}"/>
-                <MenuItem Command="{Binding View.ShuffleCommand}" CommandParameter="{Binding}"/>
-                <MenuItem Command="{Binding View.SortCommand}" CommandParameter="{Binding}"/>
+                <MenuItem Command="{Binding Node.View.OpenGroupByDialogCommand}" CommandParameter="{Binding}"/>
+                <MenuItem Command="{Binding Node.View.ShuffleCommand}" CommandParameter="{Binding}"/>
+                <MenuItem Command="{Binding Node.View.SortCommand}" CommandParameter="{Binding}"/>
 
-                <MenuItem Header="View" ItemsSource="{Binding View.ViewModesCommands}" IsVisible="{Binding View.HasMoreThanOneViewMode}">
+                <MenuItem
+                  Header="View"
+                  ItemsSource="{Binding Node.View.ViewModesCommands}"
+                  IsVisible="{Binding Node.View.HasMoreThanOneViewMode}">
+
                   <MenuItem.ItemContainerTheme>
                     <ControlTheme TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
-                      <Setter Property="Header" Value="{Binding Text}"/>
-                      <Setter Property="Command" Value="{Binding}"/>
+                      <Setter Property="Header" Value="{Binding Node.Text}"/>
+                      <Setter Property="Command" Value="{Binding Node}"/>
                       <Setter Property="CommandParameter" Value="{Binding DataContext, ElementName=border}"/>
                     </ControlTheme>
                   </MenuItem.ItemContainerTheme>
@@ -108,21 +106,21 @@
 
             <TextBlock
               Grid.Column="2"
-              Text="{Binding GroupedBy.((mhuInt:IListItem)Data).Name}"
+              Text="{Binding Node.GroupedBy.((mhuInt:IListItem)Data).Name}"
               VerticalAlignment="Center"
               Margin="5,0,5,0"
               FontSize="16"/>
 
             <TextBlock
               Grid.Column="3"
-              Text="{Binding SourceCount}"
+              Text="{Binding Node.SourceCount}"
               VerticalAlignment="Center"
               Margin="5,0,5,0"
               FontWeight="Bold"
               FontSize="14"/>
           </Grid>
         </Border>
-      </TreeDataTemplate>
+      </DataTemplate>
 
       <ControlTheme x:Key="{x:Type c:CollectionViewRowItemsControl}" TargetType="c:CollectionViewRowItemsControl">
         <Setter Property="Template">
@@ -171,8 +169,8 @@
 
       <DataTemplate x:Key="MH.DT.CollectionViewRow" x:CompileBindings="False">
         <c:CollectionViewRowItemsControl
-          ItemsSource="{Binding Leaves}"
-          MaxWidth="{Binding ((uii:ICollectionViewGroup)Parent).Width}">
+          ItemsSource="{Binding Node.Leaves}"
+          MaxWidth="{Binding ((c:FlatItem)Node).((uii:ICollectionViewGroup)Parent).Width}">
 
           <Interaction.Behaviors>
             <EventTriggerBehavior EventName="DoubleTapped">
