@@ -8,12 +8,11 @@ using Avalonia.VisualTree;
 using MH.UI.AvaloniaUI.Converters;
 using MH.UI.Interfaces;
 using MH.Utils.BaseClasses;
-using MH.Utils.Interfaces;
 using UIC = MH.UI.Controls;
 
 namespace MH.UI.AvaloniaUI.Controls;
 
-public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
+public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
   private double _openTime;
   private DateTime _lastClickTime = DateTime.Now;
 
@@ -28,7 +27,7 @@ public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
   }
 
   private static void _onViewModelChanged(CollectionViewHost o, AvaloniaPropertyChangedEventArgs e) {
-    o.SetValue(TreeDataGridHost.ViewModelProperty, o.ViewModel);
+    o.SetValue(TreeViewHost2.ViewModelProperty, o.ViewModel);
     if (o.ViewModel != null) o.ViewModel.Host = o;
   }
 
@@ -56,7 +55,7 @@ public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
         || cv._doubleClicking()) return;
 
     var item = _getDataContext(e.Source);
-    var row = (e.Source as Control)?.FindAncestorOfType<CollectionViewRowItemsControl>()?.DataContext;
+    var row = ((e.Source as Control)?.FindAncestorOfType<CollectionViewRowItemsControl>()?.DataContext as FlatItem)?.Node;
     var btn = e.Source as Button ?? (e.Source as Control)?.FindAncestorOfType<Button>();
 
     if (item == null || row == null || btn != null) return;
@@ -87,7 +86,7 @@ public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
     (source as Control)?.DataContext;
 
   private static void _setGroupWidth(SizeChangedEventArgs? e) {
-    if (e is { WidthChanged: true, Source: StyledElement { DataContext: ICollectionViewGroup group } }) {
+    if (e is { WidthChanged: true, Source: StyledElement { DataContext: FlatItem { Node: ICollectionViewGroup group} } }) {
       group.Width = e.NewSize.Width;
     }
   }
@@ -95,9 +94,9 @@ public class CollectionViewHost : TreeDataGridHost, UIC.ICollectionViewHost {
 
 public class CollectionViewTemplateSelector : IDataTemplate {
   public Control? Build(object? param) {
-    if (param == null || Application.Current == null) return null;
+    if (param is not FlatItem fi || Application.Current == null) return null;
 
-    var key = param switch {
+    var key = fi.Node switch {
       ICollectionViewGroup => "MH.DT.CollectionViewGroup",
       ICollectionViewRow => "MH.DT.CollectionViewRow",
       _ => throw new ArgumentOutOfRangeException(nameof(param), param, null)
@@ -110,7 +109,7 @@ public class CollectionViewTemplateSelector : IDataTemplate {
   }
 
   public bool Match(object? data) =>
-    data is ICollectionViewGroup or ICollectionViewRow;
+    data is FlatItem { Node: ICollectionViewGroup or ICollectionViewRow };
 }
 
 public class CollectionViewItemContainer : ContentControl {
@@ -134,7 +133,7 @@ public class CollectionViewRowItemsControl : ItemsControl {
 
   protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {
     base.OnApplyTemplate(e);
-    _group = (DataContext as ITreeItem)?.Parent as ICollectionViewGroup;
+    _group = (DataContext as FlatItem)?.Node.Parent as ICollectionViewGroup;
   }
 
   protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) {
