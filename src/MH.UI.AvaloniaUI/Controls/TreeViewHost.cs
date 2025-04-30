@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System.Collections.Specialized;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -140,6 +141,10 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
 
   private static void _onViewModelChanged(TreeViewHost2 o, AvaloniaPropertyChangedEventArgs e) {
     if (o.ViewModel != null) o.ViewModel.Host = o;
+    if (e.NewValue is UIC.TreeView newTreeView)
+      newTreeView.RootHolder.CollectionChanged += o._onRootHolderChanged;
+    if (e.OldValue is UIC.TreeView oldTreeView)
+      oldTreeView.RootHolder.CollectionChanged -= o._onRootHolderChanged;
   }
 
   static TreeViewHost2() {
@@ -228,6 +233,9 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
     if (e.Is(nameof(TreeItem.IsExpanded)))
       _setItemsSource();
   }
+
+  private void _onRootHolderChanged(object? sender, NotifyCollectionChangedEventArgs e) =>
+    _setItemsSource();
 }
 
 public class FlatItem : IEquatable<FlatItem> {
