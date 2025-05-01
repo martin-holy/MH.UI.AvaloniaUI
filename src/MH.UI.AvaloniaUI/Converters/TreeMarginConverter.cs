@@ -1,6 +1,6 @@
 ﻿using Avalonia;
-using MH.UI.AvaloniaUI.Controls;
 using MH.Utils;
+using MH.Utils.BaseClasses;
 using MH.Utils.Interfaces;
 
 namespace MH.UI.AvaloniaUI.Converters;
@@ -14,7 +14,7 @@ public class TreeMarginConverter : BaseConverter {
     var length = int.TryParse(parameter as string, out var l) ? l : 0;
     var level = value switch {
       ITreeItem ti => ti.GetLevel(),
-      FlatItem fi => fi.Level,
+      FlatTreeItem fti => fti.Level,
       _ => 0
     };
 
