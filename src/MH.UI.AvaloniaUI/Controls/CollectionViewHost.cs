@@ -55,7 +55,7 @@ public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
         || cv._doubleClicking()) return;
 
     var item = _getDataContext(e.Source);
-    var row = ((e.Source as Control)?.FindAncestorOfType<CollectionViewRowItemsControl>()?.DataContext as FlatItem)?.Node;
+    var row = ((e.Source as Control)?.FindAncestorOfType<CollectionViewRowItemsControl>()?.DataContext as FlatTreeItem)?.TreeItem;
     var btn = e.Source as Button ?? (e.Source as Control)?.FindAncestorOfType<Button>();
 
     if (item == null || row == null || btn != null) return;
@@ -86,7 +86,7 @@ public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
     (source as Control)?.DataContext;
 
   private static void _setGroupWidth(SizeChangedEventArgs? e) {
-    if (e is { WidthChanged: true, Source: StyledElement { DataContext: FlatItem { Node: ICollectionViewGroup group} } }) {
+    if (e is { WidthChanged: true, Source: StyledElement { DataContext: FlatTreeItem { TreeItem: ICollectionViewGroup group} } }) {
       group.Width = e.NewSize.Width;
     }
   }
@@ -94,9 +94,9 @@ public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
 
 public class CollectionViewTemplateSelector : IDataTemplate {
   public Control? Build(object? param) {
-    if (param is not FlatItem fi || Application.Current == null) return null;
+    if (param is not FlatTreeItem fti || Application.Current == null) return null;
 
-    var key = fi.Node switch {
+    var key = fti.TreeItem switch {
       ICollectionViewGroup => "MH.DT.CollectionViewGroup",
       ICollectionViewRow => "MH.DT.CollectionViewRow",
       _ => throw new ArgumentOutOfRangeException(nameof(param), param, null)
@@ -109,7 +109,7 @@ public class CollectionViewTemplateSelector : IDataTemplate {
   }
 
   public bool Match(object? data) =>
-    data is FlatItem { Node: ICollectionViewGroup or ICollectionViewRow };
+    data is FlatTreeItem { TreeItem: ICollectionViewGroup or ICollectionViewRow };
 }
 
 public class CollectionViewItemContainer : ContentControl {
@@ -133,7 +133,7 @@ public class CollectionViewRowItemsControl : ItemsControl {
 
   protected override void OnApplyTemplate(TemplateAppliedEventArgs e) {
     base.OnApplyTemplate(e);
-    _group = (DataContext as FlatItem)?.Node.Parent as ICollectionViewGroup;
+    _group = (DataContext as FlatTreeItem)?.TreeItem.Parent as ICollectionViewGroup;
   }
 
   protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) {
