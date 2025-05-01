@@ -8,6 +8,8 @@ using Avalonia.VisualTree;
 using MH.Utils.BaseClasses;
 using MH.Utils.Interfaces;
 using System.ComponentModel;
+using Avalonia.Controls.Templates;
+using MH.Utils;
 using MH.Utils.Extensions;
 using UIC = MH.UI.Controls;
 
@@ -176,15 +178,8 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
 
   private void _setItemsSource() {
     if (ViewModel == null) return;
-
-    var newFlatItems = TreeFlattener.FlattenTree(
-      ViewModel.RootHolder,
-      fixedItemHeight: 32,
-      getRowHeight: node => 32
-    ).ToArray();
-
-    _updateTreeItemSubscriptions(ItemsSource as IEnumerable<FlatItem>, newFlatItems);
-
+    var newFlatItems = Tree.ToFlatTreeItems(ViewModel.RootHolder);
+    _updateTreeItemSubscriptions(ItemsSource as IEnumerable<FlatTreeItem>, newFlatItems);
     ItemsSource = newFlatItems;
   }
 
@@ -214,19 +209,19 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
     Dispatcher.UIThread.Post(() => root.IsExpanded = true, DispatcherPriority.Loaded);
 
   private static void _onSelectedItemChanged(TreeViewHost2 o, AvaloniaPropertyChangedEventArgs e) {
-    if (o.ViewModel == null || e.NewValue is not FlatItem fi) return;
-    o.ViewModel.SelectItemCommand.Execute(fi.Node);
+    if (o.ViewModel == null || e.NewValue is not FlatTreeItem fti) return;
+    o.ViewModel.SelectItemCommand.Execute(fti.TreeItem);
   }
 
-  private void _updateTreeItemSubscriptions(IEnumerable<FlatItem>? oldItems, IEnumerable<FlatItem>? newItems) {
+  private void _updateTreeItemSubscriptions(IEnumerable<FlatTreeItem>? oldItems, IEnumerable<FlatTreeItem>? newItems) {
     var o = oldItems?.Except(newItems ?? []).ToArray() ?? [];
     var n = newItems?.Except(oldItems ?? []).ToArray() ?? [];
 
     foreach (var item in o)
-      item.Node.PropertyChanged -= _onTreeItemPropertyChanged;
+      item.TreeItem.PropertyChanged -= _onTreeItemPropertyChanged;
 
     foreach (var item in n)
-      item.Node.PropertyChanged += _onTreeItemPropertyChanged;
+      item.TreeItem.PropertyChanged += _onTreeItemPropertyChanged;
   }
 
   private void _onTreeItemPropertyChanged(object? sender, PropertyChangedEventArgs e) {
@@ -236,48 +231,4 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
 
   private void _onRootHolderChanged(object? sender, NotifyCollectionChangedEventArgs e) =>
     _setItemsSource();
-}
-
-public class FlatItem : IEquatable<FlatItem> {
-  public ITreeItem Node { get; } // Folder, group, or row
-  public int Level { get; } // For indentation
-  public double Height { get; } // Item height
-  public double CumulativeHeight { get; } // Height up to this item (exclusive)
-
-  public FlatItem(ITreeItem node, int level, double height, double cumulativeHeight) {
-    Node = node;
-    Level = level;
-    Height = height;
-    CumulativeHeight = cumulativeHeight;
-  }
-
-  public bool Equals(FlatItem? other) => other is not null && ReferenceEquals(Node, other.Node);
-  public override bool Equals(object? obj) => obj?.GetType() == GetType() && ReferenceEquals(Node, ((FlatItem)obj).Node);
-  public override int GetHashCode() => Node.GetHashCode();
-}
-
-public static class TreeFlattener {
-  // TODO exclude hidden items
-  public static List<FlatItem> FlattenTree(IEnumerable<ITreeItem> roots, double fixedItemHeight, Func<ITreeItem, double>? getRowHeight = null) {
-    var flatItems = new List<FlatItem>();
-    var stack = new Stack<(ITreeItem Node, int Level)>();
-    double cumulativeHeight = 0;
-
-    foreach (var root in roots)
-      stack.Push((root, 0));
-
-    while (stack.Count > 0) {
-      var (node, level) = stack.Pop();
-      double height = getRowHeight != null ? getRowHeight(node) : fixedItemHeight;
-      flatItems.Add(new FlatItem(node, level, height, cumulativeHeight));
-      cumulativeHeight += height;
-
-      if (node.IsExpanded) {
-        for (int i = node.Items.Count - 1; i >= 0; i--)
-          stack.Push((node.Items[i], level + 1));
-      }
-    }
-
-    return flatItems;
-  }
 }
