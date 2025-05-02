@@ -290,34 +290,43 @@
     </Setter>
   </ControlTheme>
 
-  <DataTemplate x:Key="MH.DT.TreeViewItem" x:DataType="c:FlatItem">
-    <Grid
-      Margin="{Binding Converter={x:Static conv:TreeMarginConverter.Inst}, ConverterParameter=16}"
-      ColumnDefinitions="20,*">
-
-      <ToggleButton
-        x:Name="Expander"
-        Theme="{StaticResource MH.S.ToggleButton.TreeExpandCollapse}"
-        IsChecked="{Binding Node.IsExpanded, Mode=TwoWay}"
-        IsVisible="{Binding Node.Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}"/>
-
-      <ContentPresenter
-        Grid.Column="1"
-        Content="{Binding Node}"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"/>
-    </Grid>
-  </DataTemplate>
-
-  <ControlTheme x:Key="{x:Type c:TreeViewHost2}" TargetType="c:TreeViewHost2" BasedOn="{StaticResource {x:Type ListBox}}">
+  <ControlTheme x:Key="{x:Type c:TreeViewHost2}" TargetType="c:TreeViewHost2">
+    <Setter Property="Background" Value="{StaticResource MH.B.C.Static.Ba}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource MH.B.C.Static.Bo}"/>
     <Setter Property="BorderThickness" Value="0"/>
-    <Setter Property="ItemContainerTheme">
-      <Setter.Value>
-        <ControlTheme TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-          <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-          <Setter Property="ContentTemplate" Value="{StaticResource MH.DT.TreeViewItem}"/>
-        </ControlTheme>
-      </Setter.Value>
+    <Setter Property="Foreground" Value="{StaticResource MH.B.C.Static.Fo}"/>
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+    <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="True"/>
+    <Setter Property="ScrollViewer.IsScrollInertiaEnabled" Value="True"/>
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+          Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}">
+            
+          <ScrollViewer
+            Focusable="False"
+            VerticalSnapPointsType="{TemplateBinding (ScrollViewer.VerticalSnapPointsType)}"
+            HorizontalSnapPointsType="{TemplateBinding (ScrollViewer.HorizontalSnapPointsType)}"
+            HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+            VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+            IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+            IsScrollInertiaEnabled="{TemplateBinding (ScrollViewer.IsScrollInertiaEnabled)}"
+            IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+            AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+            BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}"
+            ap:Slot.LeftContent="{Binding Path=(ap:Slot.LeftContent), RelativeSource={RelativeSource TemplatedParent}}"
+            ap:Slot.TopContent="{Binding Path=(ap:Slot.TopContent), RelativeSource={RelativeSource TemplatedParent}}"
+            ap:Slot.RightContent="{Binding Path=(ap:Slot.RightContent), RelativeSource={RelativeSource TemplatedParent}}"
+            ap:Slot.BottomContent="{Binding Path=(ap:Slot.BottomContent), RelativeSource={RelativeSource TemplatedParent}}">
+
+            <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" Margin="{TemplateBinding Padding}"/>
+          </ScrollViewer>
+        </Border>
+      </ControlTemplate>
     </Setter>
   </ControlTheme>
 </ResourceDictionary>
