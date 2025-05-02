@@ -132,9 +132,10 @@ public class TreeViewHost : TreeView, UIC.ITreeViewHost {
   }
 }
 
-public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
+public class TreeViewHost2 : ItemsControl, UIC.ITreeViewHost {
   private bool _isScrollingTo;
   private ScrollViewer _sv = null!;
+  private static readonly FuncTemplate<Panel?> _defaultPanel = new(() => new VirtualizingStackPanel());
 
   public static readonly StyledProperty<UIC.TreeView?> ViewModelProperty =
     AvaloniaProperty.Register<TreeViewHost2, UIC.TreeView?>(nameof(ViewModel));
@@ -150,7 +151,7 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
   }
 
   static TreeViewHost2() {
-    SelectedItemProperty.Changed.AddClassHandler<TreeViewHost2>(_onSelectedItemChanged);
+    ItemsPanelProperty.OverrideDefaultValue<TreeViewHost2>(_defaultPanel);
     ViewModelProperty.Changed.AddClassHandler<TreeViewHost2>(_onViewModelChanged);
   }
 
@@ -168,6 +169,12 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
 
     _setItemsSource();
   }
+
+  protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) =>
+    new FlatTreeItemHost();
+
+  protected  override bool NeedsContainerOverride(object? item, int index, out object? recycleKey) =>
+    NeedsContainer<FlatTreeItemHost>(item, out recycleKey);
 
   private void _raiseHostIsVisibleChanged(bool value) => HostIsVisibleChangedEvent?.Invoke(this, value);
 
@@ -207,11 +214,6 @@ public class TreeViewHost2 : ListBox, UIC.ITreeViewHost {
   /// </summary>
   public void ExpandRootWhenReady(ITreeItem root) =>
     Dispatcher.UIThread.Post(() => root.IsExpanded = true, DispatcherPriority.Loaded);
-
-  private static void _onSelectedItemChanged(TreeViewHost2 o, AvaloniaPropertyChangedEventArgs e) {
-    if (o.ViewModel == null || e.NewValue is not FlatTreeItem fti) return;
-    o.ViewModel.SelectItemCommand.Execute(fti.TreeItem);
-  }
 
   private void _updateTreeItemSubscriptions(IEnumerable<FlatTreeItem>? oldItems, IEnumerable<FlatTreeItem>? newItems) {
     var o = oldItems?.Except(newItems ?? []).ToArray() ?? [];
