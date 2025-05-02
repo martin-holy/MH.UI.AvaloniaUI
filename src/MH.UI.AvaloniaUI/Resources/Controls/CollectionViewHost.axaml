@@ -176,9 +176,9 @@
             <EventTriggerBehavior EventName="DoubleTapped">
               <InvokeCommandAction Command="{x:Static c:CollectionViewHost.OpenItemCommand}" PassEventArgsToCommand="True"/>
             </EventTriggerBehavior>
-            <EventTriggerBehavior EventName="PointerReleased">
+            <!--<EventTriggerBehavior EventName="PointerReleased">
               <InvokeCommandAction Command="{x:Static c:CollectionViewHost.SelectItemCommand}" PassEventArgsToCommand="True"/>
-            </EventTriggerBehavior>
+            </EventTriggerBehavior>-->
           </Interaction.Behaviors>
 
           <ItemsControl.ItemsPanel>

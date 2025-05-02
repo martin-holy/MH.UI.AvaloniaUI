@@ -36,7 +36,6 @@ public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
   }
 
   public static RelayCommand<TappedEventArgs> OpenItemCommand { get; } = new(_openItem);
-  public static RelayCommand<PointerReleasedEventArgs> SelectItemCommand { get; } = new(_selectItem);
   public static RelayCommand<SizeChangedEventArgs> SetGroupWidthCommand { get; } = new(_setGroupWidth);
 
   private static void _openItem(TappedEventArgs? e) {
@@ -50,18 +49,20 @@ public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
     _openTime = (DateTime.Now - startTime).TotalMilliseconds;
   }
 
-  private static void _selectItem(PointerReleasedEventArgs? e) {
-    if ((e?.Source as Control)?.FindAncestorOfType<CollectionViewHost>() is not { ViewModel.CanOpen: true } cv
-        || cv._doubleClicking()) return;
+  internal override bool UpdateSelectionFromPointerEvent(Control source, PointerEventArgs e) {
+    if ((e.Source as Control)?.FindAncestorOfType<CollectionViewHost>() is not { ViewModel.CanOpen: true } cv
+        || cv._doubleClicking()) return false;
 
     var item = _getDataContext(e.Source);
     var row = ((e.Source as Control)?.FindAncestorOfType<CollectionViewRowItemsControl>()?.DataContext as FlatTreeItem)?.TreeItem;
     var btn = e.Source as Button ?? (e.Source as Control)?.FindAncestorOfType<Button>();
 
-    if (item == null || row == null || btn != null) return;
+    if (item == null || row == null || btn != null) return false;
 
     bool isCtrlOn;
     bool isShiftOn;
+
+    var g = e.GetCurrentPoint(null);
 
     if (e.GetCurrentPoint(null).Properties.PointerUpdateKind != PointerUpdateKind.LeftButtonReleased) {
       isCtrlOn = true;
@@ -73,6 +74,8 @@ public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
     }
 
     cv.ViewModel.SelectItem(row, item, isCtrlOn, isShiftOn);
+
+    return true;
   }
 
   private bool _doubleClicking() {
