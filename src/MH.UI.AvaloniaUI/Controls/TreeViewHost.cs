@@ -215,6 +215,13 @@ public class TreeViewHost2 : ItemsControl, UIC.ITreeViewHost {
   public void ExpandRootWhenReady(ITreeItem root) =>
     Dispatcher.UIThread.Post(() => root.IsExpanded = true, DispatcherPriority.Loaded);
 
+  internal virtual bool UpdateSelectionFromPointerEvent(Control source, PointerEventArgs e) {
+    if (source.DataContext is FlatTreeItem fti)
+      ViewModel?.SelectItemCommand.Execute(fti.TreeItem);
+
+    return true;
+  }
+
   private void _updateTreeItemSubscriptions(IEnumerable<FlatTreeItem>? oldItems, IEnumerable<FlatTreeItem>? newItems) {
     var o = oldItems?.Except(newItems ?? []).ToArray() ?? [];
     var n = newItems?.Except(oldItems ?? []).ToArray() ?? [];
