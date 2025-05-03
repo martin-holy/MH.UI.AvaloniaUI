@@ -84,9 +84,9 @@
                     Classes="shadow"/>
                 </MenuItem.Icon>
 
-                <MenuItem Command="{Binding TreeItem.View.OpenGroupByDialogCommand}" CommandParameter="{Binding}"/>
-                <MenuItem Command="{Binding TreeItem.View.ShuffleCommand}" CommandParameter="{Binding}"/>
-                <MenuItem Command="{Binding TreeItem.View.SortCommand}" CommandParameter="{Binding}"/>
+                <MenuItem Command="{Binding TreeItem.View.OpenGroupByDialogCommand}" CommandParameter="{Binding TreeItem}"/>
+                <MenuItem Command="{Binding TreeItem.View.ShuffleCommand}" CommandParameter="{Binding TreeItem}"/>
+                <MenuItem Command="{Binding TreeItem.View.SortCommand}" CommandParameter="{Binding TreeItem}"/>
 
                 <MenuItem
                   Header="View"
