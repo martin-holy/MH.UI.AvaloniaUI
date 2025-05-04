@@ -5,6 +5,6 @@
   xmlns:vmc="clr-namespace:MH.UI.AvaloniaUI.Sample.ViewModels.Controls">
 
   <DataTemplate DataType="{x:Type vmc:FolderTreeViewVM}">
-    <mhc:TreeDataGridHost ViewModel="{Binding}"/>
+    <mhc:TreeViewHost ViewModel="{Binding}"/>
   </DataTemplate>
 </DataTemplates>
