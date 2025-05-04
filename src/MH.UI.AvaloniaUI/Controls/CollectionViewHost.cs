@@ -12,7 +12,7 @@ using UIC = MH.UI.Controls;
 
 namespace MH.UI.AvaloniaUI.Controls;
 
-public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
+public class CollectionViewHost : TreeViewHost, UIC.ICollectionViewHost {
   private double _openTime;
   private DateTime _lastClickTime = DateTime.Now;
 
@@ -27,7 +27,7 @@ public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
   }
 
   private static void _onViewModelChanged(CollectionViewHost o, AvaloniaPropertyChangedEventArgs e) {
-    o.SetValue(TreeViewHost2.ViewModelProperty, o.ViewModel);
+    o.SetValue(TreeViewHost.ViewModelProperty, o.ViewModel);
     if (o.ViewModel != null) o.ViewModel.Host = o;
   }
 
@@ -61,8 +61,6 @@ public class CollectionViewHost : TreeViewHost2, UIC.ICollectionViewHost {
 
     bool isCtrlOn;
     bool isShiftOn;
-
-    var g = e.GetCurrentPoint(null);
 
     if (e.GetCurrentPoint(null).Properties.PointerUpdateKind != PointerUpdateKind.LeftButtonReleased) {
       isCtrlOn = true;

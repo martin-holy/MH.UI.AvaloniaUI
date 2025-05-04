@@ -38,7 +38,7 @@ public class FlatTreeItemHost : ContentControl {
 
       if (new Rect(Bounds.Size).ContainsExclusive(point.Position) &&
           tapRect.ContainsExclusive(point.Position) &&
-          ItemsControl.ItemsControlFromItemContainer(this) is TreeViewHost2 owner) {
+          ItemsControl.ItemsControlFromItemContainer(this) is TreeViewHost owner) {
         if (owner.UpdateSelectionFromPointerEvent(this, e)) {
           if (e.Pointer.Type != PointerType.Mouse) {
             var sourceBackup = e.Source;

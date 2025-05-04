@@ -16,7 +16,7 @@
         </DataTemplate>
       </Grid.Resources>
 
-      <c:TreeViewHost2
+      <c:TreeViewHost
         ViewModel="{Binding TreeView}"
         InnerContentTemplate="{StaticResource DialogTreeItem}"/>
       
