@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Templates;
 using Avalonia.Input;
 
 namespace MH.UI.AvaloniaUI.Controls;
@@ -7,6 +8,11 @@ namespace MH.UI.AvaloniaUI.Controls;
 public class FlatTreeItemHost : ContentControl {
   private static readonly Point _invalidPoint = new(double.NaN, double.NaN);
   private Point _pointerDownPoint = _invalidPoint;
+
+  public static readonly StyledProperty<IDataTemplate?> InnerContentTemplateProperty =
+    AvaloniaProperty.Register<FlatTreeItemHost, IDataTemplate?>(nameof(InnerContentTemplate));
+
+  public IDataTemplate? InnerContentTemplate { get => GetValue(InnerContentTemplateProperty); set => SetValue(InnerContentTemplateProperty, value); }
 
   protected override void OnPointerPressed(PointerPressedEventArgs e) {
     base.OnPointerPressed(e);

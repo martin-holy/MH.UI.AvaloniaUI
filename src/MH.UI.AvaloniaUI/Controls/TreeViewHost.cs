@@ -139,8 +139,11 @@ public class TreeViewHost2 : ItemsControl, UIC.ITreeViewHost {
 
   public static readonly StyledProperty<UIC.TreeView?> ViewModelProperty =
     AvaloniaProperty.Register<TreeViewHost2, UIC.TreeView?>(nameof(ViewModel));
+  public static readonly StyledProperty<IDataTemplate?> InnerContentTemplateProperty =
+    AvaloniaProperty.Register<TreeViewHost2, IDataTemplate?>(nameof(InnerContentTemplate));
 
   public UIC.TreeView? ViewModel { get => GetValue(ViewModelProperty); set => SetValue(ViewModelProperty, value); }
+  public IDataTemplate? InnerContentTemplate { get => GetValue(InnerContentTemplateProperty); set => SetValue(InnerContentTemplateProperty, value); }
 
   private static void _onViewModelChanged(TreeViewHost2 o, AvaloniaPropertyChangedEventArgs e) {
     if (o.ViewModel != null) o.ViewModel.Host = o;
@@ -171,7 +174,7 @@ public class TreeViewHost2 : ItemsControl, UIC.ITreeViewHost {
   }
 
   protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) =>
-    new FlatTreeItemHost();
+    new FlatTreeItemHost { InnerContentTemplate = InnerContentTemplate };
 
   protected  override bool NeedsContainerOverride(object? item, int index, out object? recycleKey) =>
     NeedsContainer<FlatTreeItemHost>(item, out recycleKey);
