@@ -7,18 +7,18 @@
   <DataTemplate x:Key="MH.UI.Dialogs.GroupByDialog`1" x:CompileBindings="False">
     <Grid RowDefinitions="300,Auto,Auto">
       <Grid.Resources>
-        <TreeDataTemplate x:Key="DialogTreeItem" DataType="{x:Type ubc:TreeItem}" ItemsSource="{Binding Items}">
+        <DataTemplate x:Key="DialogTreeItem" x:DataType="{x:Type ubc:TreeItem}">
           <ContentPresenter
             DataContext="{Binding Data}"
             Content="{Binding}"
             ContentTemplate="{x:Static c:CollectionViewHost.GroupByDialogDataTemplateSelector}"
             HorizontalAlignment="Left"/>
-        </TreeDataTemplate>
+        </DataTemplate>
       </Grid.Resources>
 
-      <c:TreeDataGridHost
+      <c:TreeViewHost2
         ViewModel="{Binding TreeView}"
-        SingleColumnTemplate="{StaticResource DialogTreeItem}"/>
+        InnerContentTemplate="{StaticResource DialogTreeItem}"/>
       
       <StackPanel Grid.Row="1" Orientation="Horizontal">
         <RadioButton
